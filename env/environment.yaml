@@ -3,11 +3,13 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-## need to install pngquant manually, can do sovia 
+## need to install pngquant manually
   - python=3.9
   - setuptools=57.4.0
   - openssl=1.1.1
   - ipython
+  - jbig2enc
+  - pdftotext
   - pip
   - pip:
     - aiohttp==3.10.8

@@ -12,4 +12,4 @@ def test_ocrmypdf(input_file, output_file):
 
 if __name__ == "__main__":
     # Use absolute paths or confirm that these files are in the current directory.
-    test_ocrmypdf("lolol.pdf", "lololoutput.pdf")
+    test_ocrmypdf("2023-2024_Sustainability_Report_(ENG)_.pdf", "LGoutput.pdf")
