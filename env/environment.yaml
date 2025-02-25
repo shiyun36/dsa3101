@@ -1,11 +1,15 @@
 name: 3101_proj
 channels:
-  - defaults
   - conda-forge
+  - defaults
 dependencies:
+## need to install pngquant manually
   - python=3.9
   - setuptools=57.4.0
+  - openssl=1.1.1
   - ipython
+  - jbig2enc
+  - pdftotext
   - pip
   - pip:
     - aiohttp==3.10.8
@@ -38,7 +42,6 @@ dependencies:
     - torch==2.4.1
     - ipywidgets
     - kagglehub
-    - openssl
     - torch 
     - transformers
     - numpy
