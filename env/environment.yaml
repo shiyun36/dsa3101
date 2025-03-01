@@ -48,4 +48,5 @@ dependencies:
     - scikit-learn
     - selenium
     - accelerate>=0.26.0
-    
+    - psycopg2
+    - python-dotenv
