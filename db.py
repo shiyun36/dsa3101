@@ -1,6 +1,7 @@
 import psycopg2
 from dotenv import load_dotenv
 import os
+import csv
 
 load_dotenv()
 
@@ -12,5 +13,23 @@ db_password = os.getenv('db_password')
 
 conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
 cur = conn.cursor()
-cur.execute('CREATE TABLE esg_bert (sentence TEXT,label VARCHAR(255),score FLOAT);')
-conn.commit()
+
+#Create database in psql
+with open('db.sql','r',encoding="utf-8-sig") as file:
+    create_db = file.read()
+    cur.execute(create_db)
+    conn.commit()
+
+#Example data population
+with open('./example_db_data/example_db_data pfizer_2024.csv', 'r', encoding='utf-8') as file:
+    cs = csv.reader(file, )
+    next(cs) #Goes to the next row(Skip headers)
+    for row in cs:
+        cur.execute(''' 
+                    INSERT INTO esg_bert (esg_cat,sentence,confidence_score)
+                    VALUES (%s, %s,%s)                
+''', (row[1],row[2],row[3]))
+    conn.commit()
+        
+cur.close()
+conn.close()
