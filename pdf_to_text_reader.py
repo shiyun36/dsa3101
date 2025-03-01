@@ -1,9 +1,10 @@
 from PyPDF2 import PdfReader
+import os
 import re
 import json
 
 
-def convert_ocr_pdf_to_text(input_pdf_path, output_file):
+def convert_ocr_pdf_to_text(input_pdf_path):
     """
     Extract text from an OCR-based PDF, clean it, and save as a JSON list of sentences.
     """
@@ -21,6 +22,8 @@ def convert_ocr_pdf_to_text(input_pdf_path, output_file):
         lines = [line for line in lines if not re.match(r'^(Page\s*\d+|\d+|P\.\s*\d+)$', line.strip(), re.IGNORECASE)]
 
         return "\n".join(lines)
+    
+    output_file = os.path.splitext(input_pdf_path)[0] + ".json"
 
     cleaned_text = ''
     pdfReader = PdfReader(input_pdf_path)
