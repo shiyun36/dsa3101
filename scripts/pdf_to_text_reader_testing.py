@@ -1,7 +1,7 @@
 from PyPDF2 import PdfReader
+import pdfplumber
 import re
 import json
-
 
 def convert_ocr_pdf_to_text(input_pdf_path):
     """
