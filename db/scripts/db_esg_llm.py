@@ -19,14 +19,12 @@ def db_esg_llm(clean_llm_output_list): #also outputs the company_name
     cur = conn.cursor()
     #
     for i in clean_llm_output_list:
-        js = json.loads(i)
-        print(js)
-
         #inserts each row into the db in esg_llm
-        for row in js:
+        for row in i:
+            print(row)
             cur.execute('''
                 INSERT INTO esg_llm (
-                    company, year, ticker,industry, esg_category, esg_subcategory, sentence_type, 
+                    company, year, ticker,industry, esg_cat, esg_subcat, sentence_type, 
                     esg_framework, raw_score, esg_risk_prediction, summarized_sentences_data, relevance_score
                 ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''', 
                 (

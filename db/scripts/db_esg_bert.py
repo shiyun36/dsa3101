@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 import json
 
-def db_esg_bert(clean_sentences): #also outputs the company_name 
+def db_esg_bert(data_frame): #also outputs the company_name 
     load_dotenv()
 
     db_name = os.getenv('db_name')
@@ -15,18 +15,15 @@ def db_esg_bert(clean_sentences): #also outputs the company_name
     #create cursor & conn
     conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
     cur = conn.cursor()
-    
+    data_frame = data_frame.to_json(orient='records')
+    js = json.loads(data_frame)
     #
-    for i in clean_sentences:
-        js = json.loads(i)
-        print(js)
-
-        #inserts each row into the db in esg_llm
-        for row in js:
-            cur.execute('''
+    for row in js:
+        print(row)
+        cur.execute('''
                 INSERT INTO esg_bert (
-                    company, year, ticker, sentence,esg_cat, esg_subcat, confidence_score, data_type
-                ) VALUES (%s, %s, %s,%s, %s, %s, %s, %s)''', 
+                    company, year, ticker, sentence,esg_cat, esg_subcat, confidence_score
+                ) VALUES (%s, %s, %s,%s, %s, %s, %s)''', 
                 (
                 row["company"], 
                 row["year"], 
@@ -34,8 +31,7 @@ def db_esg_bert(clean_sentences): #also outputs the company_name
                 row['sentence'],
                 row["esg_cat"], 
                 row["esg_subcat"], 
-                row["confidence_score"],
-                "sentence",
+                row["score"],
             ))
     # for i in table_data_json:
     #     js_table = json.loads(i)

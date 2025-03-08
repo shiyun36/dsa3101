@@ -4,7 +4,7 @@ import os
 import json
 
 
-def db_esg_bert(table_data_json, company,year,ticker): #also outputs the company_name 
+def db_esg_table(table_data_json, company,year,ticker): #also outputs the company_name 
 
     load_dotenv()
 
@@ -19,23 +19,24 @@ def db_esg_bert(table_data_json, company,year,ticker): #also outputs the company
     
     
     for i in table_data_json:
-        js_table = json.loads(i)
+        # js_table = json.loads(i)
         table_data = {
             'company': company,
         'year' : year,
         'ticker': ticker,
-        'table_data' : js_table
+        'json_table' : f"{json.loads(i)}"
         }
+        print(table_data)
     
         cur.execute('''
             INSERT INTO esg_table_data (
-                    company, year, ticker,table_data
+                    company, year, ticker,json_table
                 ) VALUES (%s, %s, %s,%s)''', 
             (
             table_data["company"], 
             table_data["year"],
             table_data["ticker"], 
-            table_data['table_data'],
+            table_data['json_table'],
             ))
     
     conn.commit()

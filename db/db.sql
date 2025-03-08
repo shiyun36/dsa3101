@@ -2,11 +2,11 @@
 CREATE TABLE esg_bert (
     "company" VARCHAR NOT NULL,
     "year" int NOT NULL,
+    "ticker" VARCHAR,
     "sentence" VARCHAR NOT NULL,
-    "esg_cat" TEXT NOT NULL,
-    "esg_subcat" TEXT NOT NULL,
-    "confidence_score" FLOAT NOT NULL,
-    "data_type" VARCHAR NOT NULL -- table or sentence
+    "esg_cat" VARCHAR,
+    "esg_subcat" VARCHAR,
+    "confidence_score" FLOAT
 );
 
 CREATE TABLE "esg_llm" (
@@ -14,8 +14,8 @@ CREATE TABLE "esg_llm" (
     "year" int   NOT NULL,
     "ticker" VARCHAR,
     "industry" VARCHAR   NOT NULL,
-    "esg_cat" VARCHAR   NOT NULL,
-    "esg_subcat" VARCHAR NOT NULL,
+    "esg_cat" VARCHAR,
+    "esg_subcat" VARCHAR,
     "sentence_type" VARCHAR   NOT NULL,
     "esg_framework" VARCHAR,
     "raw_score" int   NOT NULL,
