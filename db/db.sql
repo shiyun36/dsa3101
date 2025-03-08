@@ -1,8 +1,12 @@
 ﻿
 CREATE TABLE esg_bert (
+    "company" VARCHAR NOT NULL,
+    "year" int NOT NULL,
     "sentence" VARCHAR NOT NULL,
     "esg_cat" TEXT NOT NULL,
-    "confidence_score" FLOAT NOT NULL
+    "esg_subcat" TEXT NOT NULL,
+    "confidence_score" FLOAT NOT NULL,
+    "data_type" VARCHAR NOT NULL -- table or sentence
 );
 
 CREATE TABLE "esg_llm" (
@@ -20,6 +24,18 @@ CREATE TABLE "esg_llm" (
     "relevance_score" VARCHAR   NOT NULL
 );
 
+-- CREATE TABLE esg_feedback_data (
+--     "sentence" VARCHAR NOT NULL,
+--     "esg_cat" TEXT NOT NULL,
+--     "esg_subcat" TEXT NOT NULL, -- we can use this table to store feedback data that have been reannotated
+-- )
+
+CREATE TABLE "esg_table_data" (
+    "company" VARCHAR   NOT NULL,
+    "year" int   NOT NULL,
+    "ticker" VARCHAR,
+    "json_table" TEXT
+)
 -- CREATE TABLE "esg-industry-metrics" (
 --     "esg_cat" VARCHAR   NOT NULL,
 --     "esg_subcat" VARCHAR   NOT NULL,
@@ -30,32 +46,32 @@ CREATE TABLE "esg_llm" (
 --example tables to use
 
 -- should be unique
-CREATE TABLE "esg_company" (
-    "company" VARCHAR   NOT NULL,
-    "year" INT   NOT NULL,
-    "esg_framework" VARCHAR   NOT NULL,
-    "total_revenue" int   NOT NULL,
-    "net_profit" int   NOT NULL,
-    "market_cap" int   NOT NULL,
-    "return_on_equity" int   NOT NULL,
-    "return_on_asset" int   NOT NULL,
-    "employee_count" int   NOT NULL,
-    -- mnc/sme?
-    "company_type" VARCHAR   NOT NULL,
-    "total_assets" int   NOT NULL,
-    "total_liabilities" int   NOT NULL,
-    "debt_to_equity_ratio" float   NOT NULL,
-    "pe_ratio" float   NOT NULL,
-    "esg_investment" float   NOT NULL,
-    "carbon_price" float   NOT NULL,
-    "esg_fines" float   NOT NULL,
-    "non_compliance_count" int   NOT NULL,
-    -- maybe we can see if longer reports are better?
-    "sentences_count" int   NOT NULL,
-    CONSTRAINT "pk_ESG-company" PRIMARY KEY (
-        "company"
-     )
-);
+-- CREATE TABLE "esg_company" (
+--     "company" VARCHAR   NOT NULL,
+--     "year" INT   NOT NULL,
+--     "esg_framework" VARCHAR   NOT NULL,
+--     "total_revenue" int   NOT NULL,
+--     "net_profit" int   NOT NULL,
+--     "market_cap" int   NOT NULL,
+--     "return_on_equity" int   NOT NULL,
+--     "return_on_asset" int   NOT NULL,
+--     "employee_count" int   NOT NULL,
+--     -- mnc/sme?
+--     "company_type" VARCHAR   NOT NULL,
+--     "total_assets" int   NOT NULL,
+--     "total_liabilities" int   NOT NULL,
+--     "debt_to_equity_ratio" float   NOT NULL,
+--     "pe_ratio" float   NOT NULL,
+--     "esg_investment" float   NOT NULL,
+--     "carbon_price" float   NOT NULL,
+--     "esg_fines" float   NOT NULL,
+--     "non_compliance_count" int   NOT NULL,
+--     -- maybe we can see if longer reports are better?
+--     "sentences_count" int   NOT NULL,
+--     CONSTRAINT "pk_ESG-company" PRIMARY KEY (
+--         "company"
+--      )
+-- );
 
 -- we can edit this as needed from the finbert model output
 -- CREATE TABLE "ESG-bert" (
