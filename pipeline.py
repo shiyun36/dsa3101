@@ -104,6 +104,12 @@ df[['company','year','ticker']] = [company,company_year,company_ticker]
 
 
 ########### DB Insertion ##########
-db_esg_table(tabular, company,company_year,company_ticker)
-db_esg_bert(df)
-db_esg_llm(cleaned_output)
+# db_esg_table(tabular, company,company_year,company_ticker)
+# db_esg_bert(df)
+# db_esg_llm(cleaned_output)
+
+print('Table Datas', tabular)
+print('Company', company)
+print('company_year Datas', company_year)
+print('company_ticker Datas', company_ticker)
+print('cleaned_output', cleaned_output)
