@@ -2,6 +2,8 @@ import psycopg2
 from dotenv import load_dotenv
 import os
 
+#Database creation script
+
 load_dotenv()
 
 db_name = os.getenv('db_name')
