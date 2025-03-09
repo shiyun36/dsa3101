@@ -5,9 +5,9 @@ import json
 import yfinance as yf
 import pandas as pd
 from sqlalchemy import create_engine
+import datetime
 
-
-def get_financial_data(ticker,company,company_year):
+def get_financial_data(ticker,company):
     load_dotenv()
 
     db_name = os.getenv('db_name')
@@ -23,6 +23,7 @@ def get_financial_data(ticker,company,company_year):
 
     try:
         stock = yf.Ticker(ticker)
+        info = stock.info
         sustainability = stock.sustainability
         income_stmt = stock.financials  # Income Statement
         balance_sheet = stock.balance_sheet  # Balance Sh
@@ -80,7 +81,7 @@ def get_financial_data(ticker,company,company_year):
         'tobacco': esg_scores['tobacco']
         }
 
-        pd.DataFrame(flattened_data).to_sql('esg_yahoo_sustainability', engine, index=False, if_exists='replace')
+        pd.DataFrame(flattened_data).to_sql('esg_yahoo_sustainability', engine, index=False, if_exists='append')
 
         ### Income Statement ###
         index_income = income_stmt.T.index
@@ -105,6 +106,39 @@ def get_financial_data(ticker,company,company_year):
         cash_flow['company'] = company
         cash_flow.to_sql('esg_yahoo_cashflow', engine, if_exists='append')
 
+        ### stock info ##
+        financial_data = {
+            'company': company,
+            'year': datetime.datetime.utcfromtimestamp(info.get('mostRecentQuarter')).strftime('%Y'),
+            'ROA': info.get('returnOnAssets'),
+            'ROE': info.get('returnOnEquity'),
+            'netIncomeToCommon': info.get('netIncomeToCommon'),
+            'trailingPE': info.get('trailingPE'),
+            'forwardPE': info.get('forwardPE'),
+            'grossProfits': info.get('grossProfits'),
+            'operatingCashflow': info.get('operatingCashflow'),
+            'freeCashflow': info.get('freeCashflow'),
+            'totalRevenue': info.get('totalRevenue'),
+            'bookValue': info.get('bookValue'),
+            'payoutRatio': info.get('payoutRatio'),
+            'grossMargins': info.get('grossMargins'),
+            'ebitdaMargins': info.get('ebitdaMargins'),
+            'marketCap': info.get('marketCap'),
+            'priceToBook': info.get('priceToBook'),
+            'enterpriseValue': info.get('enterpriseValue'),
+            'dividendRate': info.get('dividendRate'),
+            'dividendYield': info.get('dividendYield'),
+            'fiveYearAvgDividendYield': info.get('fiveYearAvgDividendYield'),
+            'debtToEquity': info.get('debtToEquity'),
+            'quickRatio': info.get('quickRatio'),
+            'currentRatio': info.get('currentRatio'),
+            'auditRisk': info.get('auditRisk'),
+            'boardRisk': info.get('boardRisk'),
+            'compensationRisk': info.get('compensationRisk'),
+            'shareHolderRightsRisk': info.get('shareHolderRightsRisk')
+        }
+        print(financial_data)
+        pd.DataFrame([financial_data]).to_sql('esg_stock', engine, index=False, if_exists='append')
     
     except Exception as e:
         print('No available data')

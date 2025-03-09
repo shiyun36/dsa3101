@@ -12,6 +12,11 @@ from scripts.pdf_to_text_reader_script import convert_ocr_pdf_to_text
 from transformers import pipeline
 import pandas as pd
 import json
+import yfinance as yf
+import pandas as pd
+from sqlalchemy import create_engine
+import datetime
+from scripts.get_financial_data import get_financial_data
 
 #OCR Script run here and output pdf_file
 ####################
@@ -20,14 +25,14 @@ import json
 
 ################# PDF To Json ############
 #Change pdf_file eventually to the pdf we need
-pdf_file = '/home/shiro/dsa3101/Datasets/ocr_esg/Health/NA/Pfizer_2022_ocr.pdf'
+pdf_file = '/home/shiro/dsa3101/Datasets/ocr_esg/Tech/Na/DataDog_2024_ocr.pdf'
 doc_json = convert_ocr_pdf_to_text(pdf_file)
 ###################################################
 
 ############### BERT #######################
 ##Bert Model Run here ##Placeholder BERT Model
 pipe = pipeline("text-classification", model="nbroad/ESG-BERT")
-res = pipe(doc_json)
+res = pipe(doc_json,truncation=True)
 #################
 
 ############################## DUMMY DATA GENERATION ###################
@@ -101,12 +106,15 @@ company_ticker = cleaned_output[0][0]['ticker']
 ## Uses original data_frame that is unfiltered (So we can let analyst filter the data on their own and change labels to refeed into model and incase want frontend)
 ## 
 df[['company','year','ticker']] = [company,company_year,company_ticker] 
-
+print(company)
 
 ########### DB Insertion ##########
 # db_esg_table(tabular, company,company_year,company_ticker)
 # db_esg_bert(df)
 # db_esg_llm(cleaned_output)
+
+###### Yahoo Finance Data DB #####
+get_financial_data(company_ticker, company)
 
 print('Table Datas', tabular)
 print('Company', company)

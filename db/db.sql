@@ -36,6 +36,46 @@ CREATE TABLE "esg_table_data" (
     "ticker" VARCHAR,
     "json_table" TEXT
 )
+
+
+-- CREATE TABLE "esg_yahoo_finance_sustainability" (
+--     maxAge INT,
+--     totalEsg DECIMAL,
+--     environmentScore DECIMAL,
+--     socialScore DECIMAL,
+--     governanceScore DECIMAL,
+--     ratingYear INT,
+--     ratingMonth INT,
+--     highestControversy DECIMAL,
+--     peerCount INT,
+--     esgPerformance VARCHAR(255),
+--     peerGroup VARCHAR(255),
+--     relatedControversy TEXT[],  -- List of strings (Array)
+--     peerEsgScorePerformance JSONB,  -- JSON type for nested structure
+--     peerGovernancePerformance JSONB,  -- JSON type for nested structure
+--     peerSocialPerformance JSONB,  -- JSON type for nested structure
+--     peerEnvironmentPerformance JSONB,  -- JSON type for nested structure
+--     peerHighestControversyPerformance JSONB,  -- JSON type for nested structure
+--     percentile DECIMAL,  -- Can be NULL
+--     environmentPercentile DECIMAL,  -- Can be NULL
+--     socialPercentile DECIMAL,  -- Can be NULL
+--     governancePercentile DECIMAL,  -- Can be NULL
+--     adult BOOLEAN,
+--     alcoholic BOOLEAN,
+--     animalTesting BOOLEAN,
+--     catholic BOOLEAN,  -- Can be NULL
+--     controversialWeapons BOOLEAN,
+--     smallArms BOOLEAN,
+--     furLeather BOOLEAN,
+--     gambling BOOLEAN,
+--     gmo BOOLEAN,
+--     militaryContract BOOLEAN,
+--     nuclear BOOLEAN,
+--     pesticides BOOLEAN,
+--     palmOil BOOLEAN,
+--     coal BOOLEAN,
+--     tobacco BOOLEAN
+-- )
 -- CREATE TABLE "esg-industry-metrics" (
 --     "esg_cat" VARCHAR   NOT NULL,
 --     "esg_subcat" VARCHAR   NOT NULL,
