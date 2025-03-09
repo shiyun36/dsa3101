@@ -63,13 +63,11 @@ esg_categories = {
     "Product_Design_And_Lifecycle_Management": "Governance",
     "Competitive_Behavior": "Governance"
 }
-df = pd.read_csv('/home/shiro/dsa3101/example_db_data/example_db_data pfizer_2024.csv') #data was generated using esg_bert on the pfizer => esg-bert labels not our actual model
-df3 = df.copy()
-df3['cat'] = df3['label'].map(esg_categories)
-df3['label'] = df3['cat'] + ' - ' + df3['label']
-df3.rename(columns={'0': 'sentence'}, inplace=True)
-df3[['sentence','label','score']].to_csv('eg2.csv')
-res_dummy =df3[['label','score']].to_json(orient='records')
+
+res_labels = pd.DataFrame(res)
+res_labels['cat'] = res_labels['label'].map(esg_categories)
+res_labels['label'] = res_labels['cat'] + ' - ' + res_labels['label']
+res_dummy =res_labels[['label','score']].to_json(orient='records')
 res_dummy = json.loads(res_dummy)
 #################### Dummy label in the format of {'label': 'ESG_Cat - ESG_subcat', 'score'}
 
@@ -109,9 +107,9 @@ df[['company','year','ticker']] = [company,company_year,company_ticker]
 print(company)
 
 ########### DB Insertion ##########
-# db_esg_table(tabular, company,company_year,company_ticker)
-# db_esg_bert(df)
-# db_esg_llm(cleaned_output)
+db_esg_table(tabular, company,company_year,company_ticker)
+db_esg_bert(df)
+db_esg_llm(cleaned_output)
 
 ###### Yahoo Finance Data DB #####
 get_financial_data(company_ticker, company)
