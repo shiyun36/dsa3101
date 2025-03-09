@@ -5,7 +5,6 @@ from scripts.json_clean import json_clean
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
-import scripts.json_clean
 from db.scripts.db_esg_bert import db_esg_bert
 from db.scripts.db_esg_llm import db_esg_llm
 from db.scripts.db_esg_table import db_esg_table

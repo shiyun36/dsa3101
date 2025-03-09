@@ -11,9 +11,19 @@ def db_esg_bert(data_frame): #also outputs the company_name
     db_port = os.getenv('db_port')
     db_host = os.getenv('db_host')
     db_password = os.getenv('db_password')
+    conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
+
+    # load_dotenv('secret.env')
+
+    # db_name = os.getenv('db_name')
+    # db_user = os.getenv('db_user')
+    # db_port = os.getenv('db_port')
+    # db_host = os.getenv('db_host')
+    # db_password = os.getenv('db_password')
+    # db_url = os.getenv('DATABASE_URL')
+    # conn = psycopg2.connect(db_url)
 
     #create cursor & conn
-    conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
     cur = conn.cursor()
     data_frame = data_frame.to_json(orient='records')
     js = json.loads(data_frame)
