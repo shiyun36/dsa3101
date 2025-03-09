@@ -114,8 +114,8 @@ db_esg_llm(cleaned_output)
 ###### Yahoo Finance Data DB #####
 get_financial_data(company_ticker, company)
 
-print('Table Datas', tabular)
-print('Company', company)
-print('company_year Datas', company_year)
-print('company_ticker Datas', company_ticker)
-print('cleaned_output', cleaned_output)
+# print('Table Datas', tabular)
+# print('Company', company)
+# print('company_year Datas', company_year)
+# print('company_ticker Datas', company_ticker)
+# print('cleaned_output', cleaned_output)
