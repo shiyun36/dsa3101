@@ -1,41 +1,62 @@
+### if u on windows, manually install mini-conda urself
 install_conda_and_create_env() {
-    local miniconda_dir="$HOME/miniconda3"
-    
-    if [ ! -d "$miniconda_dir" ]; then
-        echo "Installing Miniconda..."
-        # Install Miniconda
-        mkdir -p "$miniconda_dir"
-        wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "$miniconda_dir/miniconda.sh"
-        bash "$miniconda_dir/miniconda.sh" -b -u -p "$miniconda_dir"
-        rm -f "$miniconda_dir/miniconda.sh"
+    # Detect OS type
+    os_type=$(uname)
+    echo "Detected OS: $os_type"
 
-        echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> "$HOME/.bashrc"
-        export PATH="$HOME/miniconda3/bin:$PATH"
-        
-        eval "$($miniconda_dir/bin/conda shell.bash hook)"
+    # Check if conda is already installed
+    if command -v conda &> /dev/null; then
+        echo "Conda is already installed."
+        # Automatically detect the installation directory of conda.
+        miniconda_dir="$(dirname "$(dirname "$(which conda)")")"
+        echo "Using conda installation at: $miniconda_dir"
     else
-        echo "Miniconda is already installed."
-        export PATH="$HOME/miniconda3/bin:$PATH"
+        echo "Conda not found."
+        # For Linux, install Miniconda automatically
+        if [[ "$os_type" == "Linux" ]]; then
+            miniconda_dir="$HOME/miniconda3"
+            echo "Installing Miniconda for Linux..."
+            mkdir -p "$miniconda_dir"
+            installer_url="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+            wget -q "$installer_url" -O "$miniconda_dir/miniconda.sh"
+            bash "$miniconda_dir/miniconda.sh" -b -u -p "$miniconda_dir"
+            rm -f "$miniconda_dir/miniconda.sh"
+            echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> "$HOME/.bashrc"
+            export PATH="$HOME/miniconda3/bin:$PATH"
+        else
+            # For Windows (Git Bash) automatic installation is more complex.
+            echo "Cant install from script"
+            echo "Install Miniconda manually from https://docs.conda.io/en/latest/miniconda.html"
+            exit 1
+        fi
     fi
 
+    # Source the Conda initialization script using alternatives for Linux/Windows
     if [ -f "$miniconda_dir/etc/profile.d/conda.sh" ]; then
         . "$miniconda_dir/etc/profile.d/conda.sh"
+    elif [ -f "$miniconda_dir/Scripts/activate" ]; then
+        . "$miniconda_dir/Scripts/activate"
     else
         echo "Error: Conda initialization script not found!"
         exit 1
     fi
 
+    # If the "3101_proj" environment exists, update it; otherwise, create it.
     if conda env list | grep -q "^3101_proj"; then
-        echo "Conda environment '3101_proj' already exists. Activating it..."
+        echo "Conda environment '3101_proj' already exists. Updating it..."
         conda activate 3101_proj
+        # Install (or update) ipykernel
+        conda install ipykernel -y
     else
-        echo "Creating Conda environment '3101_proj'"
+        echo "Creating Conda environment '3101_proj'..."
         conda create --name 3101_proj python=3.9 -y
         conda activate 3101_proj
         conda install ipykernel -y
     fi
 }
 
-# Call the function
+# Run the function
 install_conda_and_create_env
+
+# Register the IPython kernel for Jupyter
 ipython kernel install --user --name=3101_proj --display-name "(3101_proj)"
