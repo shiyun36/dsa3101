@@ -1,4 +1,6 @@
-### if u on windows, manually install mini-conda urself
+### Running the script requires gitbash based on unix syntax
+### also if u on windows, manually install mini-conda urself
+
 install_conda_and_create_env() {
     # Detect OS type
     os_type=$(uname)
@@ -45,13 +47,13 @@ install_conda_and_create_env() {
     if conda env list | grep -q "^3101_proj"; then
         echo "Conda environment '3101_proj' already exists. Updating it..."
         conda activate 3101_proj
-        # Install (or update) ipykernel
-        conda install ipykernel -y
+        conda env update -f environment.yaml 
     else
         echo "Creating Conda environment '3101_proj'..."
         conda create --name 3101_proj python=3.9 -y
         conda activate 3101_proj
-        conda install ipykernel -y
+        conda env create -f environment.yaml
+
     fi
 }
 
