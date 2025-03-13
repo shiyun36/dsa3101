@@ -4,15 +4,30 @@ channels:
   - defaults
 dependencies:
 ## need to install pngquant manually
+## for windows pip install ocrmypdf
+## for cuda gpu runtimes pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
   - python=3.9
+  - pypdf2  
+  - ipykernel
+  - git-lfs    
+  - spacy
   - setuptools=57.4.0
   - openssl=1.1.1
   - ipython
-  - jbig2enc
+  - transformers
+  - tokenizers
+  - fuzzywuzzy
   - pdftotext
+  - pytorch
+  - cudatoolkit=11.8
   - pip
   - pip:
+    - googlesearch-python
+    - httpx
     - aiohttp==3.10.8
+    - google-generativeai
+    - PyMuPDF     
+    - chromadb
     - pandas==2.2.3
     - requests==2.32.3 
     - nltk==3.9.1 
@@ -43,7 +58,6 @@ dependencies:
     - ipywidgets
     - kagglehub
     - torch 
-    - transformers
     - numpy
     - scikit-learn
     - selenium
