@@ -30,19 +30,9 @@ cur = conn.cursor()
 with open('./db/db.sql','r',encoding="utf-8-sig") as file:
     create_db = file.read()
     cur.execute(create_db)
+    
 conn.commit()
 
-# #Example data population
-# with open('./example_db_data/example_db_data pfizer_2024.csv', 'r', encoding='utf-8') as file:
-#     cs = csv.reader(file, )
-#     next(cs) #Goes to the next row(Skip headers)
-#     for row in cs:
-#         cur.execute(''' 
-#                     INSERT INTO esg_bert (esg_cat,sentence,confidence_score)
-#                     VALUES (%s, %s,%s)                
-# ''', (row[1],row[2],row[3]))
-#     conn.commit()
-        
 cur.close()
 conn.close()
 

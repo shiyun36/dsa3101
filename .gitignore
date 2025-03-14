@@ -1,3 +1,5 @@
 chromadb_1003/*.bin
 chromadb_1003/chroma.sqlite3
 .env
+
+/notebooks/chromadb_1003/
