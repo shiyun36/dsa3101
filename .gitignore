@@ -1,2 +1,3 @@
 chromadb_1003/*.bin
 chromadb_1003/chroma.sqlite3
+.env
