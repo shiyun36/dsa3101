@@ -8,6 +8,12 @@ CREATE TABLE esg_text_table (
     "labels" VARCHAR
 )
 
+-- CREATE TABLE esg_vectorDB (
+--     doc_id VARCHAR,
+--     doc_text TEXT,
+--     metadatas JSONB
+-- )
+
 -- CREATE TABLE "esg_llm" (
 --     "company" VARCHAR   NOT NULL,
 --     "year" int   NOT NULL,

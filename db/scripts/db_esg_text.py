@@ -29,7 +29,7 @@ def insert_esg_text(data_frame): #data_frame or text
     #json loader
     js = json.loads(data_frame)
 
-    #
+    # Loops through each row
     for row in js:
         print(row)
         print(row['country'])
