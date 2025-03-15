@@ -7,7 +7,7 @@ import os
 from openai import OpenAI
 from db.scripts.db_esg_bert import db_esg_bert
 from db.scripts.db_esg_llm import db_esg_llm
-from db.scripts.db_esg_table import db_esg_table
+from db.scripts.db_esg_executive import db_esg_table
 from scripts.pdf_to_text_reader_script import convert_ocr_pdf_to_text
 from transformers import pipeline
 import pandas as pd

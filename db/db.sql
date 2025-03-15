@@ -1,11 +1,17 @@
 ﻿
-CREATE TABLE esg_text_table (
-    "company" VARCHAR,
-    "year" int,
+-- CREATE TABLE esg_text_table (
+--     "company" VARCHAR,
+--     "year" int,
+--     "country" VARCHAR,
+--     "industry" VARCHAR,
+--     "esg_text" VARCHAR,
+--     "labels" VARCHAR
+-- )
+
+CREATE TABLE region_table (
     "country" VARCHAR,
-    "industry" VARCHAR,
-    "esg_text" VARCHAR,
-    "labels" VARCHAR
+    "region" VARCHAR,
+    "subregion" VARCHAR
 )
 
 -- CREATE TABLE esg_vectorDB (

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 
 #Run
-def insert_esg_vectorDB(doc_id,doc_text, metadatas): #data_frame or text
+def insert_esg_vectorDB_batch(batch_data): #data_frame or text
 
     #Load Env File
     load_dotenv('.env')
@@ -25,17 +25,14 @@ def insert_esg_vectorDB(doc_id,doc_text, metadatas): #data_frame or text
     cur = conn.cursor()
 
     #get max doc_id and append a doc_id of the max + doc_id given (allows to insert new reports)
+    ##empty##
+    ##select_query
+    query = '''
+        INSERT INTO esg_vectorDB (doc_id, doc_text, metadatas)
+        VALUES (%s, %s, %s)
+    '''
 
-
-    cur.execute('''
-            INSERT INTO esg_vectorDB (
-                doc_id, doc_text, metadatas
-            ) VALUES (%s, %s, %s)''', 
-            (
-            doc_id,
-            doc_text,
-            metadatas
-        ))
+    cur.executemany(query, batch_data)
     
     #commit to db
     conn.commit()

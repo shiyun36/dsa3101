@@ -20,10 +20,11 @@ db_password = os.getenv('db_password')
 # db_port = os.getenv('db_port')
 # db_host = os.getenv('db_host')
 # db_password = os.getenv('db_password')
-# db_url = os.getenv('DATABASE_URL')
+db_url = os.getenv('DATABASE_URL')
 
 ########### LOCAL DB #################
 conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
+# conn = psycopg2.connect(db_url)
 cur = conn.cursor()
 
 #Create database in psql with the tables
