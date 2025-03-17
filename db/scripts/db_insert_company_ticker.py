@@ -6,7 +6,9 @@ import pandas as pd
 
 
 #Run
-def insert_roa_roe(df): #data_frame or text
+def insert_company_ticker(): #data_frame or text
+
+    df = pd.read_csv('./csv/all_company.csv') ##change path accordingly
     #Load Env File
     load_dotenv('.env')
     #Get DB Params for Local DB
@@ -27,11 +29,11 @@ def insert_roa_roe(df): #data_frame or text
     #get max doc_id and append a doc_id of the max + doc_id given (allows to insert new reports)
 
     query = '''
-            INSERT INTO roa_roe_table (
-                company, date, roa,roe
-            ) VALUES (%s, %s, %s,%s)'''
-    for index, row in df.iterrows():
-            cur.execute(query, (row["company"], row["Date"], row["roa"],row['roe']))
+            INSERT INTO company_ticker (
+                symbol, company_name
+            ) VALUES (%s, %s)'''
+    for _, row in df.iterrows():
+            cur.execute(query, (row["symbol"], row["company_name"]))
     
     #commit to db
     conn.commit()

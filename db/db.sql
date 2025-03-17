@@ -1,38 +1,43 @@
 ﻿
--- CREATE TABLE esg_text_table (
---     "company" VARCHAR,
---     "year" int,
---     "country" VARCHAR,
---     "industry" VARCHAR,
---     "esg_text" VARCHAR,
---     "labels" VARCHAR
--- )
+CREATE TABLE esg_text_table (
+    "company" VARCHAR,
+    "year" int,
+    "country" VARCHAR,
+    "industry" VARCHAR,
+    "esg_text" VARCHAR,
+    "labels" VARCHAR
+);
 
--- CREATE TABLE region_table (
---     "country" VARCHAR,
---     "region" VARCHAR,
---     "subregion" VARCHAR
--- )
+CREATE TABLE region_table (
+    "country" VARCHAR,
+    "region" VARCHAR,
+    "subregion" VARCHAR
+);
 
--- CREATE TABLE stocks_table (
---     "company" VARCHAR,
---     "date" DATE,
---     "close" FLOAT
--- )
+CREATE TABLE stocks_table (
+    "company" VARCHAR,
+    "date" DATE,
+    "close" FLOAT
+);
 
 CREATE TABLE roa_roe_table (
     "company" VARCHAR,
     "date" DATE,
     "roa" FLOAT,
     "roe" FLOAT
-)
+);
+
+
+CREATE TABLE company_ticker (
+    "symbol" TEXT,
+    "company_name" TEXT
+);
 
 -- CREATE TABLE esg_vectorDB (
 --     doc_id VARCHAR,
 --     doc_text TEXT,
 --     metadatas JSONB
 -- )
-
 -- CREATE TABLE "esg_llm" (
 --     "company" VARCHAR   NOT NULL,
 --     "year" int   NOT NULL,
