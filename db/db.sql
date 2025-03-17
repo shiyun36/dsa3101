@@ -8,10 +8,23 @@
 --     "labels" VARCHAR
 -- )
 
-CREATE TABLE region_table (
-    "country" VARCHAR,
-    "region" VARCHAR,
-    "subregion" VARCHAR
+-- CREATE TABLE region_table (
+--     "country" VARCHAR,
+--     "region" VARCHAR,
+--     "subregion" VARCHAR
+-- )
+
+-- CREATE TABLE stocks_table (
+--     "company" VARCHAR,
+--     "date" DATE,
+--     "close" FLOAT
+-- )
+
+CREATE TABLE roa_roe_table (
+    "company" VARCHAR,
+    "date" DATE,
+    "roa" FLOAT,
+    "roe" FLOAT
 )
 
 -- CREATE TABLE esg_vectorDB (
@@ -34,11 +47,3 @@ CREATE TABLE region_table (
 --     "summarized_sentences_data" TEXT   NOT NULL,
 --     "relevance_score" VARCHAR   NOT NULL
 -- );
-
--- CREATE TABLE "esg_table_data" (
---     "company" VARCHAR   NOT NULL,
---     "year" int   NOT NULL,
---     "ticker" VARCHAR,
---     "json_table" TEXT
--- )
-
