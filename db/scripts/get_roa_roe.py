@@ -1,4 +1,5 @@
 import yfinance as yf
+import pandas as pd
 
 def get_roa_roe(ticker,company_name):
     stock = yf.Ticker(ticker)
