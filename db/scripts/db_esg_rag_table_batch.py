@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import pandas as pd
 import json
 
-def insert_esg_rag_table(df):
+def insert_esg_rag_table_batch(batch_df):
     # Load environment variables
     load_dotenv('.env')
     
@@ -39,17 +39,8 @@ def insert_esg_rag_table(df):
         ) VALUES (%s, %s, %s, %s, %s)
     '''
 
-    # Insert row-by-row
-    for _, row in df.iterrows():
-        print(row)
-        cur.execute(query, (
-            row["company"],
-            int(row["year"]),
-            row["topic"],
-            json.dumps(row["extracted_values"]),  # Convert dict to JSON string
-            None if pd.isna(row["final_score"]) else float(row["final_score"])
-        ))
-
+    #insert in batch
+    cur.executemany(query, batch_df)
     # Commit and close
     conn.commit()
     cur.close()

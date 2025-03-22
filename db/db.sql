@@ -37,7 +37,7 @@ CREATE TABLE esg_rag_table (
     "company" VARCHAR,
     "year" int,
     "topic" TEXT,
-    "extracted_values" JSON,
+    "extracted_values" TEXT,
     "final_score" FLOAT
 )
 
