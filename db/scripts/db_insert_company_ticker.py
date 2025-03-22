@@ -9,6 +9,7 @@ import pandas as pd
 def insert_company_ticker(): #data_frame or text
 
     df = pd.read_csv('./csv/all_company.csv') ##change path accordingly
+    print(df)
     #Load Env File
     load_dotenv('.env')
     #Get DB Params for Local DB
@@ -20,8 +21,9 @@ def insert_company_ticker(): #data_frame or text
     conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
 
     ## SupaBase DB ##
-    # db_url = os.getenv('DATABASE_URL')
-    # conn = psycopg2.connect(db_url)
+#     db_url = os.getenv('DATABASE_URL')
+#     print("Database URL:", os.getenv('DATABASE_URL')) 
+#     conn = psycopg2.connect(db_url)
 
     #create cursor & conn
     cur = conn.cursor()
