@@ -33,6 +33,14 @@ CREATE TABLE company_ticker (
     "company_name" TEXT
 );
 
+CREATE TABLE esg_rag_table (
+    "company" VARCHAR,
+    "year" int,
+    "topic" TEXT,
+    "extracted_values" JSON,
+    "final_score" FLOAT
+)
+
 -- CREATE TABLE esg_vectorDB (
 --     doc_id VARCHAR,
 --     doc_text TEXT,
