@@ -15,11 +15,6 @@ def insert_esg_rag_table_batch(batch_df):
     db_host = os.getenv('db_host')
     db_password = os.getenv('db_password')
 
-    ## SupaBase DB ##
-    # db_url = os.getenv('DATABASE_URL')
-    # conn = psycopg2.connect(db_url)
-
-
     # Connect to the database
     conn = psycopg2.connect(
         dbname=db_name,
@@ -28,6 +23,11 @@ def insert_esg_rag_table_batch(batch_df):
         host=db_host,
         port=db_port
     )
+
+    ## SupaBase DB ##
+    # db_url = os.getenv('DATABASE_URL')
+    # conn = psycopg2.connect(db_url)
+
     
     # Create cursor
     cur = conn.cursor()
