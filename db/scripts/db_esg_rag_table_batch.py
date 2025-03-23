@@ -35,8 +35,8 @@ def insert_esg_rag_table_batch(batch_df):
     # Define INSERT query
     query = '''
         INSERT INTO esg_rag_table (
-            company, industry, year, topic, extracted_values, final_score
-        ) VALUES (%s,%s,%s, %s, %s, %s)
+            company, industry, country, year, topic, extracted_values, final_score
+        ) VALUES (%s,%s,%s, %s, %s, %s, %s)
     '''
 
     #insert in batch

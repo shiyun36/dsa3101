@@ -35,8 +35,8 @@ def insert_esg_rag_table(df):
     # Define INSERT query
     query = '''
         INSERT INTO esg_rag_table (
-            company, industry, year, topic, extracted_values, final_score
-        ) VALUES (%s, %s, %s, %s, %s, %s)
+            company, industry, country, year, topic, extracted_values, final_score
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s)
     '''
 
     # Insert row-by-row
@@ -44,6 +44,8 @@ def insert_esg_rag_table(df):
         print(row)
         cur.execute(query, (
             row["company"],
+            row['industry'],
+            row['country'],
             int(row["year"]),
             row["topic"],
             json.dumps(row["extracted_values"]),  # Convert dict to JSON string

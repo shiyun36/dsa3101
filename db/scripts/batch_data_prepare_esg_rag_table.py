@@ -11,6 +11,7 @@ def batch_data_prepare_esg_rag_table(df, batch_size):
         batch_data.append((
             row['company'],
             row['industry'],
+            row['country'],
             int(row['year']),
             row['topic'],
             row["extracted_values"],
