@@ -1,0 +1,236 @@
+[
+  {
+    "Greenhouse Gas Emission reduction": {
+      "query": "Retrieve the percentage of reduction in Greenhouse gas emissions during the reporting year in the company. This can be in 3 types: a) Total reduction, b) Scope 1 reduction and c) Scope 2 reduction. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "total_reduction"  : "",
+        "scope_1_reduction": "",
+        "scope_2_reduction": "",
+        "description"      : ""
+      },
+      "scoring_query": "Obtain score by taking the average of the percentages and dividing the average by 50. If the resulting score is greater than 1, fix score as 1",
+      "final_score": ""
+    }
+  },
+  {
+    "Energy Consumption reduction": {
+      "query": "Retrieve the percentage of reduction in energy consumption during the reporting year in the company. This may be written as electrical consumption, energy usage or energy efficiency. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "reduction_in_energy_consumption": "",
+        "description"                    : ""
+      },
+      "scoring_query": "Obtain score by dividing the percentage by 50. If the resulting score is greater than 1, fix score as 1",
+      "final_score": ""
+    }
+  },
+  {
+    "Water consumption reduction": {
+      "query": "Retrieve percentage of reduction in water consumption during the reporting year in the company. This may also be termed as water usage. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "reduction_in_water_consumption": "",
+        "description"                   : ""
+      },
+      "scoring_query": "Obtain score by dividing the percentage by 50. If the resulting score is greater than 1, fix score as 1",
+      "final_score": ""
+    }
+  },
+  {
+    "Waste reduction": {
+      "query": "Retrieve the percentage of reduction in waste generated during the reporting year in the company. If special types of waste are mentioned such as hazardous waste or recycled waste, extract these percentages too. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "total_waste"    : "",
+        "hazardous_waste": "",
+        "recycled_waste" : "",
+        "description"    : ""
+      },
+      "scoring_query": "Obtain score by taking the average of the percentages and dividing the average by 50. If the resulting score is greater than 1, fix score as 1",
+      "final_score": ""
+    }
+  },
+  {
+    "Current Employees by Gender": {
+      "query": "Retrieve the percentage of employees by gender, which is male and female. If only one gender is stated, please calculate the percentage for the other gender by subtracting the percentage from 100 %. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "employee_male"  : "",
+        "employee_female": "",
+        "description"    : ""
+      },
+      "scoring_query": "Score as 1 - abs((percentage for males divide by 100) - (percentage for females divided by 100))",
+      "final_score": ""
+    }
+  },
+  {
+    "Turnover rate by Gender": {
+      "query": "Retrieve the turnover rate by gender, which is male and female. This may be presented as terms such as employee churn, staff turnover, attrition rate. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "turnover_male"  : "",
+        "turnover_female": "",
+        "description"    : ""
+      },
+      "scoring_query": "Score as 1 - abs((percentage for males divide by 100) - (percentage for females divided by 100))",
+      "final_score": ""
+    }
+  },
+  {
+    "New Hires by Gender": {
+      "query": "Retrieve the percentage of new employees hires by gender, which is male and female. If only one gender is stated, please calculate the percentage for the other gender by subtracting the percentage from 100 %. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "new_hires_male"  : "",
+        "new_hires_female": "",
+        "description"     : ""
+      },
+      "scoring_query": "Score as 1 - abs((percentage for males divide by 100) - (percentage for females divided by 100)) ",
+      "final_score": ""
+    }
+  },
+  {
+    "Current Employees by Age Groups": {
+      "query": "Retrieve the percentage of existing employees by age group. This may also be termed as employment rate by age or employee age demographics. As much as possible, follow GRI’s employee age group categories which are: (a) under 30 years old, (b) 30-50 years old, and (c) over 50 years old. If only one or two values are found, fill in the empty value with the difference between 100 % and the other values. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "employees_under_30": "",
+        "employees_30_50"   : "",
+        "employees_above_50": "",
+        "description"       : ""
+      },
+      "scoring_query": "If any percentage is close to 0, return 0. Else, return 1",
+      "final_score": ""
+    }
+  },
+  {
+    "New employee hires by age group": {
+      "query": "Retrieve the percentage of new employees hires by age group over total number of new hires during the reporting period. This may be termed as age demographics of new hires. As much as possible, follow GRI’s employee age group categories which are: (a) under 30 years old, (b) 30-50 years old, and (c) over 50 years old. If only one or two values are found, fill in the empty value with the difference between 100 % and the other values. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "new_hire_under_30": "",
+        "new_hire_30_50"   : "",
+        "new_hire_above_50": "",
+        "description"      : ""
+      },
+      "scoring_query": "If any value is missing or is much less than the other values, score as 0, else score this as 1.",
+      "final_score": ""
+    }
+  },
+  {
+    "Turnover rate": {
+      "query": "Retrieve the turnover rate of employees in the company as a percentage of total employees. This may be presented as churn rate, attrition rate and employee churn. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"turnover_rate": "", "description": ""},
+      "scoring_query": "Score based on 1 - turnover rate divided by 100 where the turnover rate is a percentage.",
+      "final_score": ""
+    }
+  },
+  {
+    "Average Training Hours per Employee": {
+      "query": "Retrieve the average training hours received by employees in the company. This may be presented as workshops or company retreats. If so, treat each workshop or company retreat as 40 hours of training time. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"average_training_hours": "", "description": ""},
+      "scoring_query": "score by normalising the hours where the minimum is 20 and the maximum is 64. However, if the value is below the minimum, score 0, else if is above 64, score as 1.",
+      "final_score": ""
+    }
+  },
+  {
+    "Fatalities": {
+      "query": "Retrieve the number of fatalities due to work-related injuries in the company. Note that fatalities may be worded as death due to work related accidents or fatal accidents. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"number": "", "description": ""},
+      "scoring_query": "Score based on 1 - (number of injuries out of total number of employees in the company as a percentage divided by 100). If no value is found, score as 0.5.",
+      "final_score": ""
+    }
+  },
+  {
+    "High-consequence injuries": {
+      "query": "Retrieve the number of high-consequence injuries in the company where the worker cannot recover fully within 6 months due to work-related injuries. This may be termed as serious injuries or incapacitating illnesses. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"number": "", "description": ""},
+      "scoring_query": "Score based on 1 - (number of injuries out of total number of employees in the company as a percentage divided by 100). If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Recordable injuries": {
+      "query": "Retrieve the number of work-related injuries in the company. Sometimes, reports might use terms like 'employee fatalities' or 'contractor fatalities'. Count all of the records. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"number": "", "description": ""},
+      "scoring_query": "Score based on 1 - (number of injuries out of total number of employees in the company as a percentage divided by 100). If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Number of Cases of Work-related Ill Health Cases": {
+      "query": "Retrieve the number of work-related illnesses and health conditions of employees in the company due to exposure to hazards at work. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"number": "", "description": ""},
+      "scoring_query": "Score based on 1 - (number of cases out of total number of employees in the company as a percentage divided by 100). If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Board Independence": {
+      "query": "Retrieve the percentage of independent board directors in the company. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"percentage": "", "description": ""},
+      "scoring_query": "Score from a scale of 0 to 1 based on the percentage recorded. If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Women on the Board": {
+      "query": "Extract the percentage of female board directors in the company. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"percentage": "", "description": ""},
+      "scoring_query": "Score on a scale of 0 to 1 based on the percentage recorded. If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Women in Management": {
+      "query": "Retrieve the percentage of female senior management in the company. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"percentage": "", "description": ""},
+      "scoring_query": "Score on a scale of 0 to 1 based on the percentage recorded. If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Anti-corruption disclosures": {
+      "query": "Retrieve any mentions of anti-corruption disclosures based on GRI anti-corruption standards of 205-1, 205-2, 205-3. This can be termed as 'Anti-corruption policies', 'Training programs', 'Risk assessments', 'Due diligence procedures', 'Whistle-blowing mechanisms', 'Anti-corruption performance indicators', 'Reporting on the Anti-Bribery Programme'. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"disclosure": "", "description": ""},
+      "scoring_query": "If at least 1 disclosure is mentioned, score 100 percent, else, score 0",
+      "final_score": ""
+    }
+  },
+  {
+    "Anti-Corruption Training for Employees": {
+      "query": "Retrieve the percentage of employees who received anti-corruption training. If it is mentioned in terms of training hours, please extract this information too. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "percentage"    : "",
+        "training_hours": "",
+        "description"   : ""
+      },
+      "scoring_query": "Score from a scale of 0 to 1 according to the percentage. If no value is found, score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Certification": {
+      "query": "Retrieve all sustainability or ESG-related certification (e.g. GRI, Energy Star, Green Seal, Rainforest Alliance Certified, Forest Stewardship Council, Climate Neutral Certification, Certified B Corporation). Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {"certifications": "", "description": ""},
+      "scoring_query": "If at least 1 certification is awarded, score 1, else, score 0",
+      "final_score": ""
+    }
+  },
+  {
+    "Alignment with frameworks and disclosure practices": {
+      "query": "Retrieve whether there is alignment with frameworks and disclosure practices. Look out for globally-recognised frameworks, such as the Global Reporting Initiative (GRI), Sustainability Accounting Standards Board (SASB), Task Force on Climate-related Financial Disclosures (TCFD), International Sustainability Standards Board (ISSB), Carbon Disclosure Project (CDP), Integrated Reporting Framework, United Nationals Sustainable Development Goals, ISO 26000, Climate Disclosure Standards Board, European Sustainability Reporting Standards, OECD Guidelines for Multinational Enterprises.  ",
+      "extracted_values": {
+        "framework"           : "",
+        "disclosure practices": "",
+        "description"         : ""
+      },
+      "scoring_query": "If at least 1 framework or disclosure practice is mentioned, score as 1, else, score 0",
+      "final_score": ""
+    }
+  },
+  {
+    "Assurance of sustainability report": {
+      "query": "Retrieve whether sustainability report has undertaken: (a) external independent assurance, (b) internal assurance or (c) no assurance. Provide scope of assurance if organisation has undertaken external or internal assurance. This may be termed as sustainability assurance or CSR assurance. External independent assurances could be from consultancies and audit firms such as E&Y, Deloitte, PwC, Apex Companies, Bain, McKinsey, ICF. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. The description summarizes all the extracted values in a concise statement.",
+      "extracted_values": {
+        "external independent assurance": "",
+        "internal assurance"            : "",
+        "description"                   : ""
+      },
+      "scoring_query": "If there is no mention of either internal or external assurance, score 0. Else, if there are external independent auditors, score as 1. Otherwise, if there is only internal assurance, give a score of 0.5.",
+      "final_score": ""
+    }
+  }
+]
