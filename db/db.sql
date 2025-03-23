@@ -27,7 +27,6 @@ CREATE TABLE roa_roe_table (
     "roe" FLOAT
 );
 
-
 CREATE TABLE company_ticker (
     "symbol" TEXT,
     "company_name" TEXT
@@ -41,23 +40,3 @@ CREATE TABLE esg_rag_table (
     "extracted_values" TEXT,
     "final_score" FLOAT
 )
-
--- CREATE TABLE esg_vectorDB (
---     doc_id VARCHAR,
---     doc_text TEXT,
---     metadatas JSONB
--- )
--- CREATE TABLE "esg_llm" (
---     "company" VARCHAR   NOT NULL,
---     "year" int   NOT NULL,
---     "ticker" VARCHAR,
---     "industry" VARCHAR   NOT NULL,
---     "esg_cat" VARCHAR,
---     "esg_subcat" VARCHAR,
---     "sentence_type" VARCHAR   NOT NULL,
---     "esg_framework" VARCHAR,
---     "raw_score" int   NOT NULL,
---     "esg_risk_prediction" float   NOT NULL,
---     "summarized_sentences_data" TEXT   NOT NULL,
---     "relevance_score" VARCHAR   NOT NULL
--- );
