@@ -35,8 +35,8 @@ def insert_esg_rag_table(df):
     # Define INSERT query
     query = '''
         INSERT INTO esg_rag_table (
-            company, year, topic, extracted_values, final_score
-        ) VALUES (%s, %s, %s, %s, %s)
+            company, industry, year, topic, extracted_values, final_score
+        ) VALUES (%s, %s, %s, %s, %s, %s)
     '''
 
     # Insert row-by-row
