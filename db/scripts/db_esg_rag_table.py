@@ -9,25 +9,25 @@ def insert_esg_rag_table(df):
     load_dotenv('.env')
     
     # Get DB connection parameters
-    db_name = os.getenv('db_name')
-    db_user = os.getenv('db_user')
-    db_port = os.getenv('db_port')
-    db_host = os.getenv('db_host')
-    db_password = os.getenv('db_password')
+    # db_name = os.getenv('db_name')
+    # db_user = os.getenv('db_user')
+    # db_port = os.getenv('db_port')
+    # db_host = os.getenv('db_host')
+    # db_password = os.getenv('db_password')
+    # conn = psycopg2.connect(
+    #     dbname=db_name,
+    #     user=db_user,
+    #     password=db_password,
+    #     host=db_host,
+    #     port=db_port
+    # )
 
     ## SupaBase DB ##
-    # db_url = os.getenv('DATABASE_URL')
-    # conn = psycopg2.connect(db_url)
+    db_url = os.getenv('DATABASE_URL')
+    conn = psycopg2.connect(db_url)
 
 
     # Connect to the database
-    conn = psycopg2.connect(
-        dbname=db_name,
-        user=db_user,
-        password=db_password,
-        host=db_host,
-        port=db_port
-    )
     
     # Create cursor
     cur = conn.cursor()
