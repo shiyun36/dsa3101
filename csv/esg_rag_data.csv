@@ -1,0 +1,70 @@
+company,year,topic,extracted_values,final_score
+DBS,2023,Total Greenhouse Gas Emissions,{'Total Greenhouse Gas Emissions': 0.46554},0.46554
+UOBGROUP,2023,Total Greenhouse Gas Emissions,{'Total Greenhouse Gas Emissions': 0.5},0.5
+OCBC,2023,Total Greenhouse Gas Emissions,{'Total Greenhouse Gas Emissions': 0.0},0.0
+DBS,2023,Total Energy consumption,{'Total Energy consumption': 0.56312},0.56312
+UOBGROUP,2023,Total Energy consumption,{'Total Energy consumption': <NA>},
+OCBC,2023,Total Energy consumption,{'Total Energy consumption': 0.0},0.0
+DBS,2023,Total Water Consumption,{'Total Water Consumption': 0.648253},0.648253
+UOBGROUP,2023,Total Water Consumption,{'Total Water Consumption': 0.5},0.5
+OCBC,2023,Total Water Consumption,{'Total Water Consumption': <NA>},
+DBS,2023,Total Waste Generated,{'Total Waste Generated': 0.737},0.737
+UOBGROUP,2023,Total Waste Generated,{'Total Waste Generated': <NA>},
+OCBC,2023,Total Waste Generated,{'Total Waste Generated': 0.5},0.5
+DBS,2023,Current Employees by Gender,{'Current Employees by Gender': 1.0},1.0
+UOBGROUP,2023,Current Employees by Gender,{'Current Employees by Gender': 1.0},1.0
+OCBC,2023,Current Employees by Gender,{'Current Employees by Gender': 0.75},0.75
+DBS,2023,Employee Turnover rate by Gender,{'Employee Turnover rate by Gender': 0.91},0.91
+UOBGROUP,2023,Employee Turnover rate by Gender,{'Employee Turnover rate by Gender': 0.5},0.5
+OCBC,2023,Employee Turnover rate by Gender,{'Employee Turnover rate by Gender': 1.0},1.0
+DBS,2023,New Hires by Gender,{'New Hires by Gender': 0.5},0.5
+UOBGROUP,2023,New Hires by Gender,{'New Hires by Gender': 0.5},0.5
+OCBC,2023,New Hires by Gender,{'New Hires by Gender': <NA>},
+DBS,2023,Current Employees by Age Groups,{'Current Employees by Age Groups': 0.66},0.66
+UOBGROUP,2023,Current Employees by Age Groups,{'Current Employees by Age Groups': 0.5},0.5
+OCBC,2023,Current Employees by Age Groups,{'Current Employees by Age Groups': <NA>},
+DBS,2023,New employee hires by age group,{'New employee hires by age group': 0.5},0.5
+UOBGROUP,2023,New employee hires by age group,{'New employee hires by age group': 0.5},0.5
+OCBC,2023,New employee hires by age group,{'New employee hires by age group': 0.7167},0.7167
+DBS,2023,Total turnover rate,{'Total turnover rate': 0.9112},0.9112
+UOBGROUP,2023,Total turnover rate,{'Total turnover rate': 0.5},0.5
+OCBC,2023,Total turnover rate,{'Total turnover rate': 0.0},0.0
+DBS,2023,Average Training Hours per Employee,{'Average Training Hours per Employee': 1.0},1.0
+UOBGROUP,2023,Average Training Hours per Employee,{'Average Training Hours per Employee': 0.0},0.0
+OCBC,2023,Average Training Hours per Employee,{'Average Training Hours per Employee': <NA>},
+DBS,2023,Fatalities,{'Fatalities': 0.5},0.5
+UOBGROUP,2023,Fatalities,{'Fatalities': 0.5},0.5
+OCBC,2023,Fatalities,{'Fatalities': 0.5},0.5
+DBS,2023,High-consequence injuries,{'High-consequence injuries': 0.5},0.5
+UOBGROUP,2023,High-consequence injuries,{'High-consequence injuries': <NA>},
+OCBC,2023,High-consequence injuries,{'High-consequence injuries': 0.5},0.5
+DBS,2023,Recordable injuries,{'Recordable injuries': 0.5},0.5
+UOBGROUP,2023,Recordable injuries,{'Recordable injuries': 0.5},0.5
+OCBC,2023,Recordable injuries,{'Recordable injuries': <NA>},
+DBS,2023,Number of Recordable Work-related Ill Health Cases,{'Number of Recordable Work-related Ill Health Cases': 0.5},0.5
+UOBGROUP,2023,Number of Recordable Work-related Ill Health Cases,{'Number of Recordable Work-related Ill Health Cases': <NA>},
+OCBC,2023,Number of Recordable Work-related Ill Health Cases,{'Number of Recordable Work-related Ill Health Cases': 0.5},0.5
+DBS,2023,Board Independence,{'Board Independence': 1.0},1.0
+UOBGROUP,2023,Board Independence,{'Board Independence': 0.0},0.0
+OCBC,2023,Board Independence,{'Board Independence': 1.0},1.0
+DBS,2023,Women on the Board,{'Women on the Board': <NA>},
+UOBGROUP,2023,Women on the Board,{'Women on the Board': 0.0},0.0
+OCBC,2023,Women on the Board,{'Women on the Board': 1.0},1.0
+DBS,2023,Women in Management,{'Women in Management': 1.0},1.0
+UOBGROUP,2023,Women in Management,{'Women in Management': 1.0},1.0
+OCBC,2023,Women in Management,{'Women in Management': 1.0},1.0
+DBS,2023,Anti-corruption disclosures,{'Anti-corruption disclosures': 1.0},1.0
+UOBGROUP,2023,Anti-corruption disclosures,{'Anti-corruption disclosures': 0.0},0.0
+OCBC,2023,Anti-corruption disclosures,{'Anti-corruption disclosures': 0.0},0.0
+DBS,2023,Anti-Corruption Training for Employees,{'Anti-Corruption Training for Employees': 1.0},1.0
+UOBGROUP,2023,Anti-Corruption Training for Employees,{'Anti-Corruption Training for Employees': 0.5},0.5
+OCBC,2023,Anti-Corruption Training for Employees,{'Anti-Corruption Training for Employees': <NA>},
+DBS,2023,Certification,{'Certification': 2.0},2.0
+UOBGROUP,2023,Certification,{'Certification': 0.0},0.0
+OCBC,2023,Certification,{'Certification': 1.0},1.0
+DBS,2023,Alignment with frameworks and disclosure practices,{'Alignment with frameworks and disclosure practices': 1.0},1.0
+UOBGROUP,2023,Alignment with frameworks and disclosure practices,{'Alignment with frameworks and disclosure practices': 0.0},0.0
+OCBC,2023,Alignment with frameworks and disclosure practices,{'Alignment with frameworks and disclosure practices': 0.0},0.0
+DBS,2023,Assurance of sustainability report,{'Assurance of sustainability report': 1.0},1.0
+UOBGROUP,2023,Assurance of sustainability report,{'Assurance of sustainability report': <NA>},
+OCBC,2023,Assurance of sustainability report,{'Assurance of sustainability report': 1.0},1.0
