@@ -35,6 +35,7 @@ CREATE TABLE company_ticker (
 
 CREATE TABLE esg_rag_table (
     "company" VARCHAR,
+    "industry" VARCHAR,
     "year" int,
     "topic" TEXT,
     "extracted_values" TEXT,
