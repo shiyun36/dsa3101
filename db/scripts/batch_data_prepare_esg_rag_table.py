@@ -10,6 +10,7 @@ def batch_data_prepare_esg_rag_table(df, batch_size):
     for index, row in tqdm(df.iterrows(), total=len(df), desc="Prepare batches", unit="document", leave=True, ncols=100):
         batch_data.append((
             row['company'],
+            row['industry'],
             int(row['year']),
             row['topic'],
             row["extracted_values"],
