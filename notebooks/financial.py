@@ -67,5 +67,3 @@ def financial():
             insert_roa_roe(roa_roe)
     except Exception as e:
         print('Error getting financial data', e)
-
-get_financial()
