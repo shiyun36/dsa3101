@@ -24,8 +24,8 @@ def insert_esg_text_batch(batch_data): #data_frame or text
     cur = conn.cursor()
 
     query = '''INSERT INTO esg_text_table (
-                    company, year, country, industry,esg_text, labels
-                ) VALUES (%s, %s, %s,%s, %s, %s)'''
+                    company, year, country, industry,esg_text
+                ) VALUES (%s, %s, %s,%s, %s)'''
 
     #execute query on a batch of data from DF
     cur.executemany(query, batch_data)

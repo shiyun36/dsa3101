@@ -12,7 +12,6 @@ def batch_data_prepare_esg_text(df, batch_size):
             row['country'],
             row['industry'],
             row['esg_text'],
-            row['labels']
         )) #appends a row to batch_data in tuple format for batch format
 
         if len(batch_data) >= batch_size: #eg 100-200?

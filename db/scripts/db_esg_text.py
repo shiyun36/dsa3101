@@ -35,15 +35,14 @@ def insert_esg_text(data_frame): #data_frame or text
         print(row['country'])
         cur.execute('''
                 INSERT INTO esg_text_table (
-                    company, year, country, industry,esg_text, labels
-                ) VALUES (%s, %s, %s,%s, %s, %s)''', 
+                    company, year, country, industry,esg_text
+                ) VALUES (%s, %s, %s,%s, %s)''', 
                 (
                 row["company"], 
                 row["year"], 
                 row["country"],
                 row['industry'],
                 row["esg_text"], 
-                row["labels"],
             ))
     
     #commit to db
