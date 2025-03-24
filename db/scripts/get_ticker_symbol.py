@@ -18,3 +18,4 @@ def get_ticker_symbol(company_name, company_db_df):
         index_ticker = matches[0][2]
         ticker = company_db_df.iloc[index_ticker]['symbol']
         return ticker
+    return None
