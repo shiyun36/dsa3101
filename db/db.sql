@@ -1,40 +1,40 @@
 ﻿
-CREATE TABLE esg_text_table (
+CREATE TABLE IF NOT EXISTS esg_text_table (
     "company" VARCHAR,
     "year" int,
     "country" VARCHAR,
     "industry" VARCHAR,
-    "esg_text" VARCHAR,
-    "labels" VARCHAR
+    "esg_text" VARCHAR
 );
 
-CREATE TABLE region_table (
+CREATE TABLE IF NOT EXISTS region_table (
     "country" VARCHAR,
     "region" VARCHAR,
     "subregion" VARCHAR
 );
 
-CREATE TABLE stocks_table (
+CREATE TABLE IF NOT EXISTS stocks_table (
     "company" VARCHAR,
     "date" DATE,
     "close" FLOAT
 );
 
-CREATE TABLE roa_roe_table (
+CREATE TABLE IF NOT EXISTS roa_roe_table (
     "company" VARCHAR,
     "date" DATE,
     "roa" FLOAT,
     "roe" FLOAT
 );
 
-CREATE TABLE company_ticker (
+CREATE TABLE IF NOT EXISTS company_ticker (
     "symbol" TEXT,
     "company_name" TEXT
 );
 
-CREATE TABLE esg_rag_table (
+CREATE TABLE IF NOT EXISTS esg_rag_table (
     "company" VARCHAR,
     "industry" VARCHAR,
+    "country" VARCHAR,
     "year" int,
     "topic" TEXT,
     "extracted_values" TEXT,

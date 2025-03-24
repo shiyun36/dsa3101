@@ -1,6 +1,6 @@
 from tqdm import tqdm
 
-def batch_data_prepare_esg_text(df, batch_size):
+def batch_data_prepare_esg_text(df):
     batch_data = [] #batch of data to append
     batches = [] #index of batches
     
@@ -12,10 +12,9 @@ def batch_data_prepare_esg_text(df, batch_size):
             row['country'],
             row['industry'],
             row['esg_text'],
-            row['labels']
         )) #appends a row to batch_data in tuple format for batch format
 
-        if len(batch_data) >= batch_size: #eg 100-200?
+        if len(batch_data) >= 200: #eg 100-200?
             batches.append(batch_data)
             batch_data = [] #reset batch
     
