@@ -23,7 +23,7 @@ from openai import OpenAI
 ##### DB STUFF #####
 
 def company_year_exists(company, year):
-    """Explain what this method does and any special details."""
+    """Check dup companies"""
 
     client = chromadb.PersistentClient(path="../chromadb_1003")  # Stores DB in ./chroma_db
     collection = client.get_or_create_collection(name="dsa3101")
@@ -44,7 +44,8 @@ def company_year_exists(company, year):
         return True
     return False
 
-def add_documents_from_csv(file_path):
+def add_documents_from_csv(file_path): #leaving this here but not in use for now
+    """Add docs from csv to chromadb"""
     client = chromadb.PersistentClient(path="../chromadb_1003")  # Stores DB in ./chroma_db
     collection = client.get_or_create_collection(name="dsa3101")
     try:
@@ -83,6 +84,44 @@ def add_documents_from_csv(file_path):
                 metadatas=[{
                     "company": doc_company, 
                     "year": doc_year, 
+                    "industry": doc_industry,
+                    "country": doc_country
+                }]
+            )
+def add_documents_from_df(df):
+    """
+    Add df that has 'esg_text', 'company', 'year', 'industry', 'country'.
+    """
+    client = chromadb.PersistentClient(path="../chromadb_1003")
+    collection = client.get_or_create_collection(name="dsa3101")
+
+    # Group by (company, year)
+    groups = df.groupby(["company", "year"])
+
+    # Process each group only once
+    for (company, year), group_df in tqdm(groups, total=len(groups), desc="Processing groups", unit="group", ncols=100):
+        if company_year_exists(company, year):
+            print(f"Group for {company} ({year}) already exists. Skipping all documents for this group.")
+            continue
+
+        # Capture the starting count for unique doc_ids for this group
+        starting_count = collection.count()
+        # Add all rows in the group
+        for i, (_, row) in enumerate(group_df.iterrows()):
+            doc_text = row["esg_text"]
+            doc_company = row["company"]
+            doc_year = row["year"]
+            doc_industry = row["industry"]
+            doc_country = row["country"]
+
+            doc_id = f"doc_{starting_count + i}"
+            print(f"Adding document {doc_id} for {doc_company} ({doc_year})")
+            collection.add(
+                ids=[doc_id],
+                documents=[doc_text],
+                metadatas=[{
+                    "company": doc_company,
+                    "year": doc_year,
                     "industry": doc_industry,
                     "country": doc_country
                 }]
@@ -342,13 +381,13 @@ companies = [
     ("HSA", 2023.0)
 ]
 
-def rag_main(new_companies_csv):
-    add_documents_from_csv(new_companies_csv)
-
-    df = pd.read_csv(new_companies_csv)
+def rag_main(new_companies_df):
+    if not isinstance(new_companies_df, pd.DataFrame):
+        raise TypeError(f"Input must be a pandas DataFrame, got {type(new_companies_df)} instead.")
+    add_documents_from_df(new_companies_df)
 
     # Extract just the two columns of interest
-    subset = df[['company', 'year']]
+    subset = new_companies_df[['company', 'year']]
 
     # Drop duplicate rows
     unique_pairs = subset.drop_duplicates()
@@ -363,6 +402,6 @@ if __name__ == "__main__":
         print("Usage: python myscript.py <input_csv>")
         sys.exit(1)
 
-    input_csv = sys.argv[1]
+    input_df = sys.argv[1]
 
-    rag_main(input_csv)
+    rag_main(input_df)
