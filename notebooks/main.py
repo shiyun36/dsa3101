@@ -2,7 +2,6 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-import os
 import argparse
 import psycopg2
 from dotenv import load_dotenv
@@ -10,23 +9,14 @@ from extract_text_company_year import extract_text_company_year
 from convert_scoring_metric_to_esg_rag_dataframe import convert_scoring_metric_to_esg_rag_dataframe
 from db.scripts.batch_data_prepare_esg_rag_table import batch_data_prepare_esg_rag_table
 from db.scripts.db_esg_rag_table_batch import insert_esg_rag_table_batch
+from db.scripts.db_esg_rag_table import insert_esg_rag_table
+from db.scripts.db_esg_text import insert_esg_text
 from db.scripts.batch_data_prepare_esg_text import batch_data_prepare_esg_text
 from db.scripts.db_esg_text_batch import insert_esg_text_batch
 from extractValues import RAG
 
 
-def extract_url_to_esg_rag_database(url, country, industry, conn):
-    '''
-    1. Data retrieval & esg text extraction 
-    Extract ESG text from provided pdf url using extract_text_company_url. 
-    Filters the necessary company info and ESG text into esg_text_df
-    2. RAG process 
-    Generates extracted outputs and scores based on the extracted ESG text 
-    3. Convert data for database insertion 
-    4. Insert processed data into database
-    
-    '''
-    
+def extract_url_to_esg_rag_database(url, country, industry):
     print(f"Extracting ESG text from: {url}")
     
     # Extract ESG-related text and metadata from the url
@@ -44,13 +34,15 @@ def extract_url_to_esg_rag_database(url, country, industry, conn):
     esg_rag_df = convert_scoring_metric_to_esg_rag_dataframe(rag_df)
 
     # Insert esg rag results into esg_rag_table database
-    esg_rag_batch = batch_data_prepare_esg_rag_table(esg_rag_df, batch_size = 10)
-    insert_esg_rag_table_batch(rag_df)
+    # esg_rag_batch = batch_data_prepare_esg_rag_table(esg_rag_df)
+    # insert_esg_rag_table_batch(esg_rag_batch)
+    insert_esg_rag_table(esg_rag_df)
     print("ESG RAG data inserted into the esg_rag database successfully.")
 
     # Inserting esg text into esg_text_table database
-    esg_text_batch = batch_data_prepare_esg_text(esg_text_df, batch_size = 100)
-    insert_esg_text_batch(esg_text_batch)
+    # esg_text_batch = batch_data_prepare_esg_text(esg_text_df)
+    # insert_esg_text_batch(esg_text_batch)
+    insert_esg_text(esg_text_df)
     print("ESG text data inserted into the esg_text database successfully.")
 
 
@@ -64,7 +56,6 @@ def main():
 
     load_dotenv()  # Loads .env from the project root
 
-    API_KEY = os.getenv("API_KEY")
 
     # (CHANGE ARGUMENTS HERE) If run without CLI args (e.g., directly in a script), fallback to defaults
     if not any(vars(args).values()):
@@ -79,7 +70,7 @@ def main():
         conn = psycopg2.connect(DATABASE_URL)
         print("Database connection established.")
 
-        extract_url_to_esg_rag_database(args.url, args.country, args.industry, conn)
+        extract_url_to_esg_rag_database(args.url, args.country, args.industry)
 
         conn.close()
 
