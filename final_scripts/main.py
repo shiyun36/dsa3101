@@ -2,10 +2,11 @@ import argparse
 import os
 from dotenv import load_dotenv
 from PdfExtractor import PDFExtractor
-from extractValues import RAG
+from ../extractValues import RAG
 from db_operations import connect_to_database, insert_esg_rag_data, insert_esg_text_data
 from financial import financial
 from GeneratePdfs import GeneratePdfs
+from ESGScoringProcessor import ESGScoringProcessor
 
 def main():
     # Setup argparse to receive the URL
@@ -40,8 +41,12 @@ def main():
         if esg_text_df.empty:
             print("No ESG text extracted. Skipping processing.")
         else:
+            ## process esg text for RAG
+            esg_processor = ESGScoringProcessor(esg_text_df)
+            result_df = processor.convert_to_esg_rag_dataframe()
+            
             # Step 2: Process RAG
-            rag_df = RAG.rag_main(df)
+            rag_df = RAG.rag_main(result_df)
 
             # Step 3: Insert data into database
             insert_esg_rag_data(rag_df)
