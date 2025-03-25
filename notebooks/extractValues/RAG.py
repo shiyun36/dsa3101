@@ -34,7 +34,7 @@ def company_year_exists(company, year):
         where={
     "$and": [
         {"company": company},
-        {"year": year}
+        {"year": int(year)}
     ]
 
 }
@@ -63,7 +63,7 @@ def add_documents_from_csv(file_path): #leaving this here but not in use for now
 
     # Process each group only once
     for (company, year), group_df in tqdm(groups, total=len(groups), desc="Processing groups", unit="group", ncols=100):
-        if company_year_exists(company, year):
+        if company_year_exists(company, int(year)):
             print(f"Group for {company} ({year}) already exists. Skipping all documents for this group.")
             continue
 
@@ -73,7 +73,7 @@ def add_documents_from_csv(file_path): #leaving this here but not in use for now
         for i, (_, row) in enumerate(group_df.iterrows()):
             doc_text = row["esg_text"]
             doc_company = row["company"]
-            doc_year = row["year"]
+            doc_year = int(row["year"])
             doc_industry = row["industry"]
             doc_country = row["country"]
 
@@ -111,7 +111,7 @@ def add_documents_from_df(df):
         for i, (_, row) in enumerate(group_df.iterrows()):
             doc_text = row["esg_text"]
             doc_company = row["company"]
-            doc_year = row["year"]
+            doc_year = int(row["year"])
             doc_industry = row["industry"]
             doc_country = row["country"]
 
@@ -209,7 +209,7 @@ def retrieve_company_metadata(company_tuple):
     results = collection.query(
         query_texts=[""],  # no text query; we use metadata filtering only
         n_results=1,
-        where={"$and": [{"company": company_tuple[0]}, {"year": company_tuple[1]}]}
+        where={"$and": [{"company": company_tuple[0]}, {"year": int(company_tuple[1])}]}
     )
     if not results.get("documents") or not results["documents"][0]:
         print(f"Company '{company_tuple[0]}' for year '{company_tuple[1]}' is not in the database. Exiting.")
@@ -232,10 +232,10 @@ def retrieve_esg_text(company_tuple, query):
     results = collection.query(
         query_texts=[query],
         n_results=15,
-        where={"$and": [{"company": company_tuple[0]}, {"year": company_tuple[1]}]}
+        where={"$and": [{"company": company_tuple[0]}, {"year": int(company_tuple[1])}]}
     )
     if not results.get("documents") or not results["documents"][0]:
-        print(f"Company '{company_tuple[0]}' for year '{company_tuple[1]}' is not in the database. Exiting.")
+        print(f"Company '{company_tuple[0]}' for year '{int(company_tuple[1])}' is not in the database. Exiting.")
         sys.exit(1)
     return results
 
@@ -299,7 +299,7 @@ def process_company(company_tuple):
     # Load existing CSV for this combination if it exists
     if os.path.exists(csv_file):
         df_existing = pd.read_csv(csv_file)
-        existing_companies = set(map(tuple, df_existing[['Company', 'Year',"Industry", "Country"]].values.tolist()))
+        existing_companies = set(map(tuple, df_existing[['Company','Year',"Industry","Country"]].values.tolist()))
     else:
         print("Path to CSV file does not exist. Creating a new one.")
         df_existing = pd.DataFrame(columns=df_columns)
@@ -346,6 +346,7 @@ def extract_esgreports(companies):
 
         # If no row_data, skip
         if row_data is None:
+            print("No new data to add.")
             continue
 
         # If this CSV hasn't been seen yet, initialize a new entry
@@ -393,7 +394,7 @@ def rag_main(new_companies_df):
 
     # Drop duplicate rows
     unique_pairs = subset.drop_duplicates()
-
+    unique_pairs['year'] = unique_pairs['year'].astype(int)
     # Convert each row to a tuple if needed:
     company_year_tuples = list(unique_pairs.itertuples(index=False, name=None))
 
