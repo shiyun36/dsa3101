@@ -1,12 +1,20 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+import os
 import argparse
 import psycopg2
+from dotenv import load_dotenv
 from extract_text_company_year import extract_text_company_year
 from convert_scoring_metric_to_esg_rag_dataframe import convert_scoring_metric_to_esg_rag_dataframe
 from db.scripts.batch_data_prepare_esg_rag_table import batch_data_prepare_esg_rag_table
 from db.scripts.db_esg_rag_table_batch import insert_esg_rag_table_batch
 from db.scripts.batch_data_prepare_esg_text import batch_data_prepare_esg_text
 from db.scripts.db_esg_text_batch import insert_esg_text_batch
-from notebooks.RAG import rag_main
+from notebooks.Jz_Extractvalues.RAG import rag_main
+
+
 
 def extract_url_to_esg_rag_database(url, country, industry, conn):
     print(f"Extracting ESG text from: {url}")
@@ -38,16 +46,20 @@ def extract_url_to_esg_rag_database(url, country, industry, conn):
 def main():
     # Setup argparse to receive the URL
     parser = argparse.ArgumentParser(description="Extract ESG data from a PDF report URL")
-    parser.add_argument("--url", type = str, required = True, help = "PDF URL of the sustainability report")
-    parser.add_argument("--country", type = str, required = True, help = "Country the company is based in")
-    parser.add_argument("--industry", type = str, required = True, help = "Industry the company belongs to")
+    parser.add_argument("--url", type = str, help = "PDF URL of the sustainability report")
+    parser.add_argument("--country", type = str, help = "Country the company is based in")
+    parser.add_argument("--industry", type = str, help = "Industry the company belongs to")
     args = parser.parse_args()
+
+    load_dotenv()  # Loads .env from the project root
+
+    API_KEY = os.getenv("API_KEY")
 
     # (CHANGE ARGUMENTS HERE) If run without CLI args (e.g., directly in a script), fallback to defaults
     if not any(vars(args).values()):
         args.url = "https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2023.pdf"
         args.country = "Singapore"
-        args.industry = "Banking"
+        args.industry = "finance"
 
     
     # Database connection string
