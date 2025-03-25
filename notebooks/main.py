@@ -12,7 +12,7 @@ from db.scripts.batch_data_prepare_esg_rag_table import batch_data_prepare_esg_r
 from db.scripts.db_esg_rag_table_batch import insert_esg_rag_table_batch
 from db.scripts.batch_data_prepare_esg_text import batch_data_prepare_esg_text
 from db.scripts.db_esg_text_batch import insert_esg_text_batch
-from notebooks.Jz_Extractvalues.RAG import rag_main
+from  extractValues import RAG
 
 
 
@@ -26,9 +26,9 @@ def extract_url_to_esg_rag_database(url, country, industry, conn):
     if df.empty:
         print("No text extracted. Skipping database insertion.")
         return
-
+    print(str(df))
     # Returning a dataframe containing the extracted values and esg metric scores by using RAG and LLM
-    rag_df = rag_main(df)
+    rag_df = RAG.rag_main(df)
 
     # Converting RAG dataframe to match esg_rag_table schema
     esg_rag_df = convert_scoring_metric_to_esg_rag_dataframe(rag_df)
@@ -58,7 +58,7 @@ def main():
     # (CHANGE ARGUMENTS HERE) If run without CLI args (e.g., directly in a script), fallback to defaults
     if not any(vars(args).values()):
         args.url = "https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2023.pdf"
-        args.country = "Singapore"
+        args.country = "singapore"
         args.industry = "finance"
 
     
