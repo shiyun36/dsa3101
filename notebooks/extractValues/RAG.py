@@ -356,9 +356,12 @@ def extract_esgreports(companies):
         # Add the row data to our in-memory collection
         new_rows[csv_file]["rows"].append(row_data)
 
+
+
     # Once all rows are collected, write or append them to their respective CSVs
     for csv_file, data in new_rows.items():
         df_new = pd.DataFrame(data["rows"], columns=data["columns"])
+        final_df = pd.DataFrame(data["rows"], columns=data["columns"])
 
         if os.path.exists(csv_file):
             df_existing = pd.read_csv(csv_file)
@@ -371,8 +374,12 @@ def extract_esgreports(companies):
         final_dataframes[csv_file] = df_combined
 
         print(f"Added {len(data['rows'])} new companies to {csv_file}.")
-        print(str(final_dataframes))
-    return final_dataframes
+    
+    print("final_df: " + str(final_df))
+    print("final_dataframes: " + str(final_dataframes))
+
+    return final_df
+
 
 companies = [
     ("DBS", 2023.0),
@@ -398,7 +405,10 @@ def rag_main(new_companies_df):
     # Convert each row to a tuple if needed:
     company_year_tuples = list(unique_pairs.itertuples(index=False, name=None))
 
-    extract_esgreports(company_year_tuples)
+    df = extract_esgreports(company_year_tuples)
+    print("rag_main function: " + str(df))
+    return df
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

@@ -8,7 +8,7 @@ def convert_scoring_metric_to_esg_rag_dataframe(df):
     '''
 
     # Obtain the number of Metrics 
-    num_metrics = int((df.shape[1] - 4)/2)
+    num_metrics = int((len(df.columns) - 4)/2)
 
     # Forms a dataframe of the company info + extracted values of each esg metric from the llm
     df_extracted_values = df.iloc[:, 0 : 4 + num_metrics]
