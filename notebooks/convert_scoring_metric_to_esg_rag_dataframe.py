@@ -1,8 +1,11 @@
 import pandas as pd
 import numpy as np 
-
-## This function converts a dataframe generated from rag.py to a dataframe that conforms to esg_rag_table db
+ 
 def convert_scoring_metric_to_esg_rag_dataframe(df):
+    '''
+    Input: ESG scoring dataframe
+    Purpose: converts the ESG scoring dataframe generated from rag.py into a format suitable for esg_rag_table db
+    '''
 
     # Obtain the number of Metrics 
     num_metrics = int((df.shape[1] - 4)/2)
@@ -10,7 +13,7 @@ def convert_scoring_metric_to_esg_rag_dataframe(df):
     # Forms a dataframe of the company info + extracted values of each esg metric from the llm
     df_extracted_values = df.iloc[:, 0 : 4 + num_metrics]
 
-     # Forms a dataframe of the company info + final score of each esg metric from the llm
+    # Forms a dataframe of the company info + final score of each esg metric from the llm
     df_company_info = df.iloc[:, 0:4]
     df_scoring = df.iloc[:,-num_metrics:]
     df_scoring = pd.concat([df_company_info, df_scoring], axis = 1)

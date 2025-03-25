@@ -11,7 +11,13 @@ from db.scripts.get_stocks import get_stocks
 import os
 
 def financial():
-    ## Getting the company tickers dataframe
+    '''
+    Purpose: Retrieve financial data fro companies listed in the ESG database by 
+    1. Fething ticker symbols for companies 
+    2. Scraping stock prices and ROA/ROE (return on assets/ return on equity) data from Yahoo Finance 
+    3. Inserting the retrieved financial data into a database (Supabase)
+    '''
+    
     try:
         load_dotenv('.env')
         ## Local DB ##
@@ -22,22 +28,25 @@ def financial():
         # db_password = os.getenv('db_password')
         # conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
 
-        ## Supabase ##
+        ## Supabase connection ##
         db_url = os.getenv('DATABASE_URL')
         conn = psycopg2.connect(db_url)
 
         cur = conn.cursor()
         cur.execute('SELECT * FROM company_ticker')
+
+        ## Creating the company tickers dataframe
         data = cur.fetchall()
         columns = [desc[0] for desc in cur.description]
         df = pd.DataFrame(data, columns=columns)
         print(df)
 
-        ## getting the company list from our esg_rags
+        ## Getting the company list from our esg_rags
         cur.execute('SELECT DISTINCT company from esg_text_table')
         res = list(cur.fetchall())
         result_list = [row[0] for row in res] ## Names of the companies
         print(result_list)
+        
         ## getting ticker_symbols
         symbols = []
         for i in result_list:

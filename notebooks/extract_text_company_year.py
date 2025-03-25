@@ -8,9 +8,13 @@ from io import BytesIO
 import ocrmypdf
 
 
-## This function takes in a pdf_url and outputs a dataframe with the columns (esg_text, country, industry, company, year)
 def extract_text_company_year(pdf_url, country, industry):
-
+    '''
+    Input: pdf_url 
+    Output: dataframe with the columns (esg_text, country, industry, company, year)
+    Purpose: Extract company and year from pdf_url, and extract text from PDF using OCR scraper
+    '''
+    
     def extract_company_and_year(pdf_url):
         """
         Extracts company name and year from the PDF URL.

@@ -12,11 +12,21 @@ from db.scripts.batch_data_prepare_esg_rag_table import batch_data_prepare_esg_r
 from db.scripts.db_esg_rag_table_batch import insert_esg_rag_table_batch
 from db.scripts.batch_data_prepare_esg_text import batch_data_prepare_esg_text
 from db.scripts.db_esg_text_batch import insert_esg_text_batch
-from  extractValues import RAG
-
+from extractValues import RAG
 
 
 def extract_url_to_esg_rag_database(url, country, industry, conn):
+    '''
+    1. Data retrieval & esg text extraction 
+    Extract ESG text from provided pdf url using extract_text_company_url. 
+    Filters the necessary company info and ESG text into esg_text_df
+    2. RAG process 
+    Generates extracted outputs and scores based on the extracted ESG text 
+    3. Convert data for database insertion 
+    4. Insert processed data into database
+    
+    '''
+    
     print(f"Extracting ESG text from: {url}")
     
     # Extract ESG-related text and metadata from the url
@@ -42,6 +52,7 @@ def extract_url_to_esg_rag_database(url, country, industry, conn):
     esg_text_batch = batch_data_prepare_esg_text(esg_text_df, batch_size = 100)
     insert_esg_text_batch(esg_text_batch)
     print("ESG text data inserted into the esg_text database successfully.")
+
 
 def main():
     # Setup argparse to receive the URL

@@ -9,30 +9,50 @@ import ocrmypdf
 import logging
 
 class PDFExtractor:
-    def __init__(self, pdf_url, country, industry):
+    def __init__(self, saved_url_file, country, industry):
         '''
         Input: pdf_url 
         Output: dataframe with the columns (esg_text, country, industry, company, year)
         Purpose: Extract company and year from pdf_url, and extract text from PDF using OCR scraper
         '''
-        self.pdf_url = pdf_url
+        self.saved_url_file = saved_url_file
+        ohh#self.pdf_url = pdf_url
         self.country = country
         self.industry = industry
         self.company_name = None
         self.year = None
         self.data = []
 
-    def extract_company_and_year(self):
+    def read_pdf_links(self):
+        """
+        Reads the stored PDF links from the output file.
+        :return: A list of PDF links.
+        """
+        if not os.path.exists(self.saved_url_file):
+            logging.error(f"Output file {self.saved_url_file} not found!")
+            return []
+        
+        pdf_links = []
+        with open(self.saved_url_file, "r") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#"):  # Ignore timestamp lines
+                    pdf_links.append(line)
+        
+        return pdf_links
+
+    
+    def extract_company_and_year(self, pdf_url):
         """
         Extracts company name and year from the PDF URL.
         Assumes company name is right after 'https://' and the year is just before '.pdf'.
         """
-        match = re.search(r'https://(?:www\.)?([a-zA-Z0-9-]+).*?(\d{4}(?:-\d{4})?)\.pdf', self.pdf_url)
+        match = re.search(r'https://(?:www\.)?([a-zA-Z0-9-]+).*?(\d{4}(?:-\d{4})?)\.pdf', pdf_url)
         if match:
             self.company_name = match.group(1)
             self.year = match.group(2)
         else:
-            logging.error(f"Failed to extract company name and year from URL: {self.pdf_url}")
+            logging.error(f"Failed to extract company name and year from URL: {pdf_url}")
             raise ValueError("Company name and year could not be extracted from the URL.")
     
     def extract_text_from_pdf(self, pdf_bytes):
@@ -60,12 +80,12 @@ class PDFExtractor:
         
         return final_sentences
     
-    def download_pdf(self):
+    def download_pdf(self, pdf_url):
         """
         Downloads the PDF from the provided URL and applies OCR to extract the text.
         """
         try:
-            response = requests.get(self.pdf_url)
+            response = requests.get(pdf_url)
             response.raise_for_status()
             pdf_data = BytesIO(response.content)
 
@@ -76,8 +96,8 @@ class PDFExtractor:
 
             return ocr_pdf_data
         except Exception as e:
-            logging.error(f"Error downloading or processing PDF from '{self.pdf_url}': {e}")
-            raise Exception(f"Error downloading or processing PDF from '{self.pdf_url}'.")
+            logging.error(f"Error downloading or processing PDF from '{pdf_url}': {e}")
+            raise Exception(f"Error downloading or processing PDF from '{pdf_url}'.")
 
     def process_pdf(self):
         """
@@ -85,33 +105,35 @@ class PDFExtractor:
         """
         try:
             # Extract company name and year from the URL
-            self.extract_company_and_year()
-
-            # Download and process the PDF
-            ocr_pdf_data = self.download_pdf()
-
-            # Extract text from the OCR'd PDF
-            sentences = self.extract_text_from_pdf(ocr_pdf_data)
-
-            # Prepare data for DataFrame
-            for sentence in sentences:
-                self.data.append({
-                    "esg_text": sentence,
-                    "country": self.country,
-                    "industry": self.industry,
-                    "company": self.company_name.upper(),
-                    "year": self.year
-                })
-
-            # Return the results as a DataFrame
-            return pd.DataFrame(self.data)
+            for url in pdf_links: 
+                pdf_url = url 
+                self.extract_company_and_year(url)
+    
+                # Download and process the PDF
+                ocr_pdf_data = self.download_pdf(url)
+    
+                # Extract text from the OCR'd PDF
+                sentences = self.extract_text_from_pdf(ocr_pdf_data)
+    
+                # Prepare data for DataFrame
+                for sentence in sentences:
+                    self.data.append({
+                        "esg_text": sentence,
+                        "country": self.country,
+                        "industry": self.industry,
+                        "company": self.company_name.upper(),
+                        "year": self.year
+                    })
+    
+                # Return the results as a DataFrame
+                return pd.DataFrame(self.data)
         
         except Exception as e:
             logging.error(f"Error processing PDF: {e}")
-            return pd.DataFrame(columns=["esg_text", "country", "industry", "company", "year"])
+            return pd.DataFrame(columns=["company", "year""country", "industry", "esg_text"])
 
 # Example usage:
-# def main(pdf_url, country, industry):
+# def main(saved_url_file, country, industry):
 #     pdf_extractor = PDFExtractor(pdf_url, country, industry)
 #     result_df = pdf_extractor.process_pdf()
 #     return result_df
