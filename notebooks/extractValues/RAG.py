@@ -4,6 +4,7 @@ import chromadb  # Vector Database
 from tqdm import tqdm
 import json
 import time 
+import torch.nn.functional as F
 import pandas as pd
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -14,7 +15,7 @@ if torch.cuda.is_available():
     torch.set_default_device("cuda")
     print("running on cuda")
 
-from torch.nn.functional import cosine_similarity
+from sklearn.metrics.pairwise import cosine_similarity
 import sys
 import httpx
 import logging
@@ -25,7 +26,7 @@ from openai import OpenAI
 def company_year_exists(company, year):
     """Check dup companies"""
 
-    client = chromadb.PersistentClient(path="../chromadb_1003")  # Stores DB in ./chroma_db
+    client = chromadb.PersistentClient(path="./chromadb_1003")  # Stores DB in ./chroma_db
     collection = client.get_or_create_collection(name="dsa3101")
     results = collection.query(
         query_texts=[""],  # Empty query text since we're filtering solely by metadata
@@ -33,7 +34,7 @@ def company_year_exists(company, year):
         where={
     "$and": [
         {"company": company},
-        {"year": float(year)}
+        {"year": int(year)}
     ]
 
 }
@@ -46,7 +47,7 @@ def company_year_exists(company, year):
 
 def add_documents_from_csv(file_path): #leaving this here but not in use for now
     """Add docs from csv to chromadb"""
-    client = chromadb.PersistentClient(path="../chromadb_1003")  # Stores DB in ./chroma_db
+    client = chromadb.PersistentClient(path="./chromadb_1003")  # Stores DB in ./chroma_db
     collection = client.get_or_create_collection(name="dsa3101")
     try:
         df = pd.read_csv(file_path)
@@ -62,7 +63,7 @@ def add_documents_from_csv(file_path): #leaving this here but not in use for now
 
     # Process each group only once
     for (company, year), group_df in tqdm(groups, total=len(groups), desc="Processing groups", unit="group", ncols=100):
-        if company_year_exists(company, year):
+        if company_year_exists(company, int(year)):
             print(f"Group for {company} ({year}) already exists. Skipping all documents for this group.")
             continue
 
@@ -72,7 +73,7 @@ def add_documents_from_csv(file_path): #leaving this here but not in use for now
         for i, (_, row) in enumerate(group_df.iterrows()):
             doc_text = row["esg_text"]
             doc_company = row["company"]
-            doc_year = row["year"]
+            doc_year = int(row["year"])
             doc_industry = row["industry"]
             doc_country = row["country"]
 
@@ -92,7 +93,7 @@ def add_documents_from_df(df):
     """
     Add df that has 'esg_text', 'company', 'year', 'industry', 'country'.
     """
-    client = chromadb.PersistentClient(path="../chromadb_1003")
+    client = chromadb.PersistentClient(path="./chromadb_1003")
     collection = client.get_or_create_collection(name="dsa3101")
 
     # Group by (company, year)
@@ -110,7 +111,7 @@ def add_documents_from_df(df):
         for i, (_, row) in enumerate(group_df.iterrows()):
             doc_text = row["esg_text"]
             doc_company = row["company"]
-            doc_year = row["year"]
+            doc_year = int(row["year"])
             doc_industry = row["industry"]
             doc_country = row["country"]
 
@@ -191,7 +192,7 @@ def rerank_documents(query, retrieved_docs):
     doc_embeddings = doc_outputs.hidden_states[-1][:, 0]
 
     # Compute relevance scores
-    similarities = cosine_similarity(query_embedding, doc_embeddings, dim=-1)  # shape: (num_docs,)
+    similarities = F.cosine_similarity(query_embedding, doc_embeddings, dim=-1)  # shape: (num_docs,)
 
     # Sort retrieved docs by relevance score (descending order)
     sorted_indices = similarities.argsort(descending=True)
@@ -203,12 +204,12 @@ def retrieve_company_metadata(company_tuple):
     Query the collection to retrieve metadata for a given company.
     Expects company_tuple to be (company_name, year).
     """
-    chroma_client = chromadb.PersistentClient(path="../chromadb_1003")
+    chroma_client = chromadb.PersistentClient(path="./chromadb_1003")
     collection = chroma_client.get_or_create_collection(name="dsa3101")
     results = collection.query(
         query_texts=[""],  # no text query; we use metadata filtering only
         n_results=1,
-        where={"$and": [{"company": company_tuple[0]}, {"year": company_tuple[1]}]}
+        where={"$and": [{"company": company_tuple[0]}, {"year": int(company_tuple[1])}]}
     )
     if not results.get("documents") or not results["documents"][0]:
         print(f"Company '{company_tuple[0]}' for year '{company_tuple[1]}' is not in the database. Exiting.")
@@ -226,15 +227,15 @@ def retrieve_esg_text(company_tuple, query):
     """
     Retrieve ESG text from ChromaDB for a company given a specific query.
     """
-    chroma_client = chromadb.PersistentClient(path="../chromadb_1003")
+    chroma_client = chromadb.PersistentClient(path="./chromadb_1003")
     collection = chroma_client.get_or_create_collection(name="dsa3101")
     results = collection.query(
         query_texts=[query],
         n_results=15,
-        where={"$and": [{"company": company_tuple[0]}, {"year": company_tuple[1]}]}
+        where={"$and": [{"company": company_tuple[0]}, {"year": int(company_tuple[1])}]}
     )
     if not results.get("documents") or not results["documents"][0]:
-        print(f"Company '{company_tuple[0]}' for year '{company_tuple[1]}' is not in the database. Exiting.")
+        print(f"Company '{company_tuple[0]}' for year '{int(company_tuple[1])}' is not in the database. Exiting.")
         sys.exit(1)
     return results
 
@@ -267,11 +268,11 @@ def process_company(company_tuple):
     # Choose JSON query file and CSV file based on country and industry.
     if country == "singapore":
         if industry == "finance":
-            query_file = "../../files/scoring_queries/sg_bank_query.json"
-            csv_file = "sg_finance_score.csv"
+            query_file = "../files/scoring_queries/sg_bank_query.json"
+            csv_file = "../notebooks/extractValues/sg_finance_score.csv"
         elif industry == "health":
-            query_file = "../../files/scoring_queries/sg_healthcare_query.json"
-            csv_file = "sg_healthcare_score.csv"
+            query_file = "../files/scoring_queries/sg_healthcare_query.json"
+            csv_file = "../notesbooks/extractValues/sg_healthcare_score.csv"
         else:
             print(f"Unsupported industry '{industry}' for country '{country}'. Exiting.")
             sys.exit(1)
@@ -298,8 +299,9 @@ def process_company(company_tuple):
     # Load existing CSV for this combination if it exists
     if os.path.exists(csv_file):
         df_existing = pd.read_csv(csv_file)
-        existing_companies = set(map(tuple, df_existing[['Company', 'Year',"Industry", "Country"]].values.tolist()))
+        existing_companies = set(map(tuple, df_existing[['Company','Year',"Industry","Country"]].values.tolist()))
     else:
+        print("Path to CSV file does not exist. Creating a new one.")
         df_existing = pd.DataFrame(columns=df_columns)
         existing_companies = set()
     
@@ -344,6 +346,7 @@ def extract_esgreports(companies):
 
         # If no row_data, skip
         if row_data is None:
+            print("No new data to add.")
             continue
 
         # If this CSV hasn't been seen yet, initialize a new entry
@@ -391,7 +394,7 @@ def rag_main(new_companies_df):
 
     # Drop duplicate rows
     unique_pairs = subset.drop_duplicates()
-
+    unique_pairs['year'] = unique_pairs['year'].astype(int)
     # Convert each row to a tuple if needed:
     company_year_tuples = list(unique_pairs.itertuples(index=False, name=None))
 
