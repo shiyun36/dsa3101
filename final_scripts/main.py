@@ -5,6 +5,7 @@ from PdfExtractor import PDFExtractor
 from extractValues import RAG
 from db_operations import connect_to_database, insert_esg_rag_data, insert_esg_text_data
 from financial import financial
+from GeneratePdfs import GeneratePdfs
 
 def main():
     # Setup argparse to receive the URL
@@ -29,6 +30,10 @@ def main():
     # Connect to the database
     conn = connect_to_database(DATABASE_URL)
     if conn:
+        # Step 0: Generate pdf links that will be extracted 
+        pdf_links_generator = GeneratePdfs()
+        pdf_links_generator.run()
+        
         # Step 1: Extract ESG text
         pdf_extractor = PDFExtractor(saved_url_file, country, industry)
         esg_text_df = pdf_extractor.process_pdf()
