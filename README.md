@@ -64,11 +64,12 @@ Key Insights:
 - Standardized ESG score provides a clear, quantifiable measure of a company’s ESG performance
 - Facilitates easy comparison across industries
 
-Business Impact & Actionable Recommendations:
+Business Impact & Actionable Recommendations: 
 Companies can integrate ESG performance into KPIs, track progress, and identify areas for improvement. To improve, businesses should:
 1. Leverage ESG Scores:
     - Benchmark against industry peers  
     - Set measurable sustainability goals
+
 2. Improve Reporting Transparency:
     - Enhance data collection for accurate, meaningful ESG scores
 
@@ -80,10 +81,12 @@ Financial Industry (Banks):
 - ESG score: ~7/10
 - Governance: Strong (3.05/3.33) – Excellent corporate governance and board diversity
 - Environmental: Poor (1.86/3.33) – Conservative approach to reducing emissions
+
 Healthcare Industry (Private Companies):
 - ESG score: ~6.4/10
 - Governance:  Strong (2.5/3.33)
 - Social: Poor (1.71/3.33) – High turnover rates, disproportionate employee gender ratios
+
 Overall Findings:
 - Strong governance across both sectors
 - Significant improvements needed in environmental and social ESG factors
@@ -98,6 +101,7 @@ The dashboard includes:
 - Clear Navigation: Tabs for industry, country, and trend analysis.
 - Interactive Filters: Let users select industries, regions, and ESG factors.
 - Color Coding: Green/red for strong/weak ESG performance.
+
 Visualization methods used include:
 - Heatmaps and Ranking Tables: Highlight top and bottom performers.
 - Time-Series Line Charts: Track ESG trends.
