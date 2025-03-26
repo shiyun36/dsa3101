@@ -42,5 +42,5 @@ conn.close()
 
 
 ## insert region_tables and all_company.csv
-insert_region_table()
-insert_company_ticker()
+# insert_region_table()
+# insert_company_ticker()

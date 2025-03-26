@@ -19,7 +19,7 @@
         "company" VARCHAR,
         "date" DATE,
         "close" FLOAT,
-        CONSTRAINT unique_stock_entry UNIQUE (company, date,close)
+        CONSTRAINT unique_stock_entry UNIQUE (company, date)
     );
 
     CREATE TABLE IF NOT EXISTS roa_roe_table (
@@ -27,12 +27,12 @@
         "date" DATE,
         "roa" FLOAT,
         "roe" FLOAT,
-        CONSTRAINT unique_roa_roe_entry UNIQUE (company, date,roa,roe)
+        CONSTRAINT unique_roa_roe_entry UNIQUE (company, date)
     );
 
     CREATE TABLE IF NOT EXISTS company_ticker (
         "symbol" TEXT,
-        "company_name" TEXT,
+        "company_name" TEXT
     );
 
     CREATE TABLE IF NOT EXISTS esg_rag_table (

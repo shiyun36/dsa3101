@@ -31,7 +31,7 @@ def insert_stocks(df): #data_frame or text
             INSERT INTO stocks_table (
                 company, date, close
             ) VALUES (%s, %s, %s)
-            ON CONFLICT (company, date, close) DO NOTHING;'''
+            ON CONFLICT (company, date) DO NOTHING;'''
     for _, row in df.iterrows():
             cur.execute(query, (row["company"], row["Date"], row["Close"]))
     
