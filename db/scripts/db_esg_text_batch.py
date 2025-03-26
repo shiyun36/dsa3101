@@ -26,7 +26,8 @@ def insert_function(batch_data):
 
     query = '''INSERT INTO esg_text_table (
                     company, year, country, industry,esg_text
-                ) VALUES (%s, %s, %s,%s, %s)'''
+                ) VALUES (%s, %s, %s,%s, %s)
+                ON CONFLICT (company, year, country,industry,esg_text) DO NOTHING;'''
 
     #execute query on a batch of data from DF
     cur.executemany(query, batch_data)

@@ -7,13 +7,6 @@ from scripts.db_insert_company_ticker import insert_company_ticker
 
 load_dotenv()
 
-# db_name = os.getenv('db_name')
-# db_user = os.getenv('db_user')
-# db_port = os.getenv('db_port')
-# db_host = os.getenv('db_host')
-# db_password = os.getenv('db_password')
-
-
 #Database creation script
 
 # load_dotenv('secret.env')

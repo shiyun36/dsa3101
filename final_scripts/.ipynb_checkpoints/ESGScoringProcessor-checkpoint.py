@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 import logging
 
-class ESGScoringProcessor:
+class RagScoreProcessor:
     def __init__(self, df):
         '''
-        Input: ESG scoring dataframe
+        Input: ESG scoring dataframe from RAGProcessor
         Purpose: converts the ESG scoring dataframe generated from rag.py into a format suitable for esg_rag_table db
         '''
         self.df = df
@@ -13,7 +13,7 @@ class ESGScoringProcessor:
 
     def calculate_num_metrics(self):
         """
-        Calculates the number of metrics in the dataframe.
+        Obtains the the number of metrics in the dataframe.
         """
         return int((self.df.shape[1] - 4) / 2)
 
@@ -97,13 +97,8 @@ class ESGScoringProcessor:
             logging.error(f"Error in converting ESG scoring dataframe: {e}")
             return pd.DataFrame(columns=["company", "year", "industry", "country", "topic", "extracted_values", "final_score"])
 
-# Example usage:
-# def main(df):
-#     processor = ESGScoringProcessor(df)
-#     result_df = processor.convert_to_esg_rag_dataframe()
-#     return result_df
 
-# Example usage
-# df = pd.read_csv("path_to_file.csv")  # Replace with actual dataframe
-# esg_rag_df = main(df)
-# print(esg_rag_df)
+if __name__ == "__main__":
+    RagScoreProcessor = RagScoreProcessor(df) 
+    final_df = RagScoreProcessor.convert_to_esg_rag_dataframe()
+    print(df.head(5))
