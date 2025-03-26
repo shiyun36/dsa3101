@@ -4,8 +4,8 @@
         "year" int,
         "country" VARCHAR,
         "industry" VARCHAR,
-        "esg_text" VARCHAR
-        -- CONSTRAINT unique_esg_entry UNIQUE (company, year,country,industry,esg_text)
+        "esg_text" VARCHAR,
+        CONSTRAINT unique_esg_entry UNIQUE (company, year,country,industry,esg_text)
     );
 
     CREATE TABLE IF NOT EXISTS region_table (
@@ -42,6 +42,6 @@
         "year" int,
         "topic" TEXT,
         "extracted_values" TEXT,
-        "final_score" FLOAT
-        -- CONSTRAINT unique_esg_rag_entry UNIQUE (company, year,industry, topic,extracted_values,final_score)
+        "final_score" FLOAT,
+        CONSTRAINT unique_esg_rag_entry UNIQUE (company,industry,country,year, topic,extracted_values,final_score)
     )
