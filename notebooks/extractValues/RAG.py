@@ -269,15 +269,24 @@ def process_company(company_tuple):
     if country == "singapore":
         if industry == "finance":
             query_file = "../files/scoring_queries/sg_bank_query.json"
-            csv_file = "../notebooks/extractValues/sg_finance_score.csv"
+            csv_file = "../files/rag_output/sg_finance_score.csv"
         elif industry == "health":
             query_file = "../files/scoring_queries/sg_healthcare_query.json"
-            csv_file = "../notesbooks/extractValues/sg_healthcare_score.csv"
+            csv_file = "../files/rag_output/sg_healthcare_score.csv"
+        elif industry == "energy":
+            query_file = "../files/scoring_queries/sg_energy_query.json"
+            csv_file = "../files/rag_output/sg_energy_score.csv"
+        elif industry == "e-commerce":
+            query_file = "../files/scoring_queries/sg_tech_query.json"
+            csv_file = "../files/rag_output/sg_tech_score.csv"
         else:
-            print(f"Unsupported industry '{industry}' for country '{country}'. Exiting.")
-            sys.exit(1)
+            query_file = "../files/scoring_queries/generalMetrics.json"
+            csv_file = "../files/rag_output/unsupported_company_scores.csv"
+            print(f"Unsupported industry '{industry}' for country '{country}'. Using General Metrics.")
     else:
-        print(f"Unsupported country '{country}'. Exiting.")
+        query_file = "../files/scoring_queries/generalMetrics.json"
+        csv_file = "../files/rag_output/unsupported_company_scores.csv"
+        print(f"Unsupported country '{country}'. Using General Metrics.")
         sys.exit(1)
 
     # Load the ESG metrics from the JSON file
@@ -374,11 +383,8 @@ def extract_esgreports(companies):
         final_dataframes[csv_file] = df_combined
 
         print(f"Added {len(data['rows'])} new companies to {csv_file}.")
-    
-    print("final_df: " + str(final_df))
-    print("final_dataframes: " + str(final_dataframes))
 
-    return final_df
+    return csv_file
 
 
 companies = [
@@ -402,11 +408,12 @@ def rag_main(new_companies_df):
     # Drop duplicate rows
     unique_pairs = subset.drop_duplicates()
     unique_pairs['year'] = unique_pairs['year'].astype(int)
+
     # Convert each row to a tuple if needed:
     company_year_tuples = list(unique_pairs.itertuples(index=False, name=None))
 
     df = extract_esgreports(company_year_tuples)
-    print("rag_main function: " + str(df))
+
     return df
 
 

@@ -1,11 +1,13 @@
 import pandas as pd
 import numpy as np 
  
-def convert_scoring_metric_to_esg_rag_dataframe(df):
+def convert_scoring_metric_to_esg_rag_dataframe(csv_path):
     '''
     Input: ESG scoring dataframe
     Purpose: converts the ESG scoring dataframe generated from rag.py into a format suitable for esg_rag_table db
     '''
+    df = pd.read_csv(csv_path)
+    df = df.tail(1)
 
     # Obtain the number of Metrics 
     num_metrics = int((len(df.columns) - 4)/2)
