@@ -18,8 +18,8 @@ class PDFExtractor:
         '''
         self.geographical_region = geographical_region
         self.industry = industry
-        #self.saved_url_file = f"{os.path.splitext(saved_url_file)[0]}_{self.industry}_{self.geographical_region}.txt"
-        self.saved_url_file = saved_url_file
+        self.saved_url_file = f"{os.path.splitext(saved_url_file)[0]}_{self.industry}_{self.geographical_region}.txt"
+        # self.saved_url_file = saved_url_file ## Was using this as testing, once we have the url files with those changed names, shd run the above line instead of this. 
         self.company_name = None #Filled up with extract_company_and_year()
         self.year = None #Filled up with extract_company_and_year()
 
@@ -124,8 +124,7 @@ class PDFExtractor:
                 for sentence in sentences:
                     self.data.append({
                         "esg_text": sentence, 
-                        #I'm not sure if we want to save this as country or geographical region? I put geographical region because the initial pdf extractor step can look by countries, continents, or larger regions like APAC. SO I left it to be more general.  
-                        "country": self.geographical_region, 
+                        "country": self.geographical_region,   #I'm not sure if we want to save this as country or geographical region? I put geographical region because the initial pdf extractor step can look by countries, continents, or larger regions like APAC. SO I left it to be more general.  
                         "industry": self.industry,
                         "company": self.company_name.upper(),
                         "year": self.year
