@@ -51,22 +51,26 @@ SGX ESG Framework:
 - Environment: 4 metrics
 - Social: 11 metrics
 - Governance: 8 metrics
+
 Standardization:
 - Metrics standardized to a score between 0 and 1
 - Scoring based on data type and industry benchmarks
+
 Weightage:
 - Equal weightage (33%) applied to each ESG category
 - Final ESG Score: Derived out of 10
+
 Key Insights:
 - Standardized ESG score provides a clear, quantifiable measure of a company’s ESG performance
 - Facilitates easy comparison across industries
+
 Business Impact & Actionable Recommendations:
-- Companies can integrate ESG performance into KPIs, track progress, and identify areas for improvement. To improve, businesses should:
+Companies can integrate ESG performance into KPIs, track progress, and identify areas for improvement. To improve, businesses should:
 1. Leverage ESG Scores:
-  - Benchmark against industry peers
-  - Set measurable sustainability goals
+    - Benchmark against industry peers  
+    - Set measurable sustainability goals
 2. Improve Reporting Transparency:
-  - Enhance data collection for accurate, meaningful ESG scores
+    - Enhance data collection for accurate, meaningful ESG scores
 
 
 ### 7. What are key trends in ESG performance within the selected industry?
