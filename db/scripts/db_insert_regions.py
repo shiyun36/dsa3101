@@ -30,7 +30,8 @@ def insert_region_table(): #data_frame or text
     query = '''
             INSERT INTO region_table (
                 country, region, subregion
-            ) VALUES (%s, %s, %s)'''
+            ) VALUES (%s, %s, %s)
+            ON CONFLICT (country, region, subregion) DO NOTHING;'''
     for _, row in df.iterrows():
             cur.execute(query, (row["country"], row["region"], row["subregion"]))
     

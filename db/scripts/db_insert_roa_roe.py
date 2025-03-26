@@ -29,7 +29,8 @@ def insert_roa_roe(df): #data_frame or text
     query = '''
             INSERT INTO roa_roe_table (
                 company, date, roa,roe
-            ) VALUES (%s, %s, %s,%s)'''
+            ) VALUES (%s, %s, %s,%s)
+            ON CONFLICT (company, date, roa,roe) DO NOTHING;'''
     for index, row in df.iterrows():
             cur.execute(query, (row["company"], row["Date"], row["roa"],row['roe']))
     

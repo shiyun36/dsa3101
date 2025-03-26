@@ -32,7 +32,8 @@ def insert_company_ticker(): #data_frame or text
     query = '''
             INSERT INTO company_ticker (
                 symbol, company_name
-            ) VALUES (%s, %s)'''
+            ) VALUES (%s, %s)
+            ON CONFLICT (symbol, company_name) DO NOTHING;'''
     for _, row in df.iterrows():
             cur.execute(query, (row["symbol"], row["company_name"]))
     
