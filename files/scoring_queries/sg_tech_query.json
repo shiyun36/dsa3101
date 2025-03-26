@@ -1,9 +1,10 @@
+
 // added in emissions_reduction_percentage
 
 [
   {
     "Total Greenhouse Gas Emissions": {
-      "value_query": "Extract the total carbon emissions in tcO2e for the year 2023 for Singapore. This may be presented as GHG emissions or 'Scope 1 emissions' or 'Scope 2 emissions' or 'Total Scope 1 & 2 Emissions'. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below. For each scope (scope 1, scope 2 or scope 3), leave blanks if the respective scope is not reported. If total emissions are not reported, use Scope 1 and 2 emissions, or else, leave it blank. If the report does not state the total value of greenhouse gas emissions, look for whether there are greenhouse gas emissions reduction and save it under "emissions_reduction_percentage". Write a brief description that summarizes the extracted values.",
+      "value_query": "Extract the total carbon emissions in tcO2e for the year 2023 for Singapore. This may be presented as GHG emissions or 'Scope 1 emissions' or 'Scope 2 emissions' or 'Total Scope 1 & 2 Emissions'. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below. For each scope (scope 1, scope 2 or scope 3), leave blanks if the respective scope is not reported. If total emissions are not reported, use Scope 1 and 2 emissions, or else, leave it blank. If the report does not state the total value of greenhouse gas emissions, look for whether there are greenhouse gas emissions reduction and save it under 'emissions_reduction_percentage'. Write a brief description that summarizes the extracted values.",
       "extracted_values": {
         "total_emissions": "", 
         "scope1_emissions": "",
