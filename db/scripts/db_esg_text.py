@@ -51,4 +51,3 @@ def insert_esg_text(data_frame): #data_frame or text
 
         #closes connection
     cur.close()
-    conn.close()

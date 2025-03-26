@@ -11,9 +11,8 @@ from db.scripts.batch_data_prepare_esg_rag_table import batch_data_prepare_esg_r
 from db.scripts.db_esg_rag_table_batch import insert_esg_rag_table_batch
 from db.scripts.db_esg_rag_table import insert_esg_rag_table
 from db.scripts.db_esg_text import insert_esg_text
-from db.scripts.batch_data_prepare_esg_text import batch_data_prepare_esg_text
-from db.scripts.db_esg_text_batch import insert_esg_text_batch
 from extractValues import RAG
+from financial import financial
 
 
 def extract_url_to_esg_rag_database(url, country, industry):
@@ -26,29 +25,29 @@ def extract_url_to_esg_rag_database(url, country, industry):
     if df.empty:
         print("No text extracted. Skipping database insertion.")
         return
-    print(str(df))
+    
     # Returning a dataframe containing the extracted values and esg metric scores by using RAG and LLM
-    rag_df = RAG.rag_main(df)
+    rag_csv_path = RAG.rag_main(df)
 
     # Converting RAG dataframe to match esg_rag_table schema
-    esg_rag_df = convert_scoring_metric_to_esg_rag_dataframe(rag_df)
+    esg_rag_df = convert_scoring_metric_to_esg_rag_dataframe(rag_csv_path)
+
+    # Inserting esg text into esg_text_table database
+    insert_esg_text(esg_text_df)
+    print("ESG text data inserted into the esg_text database successfully.")
+
+    financial()
+    print("Successfully run financial")
 
     # Insert esg rag results into esg_rag_table database
-    # esg_rag_batch = batch_data_prepare_esg_rag_table(esg_rag_df)
-    # insert_esg_rag_table_batch(esg_rag_batch)
     insert_esg_rag_table(esg_rag_df)
     print("ESG RAG data inserted into the esg_rag database successfully.")
 
-    # Inserting esg text into esg_text_table database
-    # esg_text_batch = batch_data_prepare_esg_text(esg_text_df)
-    # insert_esg_text_batch(esg_text_batch)
-    insert_esg_text(esg_text_df)
-    print("ESG text data inserted into the esg_text database successfully.")
 
 
 def main():
     # Setup argparse to receive the URL
-    parser = argparse.ArgumentParser(description="Extract ESG data from a PDF report URL")
+    parser = argparse.ArgumentParser(description = "Extract ESG data from a PDF report URL")
     parser.add_argument("--url", type = str, help = "PDF URL of the sustainability report")
     parser.add_argument("--country", type = str, help = "Country the company is based in")
     parser.add_argument("--industry", type = str, help = "Industry the company belongs to")

@@ -20,7 +20,7 @@ def extract_text_company_year(pdf_url, country, industry):
         Extracts company name and year from the PDF URL.
         Assumes company name is right after 'https://' and the year is just before '.pdf'.
         """
-        match = re.search(r'https://(?:www\.)?([a-zA-Z0-9-]+).*?(\d{4}(?:-\d{4})?)\.pdf', pdf_url)
+        match = re.search(r'https://(?:www\.|.*?)?([a-zA-Z0-9-]+)\.com.*?[_-]?(20\d{2}).*?\.pdf', pdf_url)
         if match:
             return match.group(1), match.group(2)
         else:
