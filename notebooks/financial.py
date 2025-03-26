@@ -65,5 +65,7 @@ def financial():
             if roa_roe is None:
                 continue
             insert_roa_roe(roa_roe)
+        cur.close()
+        conn.close()
     except Exception as e:
         print('Error getting financial data', e)

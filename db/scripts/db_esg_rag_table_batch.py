@@ -39,6 +39,7 @@ def insert_function(batch_df):
         INSERT INTO esg_rag_table (
             company, industry, country, year, topic, extracted_values, final_score
         ) VALUES (%s,%s,%s, %s, %s, %s, %s)
+        ON CONFLICT (company, industry, country,year,topic,extracted_values,final_score) DO NOTHING;
     '''
 
     #insert in batch
