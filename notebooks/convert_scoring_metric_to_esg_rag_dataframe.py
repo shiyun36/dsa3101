@@ -1,53 +1,38 @@
 import pandas as pd
-import numpy as np 
- 
+import numpy as np
+
 def convert_scoring_metric_to_esg_rag_dataframe(csv_path):
-    '''
-    Input: ESG scoring dataframe
-    Purpose: converts the ESG scoring dataframe generated from rag.py into a format suitable for esg_rag_table db
-    '''
+    # Load your CSV file
     df = pd.read_csv(csv_path)
-    df = df.tail(1)
 
-    # Obtain the number of Metrics 
-    num_metrics = int((len(df.columns) - 4)/2)
+    # Extract shared metadata from the last row
+    company = df.iloc[-1]["Company"]
+    year = df.iloc[-1]["Year"]
+    industry = df.iloc[-1]["Industry"]
+    country = df.iloc[-1]["Country"]
 
-    # Forms a dataframe of the company info + extracted values of each esg metric from the llm
-    df_extracted_values = df.iloc[:, 0 : 4 + num_metrics]
+    # Prepare a list to store transformed records
+    records = []
 
-    # Forms a dataframe of the company info + final score of each esg metric from the llm
-    df_company_info = df.iloc[:, 0:4]
-    df_scoring = df.iloc[:,-num_metrics:]
-    df_scoring = pd.concat([df_company_info, df_scoring], axis = 1)
+    # Loop through each column to find metric and its score
+    for col in df.columns:
+        if col.endswith('_numScore'):
+            topic = col.replace('_numScore', '')
+            extracted_values = df.iloc[-1][topic]
+            final_score = df.iloc[-1][col]
+            
+            records.append({
+                'company': company,
+                'year': year,
+                'industry': industry,
+                'country': country,
+                'topic': topic,
+                'extracted_values': extracted_values,
+                'final_score': final_score
+            })
 
-    # Load csv data
-    df_extracted_values.drop(columns=["Company", "Year", "Industry", "Country"], errors = "ignore", inplace = True)
+    # Create the final DataFrame
+    final_df = pd.DataFrame(records)
+    return final_df
 
-    extracted_values = []
-    for col in df_extracted_values.columns:
-        extracted_values.extend(df_extracted_values[col].tolist())
-
-    # Clean up and format columns
-    df_scoring.replace("N/A", pd.NA, inplace = True)
-
-    # Reshape esg_score dataframe to match esg_rag schema
-    reshaped_df = df_scoring.melt(
-        id_vars=["Company", "Year", "Industry", "Country"],
-        var_name="topic",
-        value_name="final_score"
-    )
-
-    reshaped_df.rename(columns={
-        "Company": "company",
-        "Year": "year",
-        "Industry": "industry",
-        "Country": "country"
-    }, inplace=True)
-
-    # Combine CSV values as 'extracted_values'
-    reshaped_df["extracted_values"] = extracted_values[:len(reshaped_df)]
-
-    # Reorder columns
-    reshaped_df = reshaped_df[["company", "year", "industry", "country", "topic", "extracted_values", "final_score"]]
-
-    return reshaped_df
+        

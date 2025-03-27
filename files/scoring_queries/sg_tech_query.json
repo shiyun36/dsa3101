@@ -1,6 +1,4 @@
 
-// added in emissions_reduction_percentage
-
 [
   {
     "Total Greenhouse Gas Emissions": {
@@ -10,7 +8,7 @@
         "scope1_emissions": "",
         "scope2_emissions": "",
         "scope3_emissions": "",
-	"emissions_reduction_percentage": "",
+	      "emissions_reduction_percentage": "",
         "description": ""
       }, 
       "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_emissions/100000). If there are no total_emissions, use Scope 2 emissions. If total_emissions is greater than 1000000, score as 0. Return the final_score as a float from 0 to 1. If the report does not state the total absolute value of greenhouse gas emissions, but they record emissions_reduction_percentage, return the final_score as a float from 0 to 1 based on the emissions_reduction_percentage. For instance, a 20% reduction in greenhouse gas emissions will have a final_score of 0.2. If abosultely no values have been found, return the final score as 0.5",

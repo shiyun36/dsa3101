@@ -4,7 +4,11 @@
         "year" int,
         "country" VARCHAR,
         "industry" VARCHAR,
+<<<<<<< Updated upstream
         "esg_text" VARCHAR
+=======
+        "esg_text" VARCHAR,
+>>>>>>> Stashed changes
         -- CONSTRAINT unique_esg_entry UNIQUE (company, year,country,industry,esg_text)
     );
 

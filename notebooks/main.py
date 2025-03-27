@@ -58,9 +58,9 @@ def main():
 
     # (CHANGE ARGUMENTS HERE) If run without CLI args (e.g., directly in a script), fallback to defaults
     if not any(vars(args).values()):
-        args.url = "https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2023.pdf"
-        args.country = "singapore"
-        args.industry = "finance"
+        args.url = "https://sustainability.pertamina.com/en-US/Reports-and-Publications/Sustainability-Report/Sustainability-Report-2023.pdf"
+        args.country = "indonesia"
+        args.industry = "energy"
 
     
     # Database connection string
