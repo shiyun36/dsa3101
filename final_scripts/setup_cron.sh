@@ -8,7 +8,7 @@ LOG_FILE="$SCRIPT_DIR/cron_log.txt"
 OUTPUT_FILE="$SCRIPT_DIR/esg_pdf_links.txt"
 
 # Add cron job (runs every Monday at 3 AM)
-(crontab -l 2>/dev/null; echo "0 3 * * 1 $PYTHON_PATH $SCRIPT_PATH >> $LOG_FILE 2>&1") | crontab -
+(crontab -l 2>/dev/null; echo "0 1 * * 4 $PYTHON_PATH $SCRIPT_PATH >> $LOG_FILE 2>&1") | crontab -
 
 echo "Cron job added successfully!"
 echo "Logs will be stored in: $LOG_FILE"
