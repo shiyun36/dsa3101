@@ -38,7 +38,7 @@ def insert_esg_rag_table(df):
         INSERT INTO esg_rag_table (
             company, year, industry, country, topic, extracted_values, final_score
         ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-        ON CONFLICT (company, industry, country,year,topic,extracted_values,final_score) DO NOTHING;
+        ON CONFLICT (company, year, industry, country, topic, extracted_values, final_score) DO NOTHING;
     '''
 
     # Insert row-by-row

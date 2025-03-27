@@ -284,10 +284,9 @@ def process_company(company_tuple):
             csv_file = "../files/rag_output/unsupported_company_scores.csv"
             print(f"Unsupported industry '{industry}' for country '{country}'. Using General Metrics.")
     else:
-        query_file = "../files/scoring_queries/generalMetrics.json"
+        query_file = "../files/scoring_queries/generalMetrics_query.json"
         csv_file = "../files/rag_output/unsupported_company_scores.csv"
         print(f"Unsupported country '{country}'. Using General Metrics.")
-        sys.exit(1)
 
     # Load the ESG metrics from the JSON file
     try:
