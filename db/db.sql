@@ -4,8 +4,8 @@
         "year" int,
         "country" VARCHAR,
         "industry" VARCHAR,
-        "esg_text" VARCHAR,
-        CONSTRAINT unique_esg_entry UNIQUE (company, year,country,industry,esg_text)
+        "esg_text" VARCHAR
+        -- CONSTRAINT unique_esg_entry UNIQUE (company, year,country,industry,esg_text)
     );
 
     CREATE TABLE IF NOT EXISTS region_table (
