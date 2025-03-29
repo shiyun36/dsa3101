@@ -12,7 +12,7 @@ load_dotenv()
 
 
 class GeneratePdfs:
-    def __init__(self, output_file, log_file, years, industry, geographical_region, GOOGLE_API_KEY):
+    def __init__(self, output_file, log_file, years, industry, country, GOOGLE_API_KEY):
         """
         Initializes the scraper with an output file and years to scrape reports for.
         :param output_file: The file where PDF links will be stored.
@@ -20,9 +20,9 @@ class GeneratePdfs:
         """
         self.years = years 
         self.industry = industry
-        self.geographical_region = geographical_region
-        self.output_file = f"{os.path.splitext(output_file)[0]}_{self.industry}_{self.geographical_region}.txt"
-        self.log_file = f"{os.path.splitext(log_file)[0]}_{self.industry}_{self.geographical_region}.log"
+        self.country = country
+        self.output_file = f"{os.path.splitext(output_file)[0]}_{self.industry}_{self.country}.txt"
+        self.log_file = f"{os.path.splitext(log_file)[0]}_{self.industry}_{self.country}.log"
         logging.basicConfig(filename=self.log_file, level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
         self.GOOGLE_API_KEY = GOOGLE_API_KEY
         self.company_list = self.generate_company_names()
@@ -35,7 +35,7 @@ class GeneratePdfs:
         client = genai.Client(api_key=self.GOOGLE_API_KEY)
         response = client.models.generate_content(
             model="gemini-2.0-flash", #deepseek/deepseek-r1-zero:free
-            contents=f"Can you randomly generate 3 comapnies in the {self.industry} in {self.geographical_region}, that are most likely to have ESG reports publicly available. Please only output the names of the companies"
+            contents=f"Can you randomly generate 3 comapnies in the {self.industry} in {self.country}, that are most likely to have ESG reports publicly available. Please only output the names of the companies"
         )
         print(response.text)
         if response and hasattr(response, 'text') and response.text:
@@ -97,6 +97,6 @@ if __name__ == "__main__":
                            log_file = "../loggings/pdf_scraper.log",
                            years=[2024, 2023, 2022, 2021],
                            industry='energy', 
-                           geographical_region='Singapore',
+                           country='singapore',
                            GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")) 
     pdf_links_generator.run()

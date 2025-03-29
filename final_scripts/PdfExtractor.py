@@ -9,15 +9,16 @@ import ocrmypdf
 import logging
 
 class PDFExtractor:
-    def __init__(self, saved_url_file, geographical_region, industry):
+    def __init__(self, insert_url, saved_url_file, country, industry):
         '''
         Input: saved_url_file, geographical region and instry 
         Intermediates: self.company_name, self.year and self.data (extracted esg text) are being generated. 
         Output: dataframe containing all the companies from one industry + region (eg. healthcare industry in SG) with the columns (esg_text, country, industry, company, year)
         Purpose: Extract company and year from pdf_url, and extract text from PDF using OCR scraper
         '''
-        self.geographical_region = geographical_region
+        self.country = country
         self.industry = industry
+        self.insert_url = insert_url
         self.saved_url_file = f"{os.path.splitext(saved_url_file)[0]}_{self.industry}_{self.geographical_region}.txt"
         # self.saved_url_file = saved_url_file ## Was using this as testing, once we have the url files with those changed names, shd run the above line instead of this. 
         self.company_name = None #Filled up with extract_company_and_year()
@@ -48,7 +49,7 @@ class PDFExtractor:
         Assumes company name is right after 'https://' and the year is just before '.pdf'.
         Note: Some companies may not follow this regex formatting, will need to build a more robust matching system, possible with a simple LLM. 
         """
-        match = re.search(r'https://(?:www\.)?([a-zA-Z0-9-]+).*?(\d{4}(?:-\d{4})?)\.pdf', pdf_url)
+        match = re.search(r'https://(?:www\.|.*?)?([a-zA-Z0-9-]+)\.com.*[_-]?(20\d{2}).*?\.pdf', pdf_url)
         if match:
             self.company_name = match.group(1)
             self.year = match.group(2)
@@ -106,7 +107,10 @@ class PDFExtractor:
         """
         Main method to extract information from the PDF and return the result as a DataFrame.
         """
-        pdf_links = self.read_pdf_links()
+        if self.insert_url == "":
+            pdf_links = self.read_pdf_links()
+        else:
+            pdf_links = self.insert_url
         self.data = []  # Initialize an empty list to store all data
 
         for url in pdf_links: 
@@ -123,11 +127,11 @@ class PDFExtractor:
                 # Prepare data for DataFrame
                 for sentence in sentences:
                     self.data.append({
-                        "esg_text": sentence, 
-                        "country": self.geographical_region,   #I'm not sure if we want to save this as country or geographical region? I put geographical region because the initial pdf extractor step can look by countries, continents, or larger regions like APAC. SO I left it to be more general.  
-                        "industry": self.industry,
                         "company": self.company_name.upper(),
-                        "year": self.year
+                        "year": self.year,
+                        "country": self.country,   #I'm not sure if we want to save this as country or geographical region? I put geographical region because the initial pdf extractor step can look by countries, continents, or larger regions like APAC. SO I left it to be more general.  
+                        "industry": self.industry,
+                        "esg_text": sentence, 
                     })
             except requests.exceptions.HTTPError as http_err:
                             # Skip URLs that result in a 403 or any other HTTP error
