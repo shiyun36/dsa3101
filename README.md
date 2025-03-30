@@ -1,15 +1,18 @@
 # DSA3101 Group 7 Project Instructions
+# About the Project
+## ESG Data Extraction & Analysis with NLP
+As ESG (Environmental, Social, and Governance) factors become central to corporate strategy and investor decisions, companies face increasing pressure to publish transparent and standardized ESG reports. However, the lack of consistency in reporting structures makes manual data extraction inefficient and error-prone.
 
-## About the Project
-Environmental, Social and Governance (ESG) factors have become central to corporate strategy, investor decision-making and regulatory compliance. With the rising demand for transparency and accountability in sustainability, companies are increasingly required to publish detailed ESG reports. However, the manual extraction and analysis of ESG data remains labor-intensive and error-prone, particularly because these reports are often inconsistently structured. This results in a bottleneck for businesses trying to meet stakeholder demands. 
-Our project thus aims to automate the extraction of ESG data using Natural Language Processing. By streamlining the extraction process, we aim to validate and interpret the data, transforming it into valuable insights. Our business goal is to provide an impact dashboard for stakeholders to visualize overall ESG trends and predict the financial impact of ESG performance on companies. This enables businesses to benchmark performance efficiently and deliver actionable insights.
-The core challenge lies in the variation of ESG reporting formats. Companies use different frameworks, leading to non-standardized data that is difficult to compare across industries. This inefficiency hinders stakeholders’ ability to assess risks, identify trends, or make data-driven decisions. Moreover, the lack of standardization complicates cross-company comparisons.
+This project leverages Natural Language Processing (NLP) and AI to automate ESG data extraction, normalization, and scoring. Our goal is to transform unstructured ESG reports into actionable insights, enabling businesses to benchmark performance, assess risks, and predict financial impact.
 
-By automating ESG analysis through NLP and AI, we aim to 
-- Extract structured data, Normalize metrics.
-- Generate scores aligned with industry benchmarks.
+Key Features:
+1. Automated ESG Data Extraction – Structured data processing from unstructured reports
 
-This approach not only enhances transparency but also helps companies align with global sustainability goals, mitigate risks, and unlock competitive advantages. Ultimately, our goal is to contribute to speeding up the building of a more sustainable and equitable global economy.
+2. Metric Normalization – Standardizing ESG indicators for cross-industry comparison
+
+3. ESG Scoring & Benchmarking – Aligning with industry standards to enhance transparency
+
+By streamlining ESG analysis, we empower stakeholders with a data-driven impact dashboard to visualize trends and drive sustainability-focused decisions.
 
 ## Tech Stack
 [![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&style=flat-square)](https://www.docker.com/products/docker-desktop/)
