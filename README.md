@@ -34,7 +34,7 @@ As ESG (Environmental, Social, and Governance) factors become central to corpora
 
 This project leverages Natural Language Processing (NLP) and AI to automate ESG data extraction, normalization, and scoring. Our goal is to transform unstructured ESG reports into actionable insights, enabling businesses to benchmark performance, assess risks, and predict financial impact.
 
-Key Features:
+### Key Features:
 1. Automated ESG Data Extraction – Structured data processing from unstructured reports
 
 2. Metric Normalization – Standardizing ESG indicators for cross-industry comparison
@@ -46,11 +46,11 @@ By streamlining ESG analysis, we empower stakeholders with a data-driven impact 
 [🔼 Back to Top](#table-of-contents)
 
 ## Tech Stack
-[![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&style=flat-square)](https://www.docker.com/products/docker-desktop/)
-[![PowerBI](https://img.shields.io/badge/PowerBI-Frontend-orange?logo=powerbi&style=flat-square)](https://powerbi.microsoft.com/)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-Backend-blue?logo=huggingface&style=flat-square)](https://huggingface.co/)
-[![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/)
-[![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?logo=git&style=flat-square)](https://git-scm.com/)
+[![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
+[![Hugging Face](https://img.shields.io/badge/hugging%20face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.io/)
+[![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 
 ## Pipeline
 ![image](https://github.com/user-attachments/assets/266be462-0842-47dd-b664-866040f3353f)
@@ -132,8 +132,8 @@ Maps company names to their stock ticker symbols. Else the api will search yahoo
 # Running The Project
 ## Applications Needed
 Ensure that you have the following installed.
-1. [![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&style=flat-square)](https://www.docker.com/products/docker-desktop/)
-2. [![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?logo=git&style=flat-square)](https://git-scm.com/)
+1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
+2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
    
 [🔼 Back to Top](#table-of-contents)
 
