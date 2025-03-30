@@ -196,12 +196,12 @@ python {script to run add file directory here}
 | Jeremiah    | [jeremiah-tay](https://github.com/jeremiah-tay) | Group A |
 | Tolentino Alexandra Morales   | [Shiraishie](https://github.com/Shiraishie) | Group A |
 | Jing Zhi   | [jingzhing](https://github.com/jingzhing)  | Group A |
-| Wei Jiang | [@github_username](https://github.com/github_username)  | Group A |
-| Terence    | [@github_username](https://github.com/github_username)  | Group B |
+| Wei Jiang | [Bearbeargood](https://github.com/Bearbeargood)  | Group A |
+| Terence    | [terencelai31](https://github.com/terencelai31)  | Group B |
 | David Wong   | [davidwtk](https://github.com/davidwtk)  | Group B |
-| Wynnona Pheeby   | [@github_username](https://github.com/github_username)  | Group B |
+| Wynnona Pheeby   | [wynpyy](https://github.com/wynpyy)  | Group B |
 | Lim Song Ern, Shauna    | [shaunalim](https://github.com/shaunalim)  | Group B |
-| Elise Lim Jia Jing   | [@github_username](https://github.com/github_username) | Group B |
+| Elise Lim Jia Jing   | [mile-sile](https://github.com/mile-sile) | Group B |
 
 [🔼 Back to Top](#table-of-contents)
 
