@@ -1,0 +1,50 @@
+version: "3.9" #docker-compose version, not python
+
+services:
+  app:
+    build: .
+    container_name: dsa3101_proj
+    working_dir: /app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - db_name=${db_name}
+      - db_user=${db_user}
+      - db_port=${db_port}
+      - db_host=${db_host}
+      - db_password=${db_password}
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: bash # Start with bash so you can run multiple scripts interactively
+    stdin_open: true # Allow interactive terminal
+    tty: true
+
+  db: #this is for the local postgresdb
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      - POSTGRES_DB=${db_name}
+      - POSTGRES_USER=${db_user}
+      - POSTGRES_PASSWORD=${db_password}
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
+  pgadmin:
+    image: dpage/pgadmin4:latest # pgAdmin4 image
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@email.com # Set your email
+      PGADMIN_DEFAULT_PASSWORD: password # Set your password
+    ports:
+      - "80:80" # pgAdmin will be accessible on http://localhost:80
+    depends_on:
+      - db
+    env_file:
+      - .env
