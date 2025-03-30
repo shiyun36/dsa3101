@@ -110,7 +110,7 @@ class PDFExtractor:
         if self.insert_url == "":
             pdf_links = self.read_pdf_links()
         else:
-            pdf_links = self.insert_url
+            pdf_links = [self.insert_url]
         self.data = []  # Initialize an empty list to store all data
 
         for url in pdf_links: 
