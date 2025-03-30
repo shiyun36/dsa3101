@@ -33,11 +33,21 @@ Ensure that you have the following installed.
    ```
    cd dsa3101
    ```
-3. Place the env file in this directory. Please contact us for the .env file.
+3. Place the env file in this directory. Please contact us for the .env file. But the env file will look like:
+   ```
+   db_name=postgres
+   db_user=postgres
+   db_port=5432
+   db_host=localhost
+   db_password=password
+   DATABASE_URL={CONTACT US}
+   ```
+   
+   The directory should be:
    ```
    dsa3101/.env
    ```
-4. To dockerize the application, run the commands below. The first line will take a while to run due to the big dependencies
+5. To dockerize the application, run the commands below. The first line will take a while to run due to the big dependencies
   ```
   docker compose up -d
   ```
