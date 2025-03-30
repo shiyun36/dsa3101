@@ -1,19 +1,30 @@
-# DSA3101 Group 7 Project Instructions Testing here 
+<div align="center">
 
-## Table of Contents
-- [About the Project](#about-the-project)
-  - [ESG Data Extraction & Analysis with NLP](#esg-data-extraction--analysis-with-nlp)
-  - [Tech Stack](#tech-stack)
-- [Running The Project](#running-the-project)
-   - [Applications Needed](#applications-needed)
-   - [Dockerizing the Project](#dockerizing-the-project)
-   - [Running Python Scripts](#running-python-scripts)
-- [PowerBI Dashboard](#powerbi-dashboard)
-   - [Executive Summary]
-   - [Company Summary]
-- [Details](#details)
-- [Group Members](#group-members)
-- [Acknowledgements](#acknowledgements)
+# 🏆 DSA3101 Group 7 Project Instructions  
+
+### 🌍 ESG Data Extraction & Analysis with NLP  
+
+📌 Developed for **DSA3101** at the **National University of Singapore**  
+
+</div>
+
+
+## Table of Contents  
+
+- [About the Project](#about-the-project)  
+  - [ESG Data Extraction & Analysis with NLP](#esg-data-extraction--analysis-with-nlp)  
+  - [Tech Stack](#tech-stack)  
+- [Running The Project](#running-the-project)  
+   - [Applications Needed](#applications-needed)  
+   - [Dockerizing the Project](#dockerizing-the-project)  
+   - [Running Python Scripts](#running-python-scripts)  
+- [PowerBI Dashboard](#powerbi-dashboard)  
+   - [Executive Summary](#executive-summary)  
+   - [Company Summary](#company-summary)   
+- [Group Members](#group-members)  
+- [Acknowledgements](#acknowledgements)  
+
+
 
 # About the Project
 ## ESG Data Extraction & Analysis with NLP
@@ -102,22 +113,23 @@ python {script to run add file directory here}
 
 ## Group Members
 
-| Name           | Email          |
-|----------------|-----------------|
-| Terence    | e0726538@u.nus.edu  |
-| David Wong   | e0958026@u.nus.edu  |
-| Wynnona Pheeby   | e0985898@u.nus.edu  |
-| Shi Yun    | e0773037@u.nus.edu  |
-| Jeremiah    | e0726076@u.nus.edu  |
-| Lim Song Ern, Shauna    | e0968215@u.nus.edu  |
-| Tolentino Alexandra Morales    | e0969604@u.nus.edu  |
-| Elise Lim Jia Jing   | e0970449@u.nus.edu  |
-| Jing Zhi   | e0726423@u.nus.edu  |
-| Wei Jiang | e0775132@u.nus.edu  |
+| Name           | GitHub         | Role |
+|----------------|-----------------| ------ |
+| Shi Yun    | [shiyun33](https://github.com/shiyun33)  | Group A |
+| Jeremiah    | [jeremiah-tay](https://github.com/jeremiah-tay) | Group A |
+| Tolentino Alexandra Morales   | [Shiraishie](https://github.com/Shiraishie) | Group A |
+| Jing Zhi   | [jingzhing](https://github.com/jingzhing)  | Group A |
+| Wei Jiang | [@github_username](https://github.com/github_username)  | Group A |
+| Terence    | [@github_username](https://github.com/github_username)  | Group B |
+| David Wong   | [davidwtk](https://github.com/davidwtk)  | Group B |
+| Wynnona Pheeby   | [@github_username](https://github.com/github_username)  | Group B |
+| Lim Song Ern, Shauna    | [shaunalim](https://github.com/shaunalim)  | Group B |
+| Elise Lim Jia Jing   | [@github_username](https://github.com/github_username) | Group B |
 
 [🔼 Back to Top](#table-of-contents)
 
 ## Acknowledgements
+Many thanks to Professor Hernandez Marin Sergio and our TA Fauzan!
 
 [🔼 Back to Top](#table-of-contents)
 
