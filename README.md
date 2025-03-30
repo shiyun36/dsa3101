@@ -12,23 +12,26 @@ By automating ESG analysis through NLP and AI, we aim to
 This approach not only enhances transparency but also helps companies align with global sustainability goals, mitigate risks, and unlock competitive advantages. Ultimately, our goal is to contribute to speeding up the building of a more sustainable and equitable global economy.
 
 ## Tech Stack
-Containerizer
-Docker
+### Container
+[![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&style=flat-square)](https://www.docker.com/products/docker-desktop/)
 
-Frontend
-PowerBI
+### Frontend
+[![PowerBI](https://img.shields.io/badge/PowerBI-Frontend-orange?logo=powerbi&style=flat-square)](https://powerbi.microsoft.com/)
 
-Backend
-HuggingFace Transformers
+### Backend
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Backend-blue?logo=huggingface&style=flat-square)](https://huggingface.co/)
 
-Database
-SupaBase (PostGreSQL Online)
+### Database
+[![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/)
+
+### Version Control
+[![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?logo=git&style=flat-square)](https://git-scm.com/)
 
 
 ## Applications Needed
 Ensure that you have the following installed.
-1. Docker
-2. Git
+1. [![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&style=flat-square)](https://www.docker.com/products/docker-desktop/)
+2. [![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?logo=git&style=flat-square)](https://git-scm.com/)
 
 ## Running and Dockerizing the Project
 1. Open a folder that you like and right click to open with Git-Bash or CMD. Clone the project with the following commands
@@ -61,6 +64,10 @@ python {script to run add file directory here}
 ```
 
 ## Accesing PowerBI Dashboard
-
+### Insert PowerBI Published Dashboard Link Here
 
 ## Group Members
+
+| Name           | Email          |
+|----------------|-----------------|
+| Add Here      | Add      |
