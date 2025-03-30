@@ -1,3 +1,5 @@
+#$ pip install httpx[http2]
+
 import os
 from supabase import create_client
 import pandas as pd
@@ -13,8 +15,8 @@ from collections import Counter
 def connect_to_supabase():
     """Establishes connection to Supabase."""
     try:
-        url = os.getenv("SUPABASE_URL", "your_supabase_url")
-        key = os.getenv("SUPABASE_KEY", "your_supabase_key")
+        url = os.getenv("SUPABASE_URL", "your_supabase_url") # Replace with your url
+        key = os.getenv("SUPABASE_KEY", "your_supabase_key") # Replace with your key
         if not url or not key:
             raise ValueError("Supabase URL or key is missing.")
         return create_client(url, key)
@@ -100,7 +102,7 @@ def compute_esg_scores(esg_rag, esg_cat):
         print(f"Error computing ESG scores: {e}")
         return None
 
-def prep_rfe(roa_roe, stocks_return):
+def prep_rfe(esg_rag, roa_roe, stocks_return):
     try:
         esg_wide = esg_rag.pivot_table(
             index=["company", "year"], 
@@ -313,7 +315,7 @@ def run():
     esg_overall_score = compute_esg_scores(esg_rag, esg_cat)
     
     # Proceed with the RFE analysis
-    df_features, features, targets = prep_rfe(roa_roe, stocks_return)
+    df_features, features, targets = prep_rfe(esg_rag, roa_roe, stocks_return)
     if df_features is None or features is None or targets is None:
         print("Failed to prepare features for RFE.")
         return
