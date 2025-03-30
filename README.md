@@ -12,8 +12,10 @@
 ## Table of Contents  
 
 - [About the Project](#about-the-project)  
-  - [ESG Data Extraction & Analysis with NLP](#esg-data-extraction--analysis-with-nlp)  
-  - [Tech Stack](#tech-stack)  
+  - [ESG Data Extraction & Analysis with NLP](#esg-data-extraction--analysis-with-nlp)
+  - [Tech Stack](#tech-stack)
+  - [Pipeline](#pipeline)
+  - [Database Schema](#database-schema)
 - [Running The Project](#running-the-project)  
    - [Applications Needed](#applications-needed)  
    - [Dockerizing the Project](#dockerizing-the-project)  
@@ -49,6 +51,81 @@ By streamlining ESG analysis, we empower stakeholders with a data-driven impact 
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Backend-blue?logo=huggingface&style=flat-square)](https://huggingface.co/)
 [![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/)
 [![Git](https://img.shields.io/badge/Git-Version%20Control-F05032?logo=git&style=flat-square)](https://git-scm.com/)
+
+## Pipeline
+![image](https://github.com/user-attachments/assets/266be462-0842-47dd-b664-866040f3353f)
+
+## Database Schema
+[![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/)
+### `esg_text_table`
+Stores ESG report text for each company, year, country, and industry.
+
+| Column     | Type     | Description                               |
+|------------|----------|-------------------------------------------|
+| `company`  | VARCHAR  | Name of the company                       |
+| `year`     | INT      | Year of the ESG report                    |
+| `country`  | VARCHAR  | Country where the company is located     |
+| `industry` | VARCHAR  | Industry the company belongs to           |
+| `esg_text` | VARCHAR     | ESG Report Sentence                      |
+
+### `esg_rag_table`
+Stores extracted ESG values and final scores for companies based on different topics in ESG.
+
+| Column         | Type   | Description                                |
+|----------------|--------|--------------------------------------------|
+| `company`      | VARCHAR| Name of the company                        |
+| `industry`     | VARCHAR| Industry of the company                    |
+| `country`      | VARCHAR| Country where the company is based        |
+| `year`         | INT    | Year of the ESG assessment                 |
+| `topic`        | TEXT   | Topic of the ESG assessment (e.g., environment, governance) |
+| `extracted_values` | TEXT | Values extracted for the topic            |
+| `final_score`  | FLOAT  | Final ESG score                            |
+```sql
+CONSTRAINT unique_esg_rag_entry UNIQUE (company,industry,country,year, topic,extracted_values,final_score)
+```
+### `stocks_table`
+Stores stock price data for companies scraped from Yahoo Finance.
+
+| Column  | Type     | Description                               |
+|---------|----------|-------------------------------------------|
+| `company`| VARCHAR | Name of the company                       |
+| `date`   | DATE     | Date of the stock price                   |
+| `close`  | FLOAT    | Closing stock price                       |
+```sql
+CONSTRAINT unique_stock_entry UNIQUE (company, date)
+```
+
+### `roa_roe_table`
+Stores financial metrics: Return on Assets (ROA) and Return on Equity (ROE) for companies scraped from Yahoo Finance.
+
+| Column  | Type     | Description                               |
+|---------|----------|-------------------------------------------|
+| `company`| VARCHAR | Name of the company                       |
+| `date`   | DATE     | Date of the financial metrics             |
+| `roa`    | FLOAT    | Return on Assets                         |
+| `roe`    | FLOAT    | Return on Equity                         |
+```sql
+CONSTRAINT unique_roa_roe_entry UNIQUE (company, date)
+```
+### `region_table`
+Maps countries to their respective regions and subregions.
+
+| Column    | Type     | Description                               |
+|-----------|----------|-------------------------------------------|
+| `country` | VARCHAR  | Country name                             |
+| `region`  | VARCHAR  | Geographical region                      |
+| `subregion`| VARCHAR | Subregion of the country                  |
+```sql
+CONSTRAINT unique_region_entry UNIQUE (country, region, subregion)
+```
+### `company_ticker`
+Maps company names to their stock ticker symbols. Else the api will search yahoo finance.
+
+| Column       | Type   | Description                              |
+|--------------|--------|------------------------------------------|
+| `symbol`     | TEXT   | Stock ticker symbol                      |
+| `company_name` | TEXT | Name of the company                      |
+
 
 [🔼 Back to Top](#table-of-contents)
 
