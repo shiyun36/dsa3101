@@ -1,0 +1,250 @@
+
+
+[
+  {
+    "Total Greenhouse Gas Emissions": {
+      "value_query": "Extract the total carbon emissions in tcO2e for the year 2023 for Singapore. This may be presented as 'Scope 1 emissions' or 'Scope 2 emissions' or 'Total Scope 1 & 2 Emissions'. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below. For each scope (scope 1, scope 2 or scope 3), leave blanks if the respective scope is not reported. If total emissions are not reported, use Scope 1 and 2 emissions, or else, leave it blank. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "total_emissions": "", 
+        "scope1_emissions": "",
+        "scope2_emissions": "",
+        "scope3_emissions": "",
+        "description": ""
+      }, 
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_emissions/100000). If there are no total_emissions, use Scope 2 emissions. Return the final_score as a float from 0 to 1. If abosultely no values have been found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Total Energy consumption": {
+      "value_query": "Extract the total energy consumption and unit for the year 2023 in Singapore. Though the report might include individual components for electricity consumption or fuel consumption, ignore these data and only extract the total energy consumption reported. If there is no total energy consumption reported, retrieve the electricity consumption. If total electrical consumption can be found, please extract the value and convert it to gigajoules. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "total_energy_consumption"    : "",
+        "description"                 : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, if total_electrical_consumption has a value, add it to total_energy_consumption. Now, give a score based on this criteria: 1 - (total_energy_consumption/1000000). Return the final_score as a float from 0 to 1. If total_energy_consumption cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Total Water Consumption": {
+      "value_query": "Extract the total water consumption in m^3 for the year 2023 in Singapore. If water consumption is presented in liters, convert to m^3. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below. If there is no water consumption reported, leave it blank. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "total_water_consumption": "", 
+        "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_water_consumption/1000000). Return the final_score as a float from 0 to 1. If total_water_consumption cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Total Waste Generated": {
+      "value_query": "Extract the total waste generated in kilograms for the year 2023 in Singapore. This can be found as 'Waste disposed of' or General waste or Waste generated. If hazardous or non-hazardous waste is recorded, please retrieve the total sum of both. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "total_waste": "",
+        "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_waste/5000). Return the final_score as a float from 0 to 1. If total_water_consumption cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Current Employees by Gender": {
+      "value_query": "Extract the percentage of current permanent male and female employees for the year 2023 in singapore. If the report only gives the percentage of women in the overall workforce, find the percentage of men by subtracting the former percentage from. If the percentages cannot be found and the absolute number of each gender is found, compute the percentages by taking the percentage of each gender as the total number of employees. The percentage should be in the range from 1 to 100. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "male_employee_percentage"  : "",
+        "female_employee_percentage": "",
+        "description"               : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 - abs((average_percentage - 50)/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Employee Turnover rate by Gender": {
+      "value_query": "Extract the employee turnover rate percentage of both male and female employees for the year 2023 in singapore. This may be called voluntary attrition rate or employee attrition rate. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "male_turnover_rate"  : "",
+        "female_turnover_rate": "",
+        "description"         : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 -(average_percentage/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "New Hires by Gender": {
+      "value_query": "Extract the new hire rate percentage of both male and female employees for the year 2023 in singapore. This may be called new employee hire rate by gender. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "male_new_hire_rate"  : "",
+        "female_new_hire_rate": "",
+        "description"         : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 -(average_percentage/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Current Employees by Age Groups": {
+      "value_query": "Extract the workforce by age group percentage in the year 2023 for these 3 ranges: 1) <30, 2) 30-50, 3) >=50. This may be called percentage of employees by age group or work force mix. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "below_30"     : "",
+        "between_30_50": "",
+        "above_50"     : "",
+        "description"  : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria, ensuring that the values from value query are in the range from 1 to 100: 1 - ((abs(below_30 - 25) + abs(between_30_50 - 50) + abs(above_50 - 25)) / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "New employee hires by age group": {
+      "value_query": "Extract the new employee hire rate by age group as a percentage in the year 2023 for these 3 ranges: 1) <30, 2) 30-50, 3) >=50. This may be called new hire rate. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "below_30"     : "",
+        "between_30_50": "",
+        "above_50"     : "",
+        "description"  : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria, ensuring that the values from value query are in the range from 1 to 100: 1 - ((abs(below_30 - 50) + abs(between_30_50 - 25) + abs(above_50 - 25)) / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Total turnover rate": {
+      "value_query": "Extract the total turnover rate as a percentage in the year 2023. This may be called overall employee attrition rate or total voluntary attrition rate or leavers. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "total_turnover_rate": "", 
+        "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1- (total_turnover_rate / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "final_score": ""
+    }
+  },
+  {
+    "Average Training Hours per Employee": {
+      "value_query": "Extract the average training hours per employee as a float value rounded to 1 decimal place in the year 2023 in Singapore. If both male and female training hours are found, take the average of both values. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"average_training_hours": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if average_training_hours has a value, give a score of 1.0. If there is no value found, give a score of 0.0. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Fatalities": {
+      "value_query": "Extract the number of fatalities in the year 2023 as an integer. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"fatalities": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if fatalities is greater than 0, give a score of 0.0. If there are 0 fatalities, give a score of 1.0. If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "High-consequence injuries": {
+      "value_query": "Extract the number of high consequence injuries in the year 2023 in Singapore as an integer. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. If they say there are no injuries, the value should be 0. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"highcon_injury": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if highcon_injury is greater than 0, give a score of 0.0. Else for other values of highcon_injury, give a score of 1.0. If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Recordable injuries": {
+      "value_query": "Extract the number of recordable injuries in the year 2023 in Singapore as an integer. This may be called number of recordable work-related injuries. If they record that there are no injuries, the value should be 0. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"recordable_injury": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: (1 - (100 - recordable_injury) / 100). If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Number of Recordable Work-related Ill Health Cases": {
+      "value_query": "Extract the number of recordable work-related ill health cases in the year 2023 as an integer. If they record that there are no ill health cases, the value should be 0. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"ill_cases": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: (1 - (100 - ill_cases) / 100). If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Board Independence": {
+      "value_query": "Extract any mention of board independence or external board members into 'text', and fill in 'is_independent' as a Boolean value based on whether board independence is mentioned. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "text"          : "",
+        "is_independent": "",
+        "description"   : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_independent is true, give a score of 1.0. If it is false, give a score of 0.0. If there is no value extracted, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Women on the Board": {
+      "value_query": "Extract the number of women directors on the Board or the percentage of female representation on the Board in the year 2023 in singapore. If the report does not say anything about this, output the value as 0. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"women_dir": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If women_dir is greater than 0.0, give a score of 1.0. If women_dir is 0 or there is no value extracted, give a score of 0.0. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Women in Management": {
+      "value_query": "Extract the percentage of female supervisors and managers as a float. This may be termed as percentage of leadership positions filled by women. Alternatively, they might say 'female representation in senior management'. If the report does not say anything about this, output the value as 0. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"management_women": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If management_women is greater than 25, give a score of 1.0. If management_women is less than 25 , give a score of 0.0. If no value is extracted from management_women, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Anti-corruption disclosures": {
+      "value_query": "Extract any mentions of anti-corruption disclosures or mentions of GRI anti-corruption standards of 205-1, 205-2, 205-3. If they are mentioned, fill in the extracted_values as Boolean values. If the GRI anti-corruption standards of 205-1, 205-2, 205-3 are not mentioned, but the report says there are no reports of corruption, record true in the field 'any_mention'. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "gri_205_1"  : "",
+        "gri_205_2"  : "",
+        "gri_205_3"  : "",
+        "any_mention": "",
+        "description": ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If any of gri_205_1, gri_205_2, gri_205_3, any_mention is true, give a score of 1.0. If it is false, give a score of 0.0. If there is no value extracted, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Anti-Corruption Training for Employees": {
+      "value_query": "Extract any mentions of training about anti-corruption or GRI 404 in Singapore. If it is mentioned, set corr_training to be Boolean value of true. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {"corr_training": "", "description": ""},
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If corr_training is true, give a score of 1.0. If there is no value extracted, give a score of 0.5. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Certification": {
+      "value_query": "Extract any sustainability or ESG related awards and certification awarded in the year 2023 in singapore. Common examples include: Green Mark Platinum, Steward Leadership 25, Euromoney, Asiamoney. If any awards or certifications have been found, mark is_certified as true. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "esg_award"           : "",
+        "sustainability_award": "",
+        "is_certified"        : "",
+        "description"         : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_certified is true or (esg_award or sustainability_award has a value), give a score of 1.0. If there is no value extracted, give a score of 0. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Alignment with frameworks and disclosure practices": {
+      "value_query": "Extract any mention of frameworks and disclosure practices used. Look out for globally-recognised frameworks, such as the Global Reporting Initiative (GRI), Sustainability Accounting Standards Board (SASB), Task Force on Climate-related Financial Disclosures (TCFD), International Sustainability Standards Board (ISSB), Carbon Disclosure Project (CDP), Integrated Reporting Framework, United Nationals Sustainable Development Goals, ISO 26000, Climate Disclosure Standards Board, European Sustainability Reporting Standards, OECD Guidelines for Multinational Enterprises. If any frameworks or disclosure practices are used, set is_aligned to true. Else, set is_aligned to false. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "framework"           : "",
+        "disclosure_practices": "",
+        ""                    : "",
+        "description"         : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_aligned is true or (framework or disclosure_practices has a value), give a score of 1.0. If is_aligned is false or there is no value extracted, give a score of 0. Return the final_score as a float",
+      "final_score": ""
+    }
+  },
+  {
+    "Assurance of sustainability report": {
+      "value_query": "Extract if there is independent limited assurance mentioned. Retrieve the name of the company that does the independent limited assurance report. Company names could be from consultancies and audit firms such as E&Y, Deloitte, PwC, Apex Companies, Bain, McKinsey, ICF. If independent limited assurance is mentioned, set is_assured to true. If not, set is_assured to false. If the report states that the company is considering to seek external assurance, set is_assured to false as well. Extract the company name of the assurance report to company_name. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
+      "extracted_values": {
+        "is_assured"  : "",
+        "company_name": "",
+        ""            : "",
+        "description" : ""
+      },
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_assured is true or company_name has a value, give a score of 1.0. If is_assured is false or there is no value extracted, give a score of 0. Return the final_score as a float",
+      "final_score": ""
+    }
+  }
+]

@@ -27,6 +27,7 @@ def insert_esg_rag_table(df):
     conn = psycopg2.connect(db_url)
 
 
+
     # Connect to the database
     
     # Create cursor
@@ -35,9 +36,9 @@ def insert_esg_rag_table(df):
     # Define INSERT query
     query = '''
         INSERT INTO esg_rag_table (
-            company, industry, country, year, topic, extracted_values, final_score
+            company, year, industry, country, topic, extracted_values, final_score
         ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-        ON CONFLICT (company, industry, country,year,topic,extracted_values,final_score) DO NOTHING;
+        ON CONFLICT (company, year, industry, country, topic, extracted_values, final_score) DO NOTHING;
     '''
 
     # Insert row-by-row
@@ -45,9 +46,9 @@ def insert_esg_rag_table(df):
         print(row)
         cur.execute(query, (
             row["company"],
+            int(row["year"]),
             row['industry'],
             row['country'],
-            int(row["year"]),
             row["topic"],
             json.dumps(row["extracted_values"]),  # Convert dict to JSON string
             None if pd.isna(row["final_score"]) else float(row["final_score"])
@@ -56,4 +57,3 @@ def insert_esg_rag_table(df):
     # Commit and close
     conn.commit()
     cur.close()
-    conn.close()

@@ -37,7 +37,7 @@ def insert_esg_text(data_frame): #data_frame or text
                 INSERT INTO esg_text_table (
                     company, year, country, industry,esg_text
                 ) VALUES (%s, %s, %s,%s, %s)
-                ON CONFLICT (company, year, country,industry,esg_text) DO NOTHING;''', 
+                ''', 
                 (
                 row["company"], 
                 row["year"], 
@@ -51,4 +51,3 @@ def insert_esg_text(data_frame): #data_frame or text
 
         #closes connection
     cur.close()
-    conn.close()

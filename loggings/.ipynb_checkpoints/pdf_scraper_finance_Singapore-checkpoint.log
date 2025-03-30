@@ -1,0 +1,5 @@
+2025-03-26 15:05:51,160 - INFO - AFC is enabled with max remote calls: 10.
+2025-03-26 15:05:51,868 - INFO - AFC remote call 1 is done.
+2025-03-26 15:05:51,869 - INFO - Reading log file: ../loggings/pdf_scraper_finance_Singapore.log
+2025-03-26 15:05:51,869 - INFO - Total PDFs found: 0
+2025-03-26 15:05:51,869 - WARNING - No PDF links found.
