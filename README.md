@@ -5,7 +5,7 @@
 ### 🌍 ESG Data Extraction & Analysis with NLP  
 ![ESG1-ezgif com-loop-count (1)](https://github.com/user-attachments/assets/d9a30c62-cf78-477b-8bce-8b3b931bfd7f)
 
-<h3> 📌 Developed for **DSA3101** at the **National University of Singapore** 📌 </h3>
+### 📌 Developed for **DSA3101** at the **National University of Singapore** 📌
 
 </div>
 
@@ -138,6 +138,28 @@ Maps company names to their stock ticker symbols. Else the api will search yahoo
 | `symbol`     | TEXT   | Stock ticker symbol                      |
 | `company_name` | TEXT | Name of the company                      |
 
+### `esg_financial_model_table`
+Gives the top 5 features used in our predictive model to predict financial impact from ESG scores.
+
+| Column       | Type   | Description                              |
+|--------------|--------|------------------------------------------|
+| `variable`     | VARCHAR   | The variable the feature belongs like roa,roe,overall                      |
+| `feature` | VARCHAR | Features that affect the variable like Current Employees by Gender                     |
+| `rank` | INT | Rank of the feature                     |
+
+### `esg_financial_model_top_features_table`
+Output of our predictive model.
+
+| Column       | Type   | Description                              |
+|--------------|--------|------------------------------------------|
+| `esg_score`     | FLOAT   | Given esg_score input                      |
+| `roa_actual` | FLOAT | Actual roa                    |
+| `roa_predicted`     | FLOAT   | Model predicted roa                     |
+| `roe_actual`     | FLOAT   | Actual roe                       |
+| `roe_predicted` | FLOAT | Model predicted roe                     |
+| `stock_growth_actual`     | FLOAT   | Actual stock growth                     |
+| `stock_growth_predicted` | FLOAT | Model predicted roa stock growth                   |
+
 
 [🔼 Back to Top](#table-of-contents)
 
@@ -165,13 +187,15 @@ Ensure that you have the following installed.
    db_host=postgres
    db_password=password
    DATABASE_URL={CONTACT US}
+   SUPABASE_URL={CONTACT US}
+   SUPABASE_KEY={CONTACT US}
    ```
    
    The directory should be:
    ```
    dsa3101/.env
    ```
-5. To dockerize the application, run the commands below. The first line will take a while to run due to the big dependencies
+5. To dockerize the application, run the commands below. This will take a while to run due to the dependencies.
   ```
   docker compose up -d
   ```
@@ -200,7 +224,38 @@ python {script to run add file directory here}
 [🔼 Back to Top](#table-of-contents)
 
 ## Local Development
-If the need arises to dev locally.. etc
+If the need for local development arises with a locally hosted database, follow the instructions below. Ensure that the Docker Container has started.
+1. Before Dockerizing the container, go to the db folders and the main script. Uncomment the lines with
+   ```
+     db_name = os.getenv('db_name')
+     db_user = os.getenv('db_user')
+     db_port = os.getenv('db_port')
+     db_host = os.getenv('db_host')
+     db_password = os.getenv('db_password')
+     conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
+   ```
+  and Comment out line with `## SupaBase DB ##`.
+  
+  If missing in main file, add the above and comment out the DATABASE_URL and conn with DATABASE_URL.
+  
+  Then run step 5 from [Dockerizing the Project](#dockerizing-the-project)
+  
+2. Run the commands to create the local database in PostGreSQL.
+```
+docker-compose exec app bash
+python ./db/db.py
+```
+3.  To access the local DB with the pgAdmin4 interface. Ensure that pgAdmin4 container has started and put the below in your browser.
+```
+localhost:80
+```
+Sign in with
+```
+user@email.com
+password
+```
+4. Follow instructions from [Running Python Scripts](#running-python-scripts).
+
 
 [🔼 Back to Top](#table-of-contents)
 
