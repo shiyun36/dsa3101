@@ -3,8 +3,9 @@
 # 🏆 DSA3101 Group 7 Project Instructions 🏆
 
 ### 🌍 ESG Data Extraction & Analysis with NLP  
+![ESG1-ezgif com-loop-count (1)](https://github.com/user-attachments/assets/d9a30c62-cf78-477b-8bce-8b3b931bfd7f)
 
-📌 Developed for **DSA3101** at the **National University of Singapore**  
+<h3> 📌 Developed for **DSA3101** at the **National University of Singapore** 📌 </h3>
 
 </div>
 
