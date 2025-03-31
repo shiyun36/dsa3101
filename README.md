@@ -2,7 +2,7 @@
 
 # 🏆 DSA3101 Group 7 Project Instructions 🏆
 
-### 🌍 ESG Data Extraction & Analysis with NLP  
+### 🌍 ESG Data Extraction & Analysis with NLP 🌍
 ![ESG1-ezgif com-loop-count (1)](https://github.com/user-attachments/assets/d9a30c62-cf78-477b-8bce-8b3b931bfd7f)
 
 ### 📌 Developed for **DSA3101** at the **National University of Singapore** 📌
@@ -18,6 +18,7 @@
   - [Pipeline](#pipeline)
   - [Repository Structure](#repository-structure)
   - [Database Schema](#database-schema)
+  - [Features](#features)
 - [Running The Project](#running-the-project)  
    - [Applications Needed](#applications-needed)  
    - [Dockerizing the Project](#dockerizing-the-project)  
@@ -163,15 +164,22 @@ Output of our predictive model.
 
 [🔼 Back to Top](#table-of-contents)
 
+## Features
+
+Add features of  our stuff here to explain our main
+
+[🔼 Back to Top](#table-of-contents)
+
 # Running The Project
 ## Applications Needed
-Ensure that you have the following installed.
+Ensure that you have the following installed and specs.
 1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
+3. ‼️Atleast 20GB of Storage ‼️
 
 
 ## Dockerizing the Project
-1. Open a folder that you like and right click to open with Git-Bash or CMD. Clone the project with the following commands
+1. Open a folder that you like and right click to open with Git-Bash or CMD/PowerShell. Clone the project with the following commands
    ```
    git clone https://github.com/shiyun36/dsa3101.git
    ```
@@ -254,6 +262,8 @@ Sign in with
 user@email.com
 password
 ```
+> ⚠️ **Important:** This can take awhile before localhost is accesible due to container size.
+
 4. Follow instructions from [Running Python Scripts](#running-python-scripts).
 
 
