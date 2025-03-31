@@ -11,14 +11,13 @@ from sklearn.feature_selection import RFE
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 from collections import Counter
+from scripts.db_insert_model_lr import insert_model_lr
 
 def connect_to_supabase():
     """Establishes connection to Supabase."""
     try:
-        #url = os.getenv("SUPABASE_URL", "your_supabase_url")
-        #key = os.getenv("SUPABASE_KEY", "your_supabase_key")
-        url = os.getenv("SUPABASE_URL", "https://pevfljfvkiaokawnfwtb.supabase.co")
-        key = os.getenv("SUPABASE_KEY", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBldmZsamZ2a2lhb2thd25md3RiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA5MjE4MzcsImV4cCI6MjA1NjQ5NzgzN30.zaMNevs2rbP_cZGiX-OhDlTC_ZBERoAgrJMZTB6wq_Y')
+        url = os.getenv("SUPABASE_URL", "your_supabase_url")
+        key = os.getenv("SUPABASE_KEY", "your_supabase_key")
         if not url or not key:
             raise ValueError("Supabase URL or key is missing.")
         return create_client(url, key)
@@ -158,7 +157,6 @@ def merge_financial_esg_data(roa_roe, esg_overall_score, stocks_return):
         print(f"Error merging financial and ESG data: {e}")
         return None
 
-###
 # Function to extract relevant variables from the dataframe
 def extract_variables(df):
     """Extracts independent and dependent variables for the model."""
@@ -331,6 +329,7 @@ def main():
         # Display the first few rows of the dataframe
         print(results_df.head())
         print(df_rfe)
+        insert_model_lr(results_df, df_rfe)
         return results_df, df_rfe  # This will be used in Power BI
 
 # Call main function
