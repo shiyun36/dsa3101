@@ -49,6 +49,7 @@ By streamlining ESG analysis, we empower stakeholders with a data-driven impact 
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 [![Hugging Face](https://img.shields.io/badge/hugging%20face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/)
+![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.io/)
 [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 
@@ -81,6 +82,7 @@ Stores extracted ESG values and final scores for companies based on different to
 | `extracted_values` | TEXT | Values extracted for the topic            |
 | `final_score`  | FLOAT  | Final ESG score                            |
 ```sql
+CONSTRAINT esg_rag_pk PRIMARY KEY (company, industry, country, year,topic)
 CONSTRAINT unique_esg_rag_entry UNIQUE (company,industry,country,year, topic,extracted_values,final_score)
 ```
 ### `stocks_table`
@@ -134,8 +136,7 @@ Maps company names to their stock ticker symbols. Else the api will search yahoo
 Ensure that you have the following installed.
 1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
-   
-[🔼 Back to Top](#table-of-contents)
+
 
 ## Dockerizing the Project
 1. Open a folder that you like and right click to open with Git-Bash or CMD. Clone the project with the following commands
