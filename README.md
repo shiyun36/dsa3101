@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏆 DSA3101 Group 7 Project Instructions  
+# 🏆 DSA3101 Group 7 Project Instructions 🏆
 
 ### 🌍 ESG Data Extraction & Analysis with NLP  
 
@@ -15,6 +15,7 @@
   - [ESG Data Extraction & Analysis with NLP](#esg-data-extraction--analysis-with-nlp)
   - [Tech Stack](#tech-stack)
   - [Pipeline](#pipeline)
+  - [Repository Structure](#repository-structure)
   - [Database Schema](#database-schema)
 - [Running The Project](#running-the-project)  
    - [Applications Needed](#applications-needed)  
@@ -55,6 +56,11 @@ By streamlining ESG analysis, we empower stakeholders with a data-driven impact 
 
 ## Pipeline
 ![image](https://github.com/user-attachments/assets/266be462-0842-47dd-b664-866040f3353f)
+
+## Repository Structure
+```
+
+```
 
 ## Database Schema
 [![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/)
