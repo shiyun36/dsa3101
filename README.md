@@ -14,11 +14,11 @@
 
 - [About the Project](#about-the-project)  
   - [ESG Data Extraction & Analysis with NLP](#esg-data-extraction--analysis-with-nlp)
+  - [Features](#features)
   - [Tech Stack](#tech-stack)
   - [Pipeline](#pipeline)
   - [Repository Structure](#repository-structure)
   - [Database Schema](#database-schema)
-  - [Features](#features)
 - [Running The Project](#running-the-project)  
    - [Applications Needed](#applications-needed)  
    - [Dockerizing the Project](#dockerizing-the-project)  
@@ -38,16 +38,13 @@ As ESG (Environmental, Social, and Governance) factors become central to corpora
 
 This project leverages Natural Language Processing (NLP) and AI to automate ESG data extraction, normalization, and scoring. Our goal is to transform unstructured ESG reports into actionable insights, enabling businesses to benchmark performance, assess risks, and predict financial impact.
 
-### Key Features:
+## Features:
 1. Automated ESG Data Extraction – Structured data processing from unstructured reports
 
 2. Metric Normalization – Standardizing ESG indicators for cross-industry comparison
 
 3. ESG Scoring & Benchmarking – Aligning with industry standards to enhance transparency
 
-By streamlining ESG analysis, we empower stakeholders with a data-driven impact dashboard to visualize trends and drive sustainability-focused decisions.
-
-[🔼 Back to Top](#table-of-contents)
 
 ## Tech Stack
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
@@ -60,15 +57,17 @@ By streamlining ESG analysis, we empower stakeholders with a data-driven impact 
 ## Pipeline
 ![image](https://github.com/user-attachments/assets/44208511-eb4b-4aee-82bc-b0e0ce5edc6e)
 
-
+[🔼 Back to Top](#table-of-contents)
 
 ## Repository Structure
 ```
-
+add our file structures here :D
 ```
 
+[🔼 Back to Top](#table-of-contents)
+
 ## Database Schema
-[![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/)
+Our Database is hosted online @ [![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/) but we have included PostGreSQL with pgAdmin4 interface for local development.
 ### `esg_text_table`
 Stores ESG report text for each company, year, country, and industry.
 
@@ -164,12 +163,6 @@ Output of our predictive model.
 
 [🔼 Back to Top](#table-of-contents)
 
-## Features
-
-Add features of  our stuff here to explain our main
-
-[🔼 Back to Top](#table-of-contents)
-
 # Running The Project
 ## Applications Needed
 Ensure that you have the following installed and specs.
@@ -233,7 +226,7 @@ python {script to run add file directory here}
 
 ## Local Development
 If the need for local development arises with a locally hosted database, follow the instructions below. Ensure that the Docker Container has started.
-1. Before Dockerizing the container, go to the db folders and the main script. Uncomment the lines with
+1. Before Dockerizing the container, go to the db folders and its scripts and the main script. Uncomment the lines with
    ```
      db_name = os.getenv('db_name')
      db_user = os.getenv('db_user')
@@ -253,7 +246,8 @@ If the need for local development arises with a locally hosted database, follow 
 docker-compose exec app bash
 python ./db/db.py
 ```
-3.  To access the local DB with the pgAdmin4 interface. Ensure that pgAdmin4 container has started and put the below in your browser.
+3. Follow instructions from [Running Python Scripts](#running-python-scripts).
+4.  To access the local DB with the pgAdmin4 interface. Ensure that pgAdmin4 container has started and put the below in your browser.
 ```
 localhost:80
 ```
@@ -263,9 +257,17 @@ user@email.com
 password
 ```
 > ⚠️ **Important:** This can take awhile before localhost is accesible due to container size.
-
-4. Follow instructions from [Running Python Scripts](#running-python-scripts).
-
+5. Click on Add New Server and input the following and save:
+```
+General Tab:
+  Name: postgres (or anything you want)
+Connection Tab:
+  Host name/address: postgres
+  port: 5432
+  username: postgres
+  Password: password
+```
+6. You can now access the postgres DB and the tables. Use SQL to query or right click tables to view data.
 
 [🔼 Back to Top](#table-of-contents)
 
