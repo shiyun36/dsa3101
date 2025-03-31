@@ -43,5 +43,22 @@
         "topic" TEXT,
         "extracted_values" TEXT,
         "final_score" FLOAT,
-        CONSTRAINT unique_esg_rag_entry UNIQUE (company,industry,country,year, topic,extracted_values,final_score)
+        CONSTRAINT unique_esg_rag_entry UNIQUE (company,industry,country,year, topic,extracted_values,final_score),
+        CONSTRAINT esg_rag_pk PRIMARY KEY (company, industry, country, year,topic)
+    );
+
+    CREATE TABLE IF NOT EXISTS esg_financial_model_top_features_table (
+        "variable" VARCHAR,
+        "feature" VARCHAR,
+        "rank" INT
+    );
+
+    CREATE TABLE IF NOT EXISTS esg_financial_model_table (
+        "esg_score" FLOAT,
+        "roa_actual" FLOAT,
+        "roa_predicted" FLOAT,
+        "roe_actual" FLOAT,
+        "roe_predicted" FLOAT,
+        "stock_growth_actual" FLOAT,
+        "stock_growth_predicted" FLOAT
     )
