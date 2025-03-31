@@ -24,7 +24,8 @@
    - [Running Python Scripts](#running-python-scripts)  
 - [PowerBI Dashboard](#powerbi-dashboard)  
    - [Executive Summary](#executive-summary)  
-   - [Company Summary](#company-summary)   
+   - [Company Summary](#company-summary)
+- [Local Development](#local-development)
 - [Group Members](#group-members)  
 - [Acknowledgements](#acknowledgements)  
 
@@ -56,7 +57,9 @@ By streamlining ESG analysis, we empower stakeholders with a data-driven impact 
 [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 
 ## Pipeline
-![image](https://github.com/user-attachments/assets/266be462-0842-47dd-b664-866040f3353f)
+![image](https://github.com/user-attachments/assets/44208511-eb4b-4aee-82bc-b0e0ce5edc6e)
+
+
 
 ## Repository Structure
 ```
@@ -159,7 +162,7 @@ Ensure that you have the following installed.
    db_name=postgres
    db_user=postgres
    db_port=5432
-   db_host=localhost
+   db_host=postgres
    db_password=password
    DATABASE_URL={CONTACT US}
    ```
@@ -193,6 +196,11 @@ python {script to run add file directory here}
 ## PowerBI Dashboard
 ### Executive Summary
 ### Company Summary
+
+[🔼 Back to Top](#table-of-contents)
+
+## Local Development
+If the need arises to dev locally.. etc
 
 [🔼 Back to Top](#table-of-contents)
 
