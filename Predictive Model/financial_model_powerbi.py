@@ -31,12 +31,10 @@ def fetch_data(supabase):
         esg_rag = pd.DataFrame(supabase.table("esg_rag_table").select("*").execute().data)
         stocks = pd.DataFrame(supabase.table("stocks_table").select("*").execute().data)
         roa_roe = pd.DataFrame(supabase.table("roa_roe_table").select("*").execute().data)
-        esg_cat = pd.DataFrame(supabase.table("esg_rag_table").select("topic").execute().data)
-        esg_cat = esg_cat["topic"].unique().tolist()
-        return esg_rag, stocks, roa_roe, esg_cat
+        return esg_rag, stocks, roa_roe
     except Exception as e:
         print(f"Error fetching data from Supabase: {e}")
-        return None, None, None, None
+        return None, None, None#, None
         
 def format_data(esg_rag, stocks, roa_roe):
     """Formats data types"""
@@ -73,12 +71,12 @@ def clean_data(esg_rag, stocks, roa_roe):
         print(f"Error cleaning data: {e}")
         return esg_rag, stocks, roa_roe
 
-def compute_esg_scores(esg_rag, esg_cat):
+def compute_esg_scores(esg_rag):
     """Compute ESG component scores and overall ESG score."""
     try:
-        env_metrics = esg_cat[:4]
-        social_metrics = esg_cat[4:15]
-        governance_metrics = esg_cat[15:]
+        env_metrics = ["Total Greenhouse Gas Emissions", "Total Energy consumption", "Total Waste Generated", "Total Water Consumption"]
+        social_metrics = ["Current Employees by Gender", "Employee Turnover rate by Gender", "New Hires by Gender", "Current Employees by Age Groups", "New employee hires by age group", "Total turnover rate", "Average Training Hours per Employee", "Fatalities", "High-consequence injuries", "Recordable injuries", "Number of Recordable Work-related Ill Health Cases"]
+        governance_metrics = ["Board Independence", "Women on the Board", "Women in Management", "Anti-corruption disclosures", "Anti-Corruption Training for Employees", "Certification", "Alignment with frameworks and disclosure practices", "Assurance of sustainability report"]
         
         esg_wide = esg_rag.pivot_table(
             index=["company", "year"], 
@@ -207,15 +205,15 @@ def prep_model():
         print("Failed to connect to Supabase.")
         return
     
-    esg_rag, stocks, roa_roe, esg_cat = fetch_data(supabase)
-    if esg_rag is None or stocks is None or roa_roe is None or esg_cat is None:
+    esg_rag, stocks, roa_roe = fetch_data(supabase)
+    if esg_rag is None or stocks is None or roa_roe is None:
         print("Failed to fetch data.")
         return
     
     format_data(esg_rag, stocks, roa_roe)
     stocks_return = transform_data(stocks)
     esg_rag, stocks_return, roa_roe = clean_data(esg_rag, stocks_return, roa_roe)
-    esg_overall_score = compute_esg_scores(esg_rag, esg_cat)
+    esg_overall_score = compute_esg_scores(esg_rag)
     df = merge_financial_esg_data(roa_roe, esg_overall_score, stocks_return)
     return df, esg_rag, roa_roe, esg_overall_score, stocks_return
 
@@ -325,7 +323,7 @@ def main():
     df_rfe = rfe(df_features, features, targets)
 
     # Check if results are generated
-    if results_df is not None or top_features_rfe is not None or top_5_features is not None:
+    if results_df is not None or df_rfe is not None:
         # Display the first few rows of the dataframe
         print(results_df.head())
         print(df_rfe)
