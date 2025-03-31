@@ -55,7 +55,8 @@ This project leverages Natural Language Processing (NLP) and AI to automate ESG 
 [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 
 ## Pipeline
-![image](https://github.com/user-attachments/assets/44208511-eb4b-4aee-82bc-b0e0ce5edc6e)
+![image](https://github.com/user-attachments/assets/7b926fad-8614-457a-8727-0a21e386e883)
+
 
 [🔼 Back to Top](#table-of-contents)
 
