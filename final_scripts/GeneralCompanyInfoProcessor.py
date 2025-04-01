@@ -26,7 +26,8 @@ from PyPDF2 import PdfReader
 from io import BytesIO
 import ocrmypdf
 import multiprocessing
-from RAGProcessor import retrieve_esg_text, get_reranked_docs
+from RAGProcessor import ESGAnalyzer
+from itertools import product
 
 multiprocessing.set_start_method("spawn", force=True)
 
@@ -42,65 +43,27 @@ cse_id = "40a230dc355fa46bf"  # Custom Search Engine ID
 
 
 class GeneralCompanyInfoProcessor():
-    def __init__(self, year, company, output_csv, saved_url_file):
+    def __init__(self, year, company, output_csv):
         ''' 
         Inputs: 
         1. year: Extract general company information from this particular year
         2. company: Extract general company information from this particular company
-        3. saved_url_file: esg reports url file path   
+        3. output_csv name: To create a csv for each company's general information metrics.   
         '''
         self.year = year 
         self.company = company 
-        self.output_csv = output_csv
-        self.saved_url_file = saved_url_file
+        self.output_csv = f"{self.company}_{self.year}_{output_csv}.csv"
         self.query_template = (
             "Based on the web and your database, determine {metrics} of company {company} for its financial year of {year} from its sustainability reports. Provide a single, clear answer in the format: 'Final Answer: [value]' or an estimate if needed."
         )
         self.metrics = ['Name', 'Country', 'Continent', 'Industry', 'Year', 'GHG Scope 1 emission', 'GHG', 'Scope 2 emission', 'GHG Scope 3 emission', 'Water Consumption', 'Energy Consumption', 'Waste Generation', 'Total Employees', 'Total Female Employees', 'Employees under 30', 'Employees between 30-50', 'Employees above 50s', 'Fatalities', 'Injuries', 'Avg Training', 'Hours per employee' , 'Training Done, Independent Directors', 'Female Directors', 'Female Managers', 'Employees Trained', 'Certifications', 'Total Revenue', 'Total ESG Investment', 'Net Profit',' Debt-Equity Ratio', 'ROE', 'ROA']
-        df = pd.DataFrame({
-    'Metric': self.metrics * len(self.company),
-    'Year': self.year *  len(self.company) * len(self.metrics),
-    'Company': self.company * len(self.metrics)
-})
-        df['Value'] = None
+        df = pd.DataFrame(product(self.company, [self.year], self.metrics), columns=["Company", "Year", "Metric"])
+        df['Value'] = 0
         self.final_df = df.pivot_table(index=['Company', 'Year'], columns='Metric', values='Value', aggfunc='first')
-
-    # def extract_pdf_urls(self):
-    #     all_links = []
-    #     for filename in os.listdir(self.saved_url_file):
-    #         if filename.endswith('.txt'):
-    #             file_path = os.path.join(self.saved_url_file, filename)
-                
-    #             with open(file_path, 'r') as file:
-    #                 content = file.read()
-    #                 links = re.findall(r'https?://\S+', content)
-    #                 all_links.extend(links)
-    #         self.pdf_url = all_links
-    #         return self.pdf_url
-
-
-        # def company_year_exists(self.company, self.year):
-    #     """
-    #     Checks if documents for the given company and year already exist in ChromaDB.
-    #     Returns True if documents exist, else False.
-    #     """
-    #     client = chromadb.PersistentClient(path="./chromadb_1003")
-    #     collection = client.get_or_create_collection(name="dsa3101")
-    #     # Normalize company name to uppercase for comparison.
-    #     results = collection.query(
-    #         query_texts=[""],
-    #         n_results=1,
-    #         where={"$and": [{"company": company.upper()}, {"year": int(year)}]}
-    #     )
-    #     if results.get("documents") and results["documents"][0]:
-    #         return True
-    #     return False
-    
                     
     def testing(self):
-        print(self.final_df.columns)
-        print(self.final_df.head(5))
-
+        print('testing df_columns', self.final_df.columns)
+        print('testing df_columns',self.final_df.head(5))
     
     def search_web(self, query, snippet_length=900):
         """
@@ -135,6 +98,7 @@ class GeneralCompanyInfoProcessor():
                 except Exception as e:
                     truncated_text = f"Error fetching page: {e}"
                 full_contents.append(f"{title} ({link}):\n{truncated_text}\n")
+        print(data)
         return "\n".join(full_contents)
 
 
@@ -197,15 +161,19 @@ class GeneralCompanyInfoProcessor():
         company_tuple = (self.company, self.year)
         generic_query = f"{self.metrics}"
         year_str = str(self.year).strip()
+        esg_analyzer = ESGAnalyzer(esg_text_df= {})  
+        results = {}
         
         # Retrieve internal documents; if not found, the function will attempt to ingest PDFs online.
-        internal_results = retrieve_esg_text(company_tuple, generic_query)
-        reranked_docs = get_reranked_docs(generic_query, internal_results)
+        internal_results = esg_analyzer.retrieve_esg_text(company_tuple, generic_query)
+        reranked_docs = esg_analyzer.get_reranked_docs(generic_query, internal_results)
+        
         # Format the query for this specific metric.
         query = self.query_template.format(company=self.company, year=year_str, Metric=self.metric)
         print(f"Querying OpenAI for: {query}")
         response_text = generate_openai_response(query, reranked_docs, company_tuple)["text"]
         response_text = extract_final_answer(response_text)
+        
         if "Final Answer: NA" in response_text:
             fallback_query = (
                 f"Based on web search, determine {self.metrics} of company {self.company} for its financial year of {year_str} "
@@ -215,7 +183,7 @@ class GeneralCompanyInfoProcessor():
             fallback_response = query_openai_with_search(fallback_query)
             fallback_answer = fallback_response.get("text", "No answer generated")
             response_text = extract_final_answer(fallback_answer)
-            key = (self.company, year_str)
+        key = (self.company, year_str)
         
         if key not in results:
             results[key] = {"company": self.company, "year": year_str}
@@ -239,9 +207,7 @@ class GeneralCompanyInfoProcessor():
     
    
 if __name__ == "__main__":
-    CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = 2022,
-                                                       company = 'pfizer', 
-                                                       output_csv = "openai_responses.csv", 
-                                                       saved_url_file = '/outputs') 
-    CompanyInfoProcessor.testing()
+    CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = 2024,
+                                                       company = 'apple', 
+                                                       output_csv = "general_info") 
     CompanyInfoProcessor.ask_openai_from_file()

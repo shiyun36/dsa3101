@@ -99,8 +99,7 @@ def main():
             for company, max_year in companies_max_year:
                 CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = max_year,
                                                        company = company, 
-                                                       output_csv = "openai_responses.csv", 
-                                                       saved_url_file = '/outputs') 
+                                                       output_csv = "general_info") 
                 CompanyInfoProcessor.ask_openai_from_file()
             
 
