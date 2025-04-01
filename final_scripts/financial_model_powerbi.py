@@ -19,8 +19,8 @@ def connect_to_supabase():
     """Establishes connection to Supabase."""
     try:
         load_dotenv()
-        url = os.getenv("SUPABASE_URL", "your_supabase_url")
-        key = os.getenv("SUPABASE_KEY", "your_supabase_key")
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
         if not url or not key:
             raise ValueError("Supabase URL or key is missing.")
         return create_client(url, key)
@@ -351,7 +351,7 @@ def run_analysis(df):
         return None
 
 # Main execution
-def main():
+def run_financial_model():
     df, esg_rag, roa_roe, esg_overall_score, stocks_return = prep_model()
     df_features, features, targets = prep_rfe(esg_rag, roa_roe, stocks_return)
 
@@ -369,4 +369,4 @@ def main():
 
 # Call main function
 if __name__ == "__main__":
-    main()
+    run_financial_model()
