@@ -8,6 +8,7 @@ from financial import financial
 from GeneratePdfs import GeneratePdfs
 from ESGScoringProcessor import ESGScoringProcessor
 from financial_model_powerbi.py import run_financial_model
+from GeneralCompanyInfoProcessor import GeneralCompanyInfoProcessor
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -71,7 +72,16 @@ def main():
             ##### Step 4: Call financial function to insert financial data into database and run financial model #####
             financial() 
             run_financial_model()
-            
+
+
+            #### Step 5: Insert general company information 
+            CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = 2022,
+                                                       company = 'pfizer', 
+                                                       output_csv = "openai_responses.csv", 
+                                                       saved_url_file = '/outputs') 
+            CompanyInfoProcessor.testing()
+            CompanyInfoProcessor.ask_openai_from_file()
+                    
 
         # Close the connection
         conn.close()
