@@ -70,8 +70,10 @@ def main():
             insert_esg_rag_data(final_push_df)
             insert_esg_text_data(final_push_df)
 
-            ##### Step 4: Call financial function to insert financial data into database #####
-            #financial() 
+            ##### Step 4: Call financial function to insert financial data into database and run financial model #####
+            financial() 
+            run_financial_model()
+            
 
         # Close the connection
         conn.close()
