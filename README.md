@@ -49,6 +49,9 @@ We do this using a JSON-based query system. For each ESG metric, we send 2 queri
 Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance.
 
 ### 4. Prediction Model for Financial Impact of ESG performance - Determine key ESG factors affecting financial performance
+Our prediction model benchmarks companies using overall ESG scores, analyzing their relationship with financial metrics such as ROA, ROE, and stock growth. To identify the most influential ESG factors, we applied Recursive Feature Elimination (RFE), selecting the top five ESG metrics that best predict financial performance.
+
+Due to limited standardized ESG data, we initially fitted a simple linear regression model to estimate the financial impact of ESG scores across companies. However, as more data becomes available, the model can and should be refined to assess company-specific ESG-financial relationships. Future iterations may incorporate time-lagged financials, individual ESG metrics, and advanced models like ARIMA or VARMAX for deeper, more accurate insights.
 
 ## Tech Stack
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
