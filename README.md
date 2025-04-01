@@ -174,6 +174,43 @@ Output of our predictive model.
 | `stock_growth_actual`     | FLOAT   | Actual stock growth                     |
 | `stock_growth_predicted` | FLOAT | Model predicted roa stock growth                   |
 
+### `general_company_info_table`
+
+| Column                                      | Type  | Description                               |
+|---------------------------------------------|-------|-------------------------------------------|
+| `Name`                                      | TEXT  | Company name                              |
+| `Country`                                   | TEXT  | Country of operation                      |
+| `Continent`                                 | TEXT  | Continent of operation                    |
+| `Industry`                                  | TEXT  | Industry sector                           |
+| `Year`                                      | TEXT  | Reporting year                            |
+| `GHG Scope 1 emission`                      | TEXT  | Direct greenhouse gas emissions          |
+| `GHG Scope 2 emission`                      | TEXT  | Indirect emissions from electricity use  |
+| `GHG Scope 3 emission`                      | TEXT  | Other indirect emissions                 |
+| `Water Consumption`                         | TEXT  | Total water consumption                   |
+| `Energy Consumption`                        | TEXT  | Total energy consumption                  |
+| `Waste Generation`                          | TEXT  | Total waste generated                     |
+| `Total Employees`                           | TEXT  | Number of employees                       |
+| `Total Female Employees`                    | TEXT  | Number of female employees                |
+| `Employees under 30`                        | TEXT  | Employees younger than 30                 |
+| `Employees between 30-50`                   | TEXT  | Employees aged 30 to 50                   |
+| `Employees above 50s`                       | TEXT  | Employees older than 50                   |
+| `Fatalities`                                | TEXT  | Work-related fatalities                   |
+| `Injuries`                                  | TEXT  | Work-related injuries                     |
+| `Avg Training Hours per employee`           | TEXT  | Average training hours per employee       |
+| `Training Done, Independent Directors`      | TEXT  | Training hours for independent directors  |
+| `Female Directors`                          | TEXT  | Number of female directors                |
+| `Female Managers`                           | TEXT  | Number of female managers                 |
+| `Employees Trained`                         | TEXT  | Number of employees trained               |
+| `Certifications`                            | TEXT  | Company certifications                    |
+| `Total Revenue`                             | TEXT  | Total revenue generated                   |
+| `Total ESG Investment`                      | TEXT  | Total investment in ESG initiatives       |
+| `Net Profit`                                | TEXT  | Net profit                                |
+| `Debt-Equity Ratio`                         | TEXT  | Debt-to-equity ratio                      |
+| `ROE`                                       | TEXT  | Return on equity                          |
+| `ROA`                                       | TEXT  | Return on assets                          |
+```sql
+CONSTRAINT unique_company_info UNIQUE ("Name","Year")
+```
 
 [🔼 Back to Top](#table-of-contents)
 
@@ -216,7 +253,21 @@ Ensure that you have the following installed and specs.
   docker compose up -d
   ```
 > ⚠️ **Important:** This can take awhile to load depending on your computer specs.
-> 
+
+6. To access the database on pgAdmin4 interface instead of supabase online, do the following after clicking on Add New Server:
+
+```
+ General Tab:
+  Name: supabase (or anything you want)
+Connection Tab:
+  Host name/address: aws-0-ap-southeast-1.pooler.supabase.com
+  port: 6543
+  maintainence database: postgres
+  username: postgres.pevfljfvkiaokawnfwtb
+  Password: CONTACT US FOR THE PASSWORD or REFER TO ENV FILE SENT TO YOU
+```
+
+
 [🔼 Back to Top](#table-of-contents)
 
 ## Running Python Scripts
@@ -242,6 +293,7 @@ python {script to run add file directory here}
 
 ## Local Development
 If the need for local development arises with a locally hosted database, follow the instructions below to clean the databases and update the scripts.
+> !!! This is only if you want a local database
 1. Before Dockerizing the container, go to the db folders and its scripts like ```db_esg_text.py``` and ```main.py``` and ```financial.py```. Uncomment the lines with
    ```
      db_name = os.getenv('db_name')
