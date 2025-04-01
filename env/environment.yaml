@@ -63,4 +63,7 @@ dependencies:
     - scikit-learn
     - selenium
     - accelerate>=0.26.0
+    - statsmodels
+    - googlesearch-python
+    - google 
     

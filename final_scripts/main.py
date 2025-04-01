@@ -2,11 +2,12 @@ import argparse
 import os
 from dotenv import load_dotenv
 from PdfExtractor import PDFExtractor
-from ../extractValues import RAG
+from ..extractValues import RAG
 from db_operations import connect_to_database, insert_esg_rag_data, insert_esg_text_data
 from financial import financial
 from GeneratePdfs import GeneratePdfs
 from ESGScoringProcessor import ESGScoringProcessor
+from financial_model_powerbi.py import run_financial_model
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -67,8 +68,10 @@ def main():
             insert_esg_rag_data(esg_rag_df)
             insert_esg_text_data(esg_text_df)
 
-            ##### Step 4: Call financial function to insert financial data into database #####
+            ##### Step 4: Call financial function to insert financial data into database and run financial model #####
             financial() 
+            run_financial_model()
+            
 
         # Close the connection
         conn.close()
