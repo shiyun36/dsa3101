@@ -1,6 +1,8 @@
 #$ pip install httpx[http2]
 
 import os
+from dotenv import load_dotenv
+import psycopg2
 from supabase import create_client
 import pandas as pd
 import numpy as np
@@ -17,8 +19,8 @@ def connect_to_supabase():
     try:
         #url = os.getenv("SUPABASE_URL", "your_supabase_url")
         #key = os.getenv("SUPABASE_KEY", "your_supabase_key")
-        url = os.getenv("SUPABASE_URL", "https://pevfljfvkiaokawnfwtb.supabase.co")
-        key = os.getenv("SUPABASE_KEY", 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBldmZsamZ2a2lhb2thd25md3RiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA5MjE4MzcsImV4cCI6MjA1NjQ5NzgzN30.zaMNevs2rbP_cZGiX-OhDlTC_ZBERoAgrJMZTB6wq_Y')
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_KEY")
         if not url or not key:
             raise ValueError("Supabase URL or key is missing.")
         return create_client(url, key)
@@ -38,6 +40,37 @@ def fetch_data(supabase):
     except Exception as e:
         print(f"Error fetching data from Supabase: {e}")
         return None, None, None, None
+
+def fetch_data_local_postgres():
+    '''Fetches ESG, Stock and Financial Data from Local DB for Local Dev Purposes'''
+    load_dotenv()
+    try:
+        db_name = os.getenv('db_name')
+        db_user = os.getenv('db_user')
+        db_port = os.getenv('db_port')
+        db_host = os.getenv('db_host')
+        db_password = os.getenv('db_password')
+        conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM esg_rag_table') 
+        columns = [desc[0] for desc in cur.description]
+        esg_rag = pd.DataFrame(cur.fetchall(),columns=columns)
+        print(esg_rag)
+        cur.execute('SELECT * FROM stocks_table')
+        columns = [desc[0] for desc in cur.description]
+        stocks = pd.DataFrame(cur.fetchall(),columns=columns)
+        cur.execute('SELECT * FROM roa_roe_table')
+        columns = [desc[0] for desc in cur.description]
+        roa_roe = pd.DataFrame(cur.fetchall(),columns=columns)
+        cur.execute('SELECT DISTINCT topic FROM esg_rag_table')
+        columns = [desc[0] for desc in cur.description]
+        esg_cat = pd.DataFrame(cur.fetchall(),columns=columns)
+        esg_cat = esg_cat["topic"].unique().tolist()
+        conn.close()
+        return esg_rag, stocks, roa_roe
+    except Exception as e:
+        print(f"Error fetching data from local postgreSQL: {e}")
+        return None, None, None
         
 def format_data(esg_rag, stocks, roa_roe):
     """Formats data types"""
@@ -210,6 +243,10 @@ def prep_model():
         return
     
     esg_rag, stocks, roa_roe, esg_cat = fetch_data(supabase)
+
+
+    ## if you need local development, comment the above and uncomment below
+    # esg_rag, stocks, roa_roe = fetch_data_local_postgres()
     if esg_rag is None or stocks is None or roa_roe is None or esg_cat is None:
         print("Failed to fetch data.")
         return
@@ -318,7 +355,7 @@ def run_analysis(df):
         return None
 
 # Main execution
-def main():
+def run_financial_model():
     df, esg_rag, roa_roe, esg_overall_score, stocks_return = prep_model()
     df_features, features, targets = prep_rfe(esg_rag, roa_roe, stocks_return)
 
@@ -336,4 +373,4 @@ def main():
 
 # Call main function
 if __name__ == "__main__":
-    main()
+    run_financial_model()
