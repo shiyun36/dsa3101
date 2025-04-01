@@ -101,46 +101,6 @@ def compute_esg_scores(esg_rag):
         print(f"Error computing ESG scores: {e}")
         return None
 
-def prep_rfe(esg_rag, roa_roe, stocks_return):
-    try:
-        esg_wide = esg_rag.pivot_table(
-            index=["company", "year"], 
-            columns="topic", 
-            values="final_score", 
-            aggfunc="first"
-        ).reset_index()
-        
-        df_features = roa_roe.merge(esg_wide, on=["company", "year"], how="inner") \
-                              .merge(stocks_return[["company", "year", "stock growth"]], on=["company", "year"]) \
-                              .dropna()
-
-        features = df_features.drop(columns=['roa', 'roe', 'stock growth', 'company', 'year', 'date', 'Certification'])
-        targets = ['roa', 'roe', 'stock growth']
-        return df_features, features, targets
-    except Exception as e:
-        print(f"Error preparing RFE: {e}")
-        return None, None
-
-def rfe(df_features, features, targets):
-    """Get Top 5 ESG Metrics that best predict ROA, ROE, Stock Prices."""
-    try:
-        top_features_rfe = {
-            target: np.array(features.columns)[RFE(LinearRegression(), n_features_to_select=5).fit(features, df_features[target]).support_].tolist()
-            for target in targets
-        }
-        print("Top 5 features per target variable using RFE:")
-        for target, features in top_features_rfe.items():
-            print(f"{target}: {features}")
-        
-        all_selected_features = sum(top_features_rfe.values(), [])
-        top_5_features = [feature for feature, _ in Counter(all_selected_features).most_common(5)]
-        
-        print("\nTop 5 Features Across All Targets:\n", top_5_features)
-        return top_features_rfe, top_5_features
-    except Exception as e:
-        print(f"Error performing RFE: {e}")
-        return None, None
-
 def merge_financial_esg_data(roa_roe, esg_overall_score, stocks_return):
     """Merge financial and ESG data."""
     try:
