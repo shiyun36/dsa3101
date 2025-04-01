@@ -16,7 +16,7 @@ URL_OUTPUT_FILE="../outputs/pdf_links.txt"
 
 ########### ADJUST YOUR INPUTS HERE #############
 INDUSTRY = 'energy'
-INSERT_URL= ['https://www.pfizer.com/sites/default/files/investors/financial_reports/annual_reports/2022/files/Pfizer_ESG_Report.pdf']
+INSERT_URL= ['https://www.morganstanley.com/content/dam/msdotcom/en/assets/pdfs/Morgan_Stanley_2023_ESG_Report.pdf']
 #Input_file = False
 YEARS = [2024, 2023, 2022, 2021]
 GEOGRAPHICAL_REGION = 'Singapore'
@@ -84,7 +84,7 @@ def main():
             # Converting RAG dataframe to match esg_rag_table schema
             esg_rag_df = ESGRAGDataframeConverter(csv_path=rag_path, num_companies=no_of_dups)
             final_push_df = esg_rag_df.convert()            
-
+            print(final_push_df)
             ##### Step 3: Insert data into database #####
             insert_esg_rag_data(final_push_df)
             insert_esg_text_data(text_df)

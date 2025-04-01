@@ -293,7 +293,7 @@ Context:
     
         final_dataframes = {}
         new_rows = {}
-
+        len_new_rows = 0
         for company_tuple in companies:
             row_data, csv_file, df_columns = self.process_company(company_tuple)
 
@@ -309,14 +309,9 @@ Context:
         # Add the row data to our in-memory collection
             new_rows[csv_file]["rows"].append(row_data)
 
-
-        print("new rows: " + str(new_rows))
         if((new_rows[csv_file]) == "None"):
             print("No new Data to add")
 
-        first_csv_file = next(iter(new_rows.keys()))
-        reread_for_compare = pd.read_csv(first_csv_file)
-        company_year_df = reread_for_compare[['Company', 'Year']]
 
     # Once all rows are collected, write or append them to their respective CSVs
         for csv_file, data in new_rows.items():
@@ -333,16 +328,12 @@ Context:
             df_combined.to_csv(csv_file, index=False)
 
             final_dataframes[csv_file] = df_combined
-
+            len_new_rows = len(data['rows'])
             print(f"Added {len(data['rows'])} new companies to {csv_file}.")
 
-        company_year_tuple= set(list(company_year_df.itertuples(index=False, name=None)))
-        common_tupples = company_year_tuple.intersection(companies)
-        final_csv = pd.read_csv(first_csv_file)
-        total_rows = final_csv.shape[0]
-        
 
-        return csv_file , total_rows-len(common_tupples)
+
+        return csv_file , len_new_rows
 
 
     def rag_main(self):
