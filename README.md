@@ -40,6 +40,7 @@ This project leverages Natural Language Processing (NLP) and AI to automate ESG 
 
 ## Features:
 ### 1. Automated ESG Data Extraction – Structured data processing from unstructured reports
+We used OCR Scraper to extract images from PDF reports.
 
 ### 2. Metric Normalization using RAG – Standardizing ESG indicators for cross-industry comparison
 We use Retrieval Augmented Generation (RAG) where the LLM is connected to our ESG database and retrieves the data for each ESG metric and normalizes it based on industry averages.
