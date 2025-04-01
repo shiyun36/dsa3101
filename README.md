@@ -49,7 +49,7 @@ We do this using a JSON-based query system. For each ESG metric, we send 2 queri
 Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance.
 
 ### 4. Prediction Model for Financial Impact of ESG performance - Determine key ESG factors affecting financial performance
-Our prediction model benchmarks companies using overall ESG scores, analyzing their relationship with financial metrics such as ROA, ROE, and stock growth. To identify the most influential ESG factors, we applied Recursive Feature Elimination (RFE), selecting the top five ESG metrics that best predict financial performance.
+Our prediction model benchmarks companies using overall ESG scores, analyzing their relationship with financial metrics such as ROA, ROE, and stock growth. Separately, to identify the most influential ESG factors, we applied Recursive Feature Elimination (RFE), selecting the top five ESG metrics that best predict financial performance.
 
 Due to limited standardized ESG data, we initially fitted a simple linear regression model to estimate the financial impact of ESG scores across companies. However, as more data becomes available, the model can and should be refined to assess company-specific ESG-financial relationships. Future iterations may incorporate time-lagged financials, individual ESG metrics, and advanced models like ARIMA or VARMAX for deeper, more accurate insights.
 
@@ -150,11 +150,11 @@ Maps company names to their stock ticker symbols. Else the api will search yahoo
 | `company_name` | TEXT | Name of the company                      |
 
 ### `esg_financial_model_table`
-Gives the top 5 features used in our predictive model to predict financial impact from ESG scores.
+Gives the top 5 features used to predict financial impact from ESG scores.
 
 | Column       | Type   | Description                              |
 |--------------|--------|------------------------------------------|
-| `variable`     | VARCHAR   | The variable the feature belongs like roa,roe,overall                      |
+| `variable`     | VARCHAR   | The variable the feature belongs like roa, roe, stock growth, overall                      |
 | `feature` | VARCHAR | Features that affect the variable like Current Employees by Gender                     |
 | `rank` | INT | Rank of the feature                     |
 
