@@ -13,6 +13,7 @@ from sklearn.feature_selection import RFE
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 from collections import Counter
+from db.scripts.db_insert_model_lr import insert_model_lr
 
 def connect_to_supabase():
     """Establishes connection to Supabase."""
@@ -36,10 +37,10 @@ def fetch_data(supabase):
         roa_roe = pd.DataFrame(supabase.table("roa_roe_table").select("*").execute().data)
         esg_cat = pd.DataFrame(supabase.table("esg_rag_table").select("topic").execute().data)
         esg_cat = esg_cat["topic"].unique().tolist()
-        return esg_rag, stocks, roa_roe, esg_cat
+        return esg_rag, stocks, roa_roe
     except Exception as e:
         print(f"Error fetching data from Supabase: {e}")
-        return None, None, None, None
+        return None, None, None
 
 def fetch_data_local_postgres():
     '''Fetches ESG, Stock and Financial Data from Local DB for Local Dev Purposes'''
@@ -247,7 +248,7 @@ def prep_model():
 
     ## if you need local development, comment the above and uncomment below
     # esg_rag, stocks, roa_roe = fetch_data_local_postgres()
-    if esg_rag is None or stocks is None or roa_roe is None or esg_cat is None:
+    if esg_rag is None or stocks is None or roa_roe is None:
         print("Failed to fetch data.")
         return
     
@@ -368,7 +369,7 @@ def run_financial_model():
         # Display the first few rows of the dataframe
         print(results_df.head())
         print(df_rfe)
-        #insert_model_lr(results_df, df_rfe)
+        insert_model_lr(results_df, df_rfe)
         return results_df, df_rfe  # This will be used in Power BI
 
 # Call main function
