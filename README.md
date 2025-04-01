@@ -278,10 +278,23 @@ To use the python scripts in Docker, run the following in the same terminal afte
 docker-compose exec app bash
 ```
 
-2. Run with the directory of script
+2. Run with the directory of script with the format below. **Ensure that there is only one country and industry at a line but you may use multiple links seperated by a comma**. You can refer to the examples.
 ```
-python {script to run add file directory here}
+python main.py --url "insert urls here" --country Country --industry industry
 ```
+
+Example 1.
+
+```
+python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0" --country Singapore --industry energy
+```
+
+Example 2.
+
+```
+python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0, https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2021-2022.pdf" --country Singapore --industry energy
+```
+
 
 [🔼 Back to Top](#table-of-contents)
 
@@ -342,9 +355,6 @@ If the need for local development arises with a locally hosted database, follow 
        API_KEY=sk-or-v1.........
      ```
 
-  
-  TOBECHECKEDONDOCKERGo to ```./files/rag_output/``` and for each csv file like ```sg_energy_score.csv```, remove everything below the first line and for each json file like ```sg_finance_score.json```, empty it. 
-  
   > ⚠️ **DO NOT DELETE ANY FILES**
   
   Then run step 5 from [Dockerizing the Project](#dockerizing-the-project)
