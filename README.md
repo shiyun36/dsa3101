@@ -279,6 +279,10 @@ If the need for local development arises with a locally hosted database, follow 
      ```
       model="google/gemini-2.5-pro-exp-03-25:free"
      ```
+  3. Change API_KEY in .env file
+     ```
+      API_KEY={OpenRouter_APIKEY}
+     ```
   
   Then run step 5 from [Dockerizing the Project](#dockerizing-the-project)
   
