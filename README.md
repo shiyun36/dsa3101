@@ -242,7 +242,7 @@ python {script to run add file directory here}
 
 ## Local Development
 If the need for local development arises with a locally hosted database, follow the instructions below. Ensure that the Docker Container has started.
-1. Before Dockerizing the container, go to the db folders and its scripts and the main script. Uncomment the lines with
+1. Before Dockerizing the container, go to the db folders and its scripts like db_esg_text.py and main.py and financial.py. Uncomment the lines with
    ```
      db_name = os.getenv('db_name')
      db_user = os.getenv('db_user')
@@ -251,9 +251,34 @@ If the need for local development arises with a locally hosted database, follow 
      db_password = os.getenv('db_password')
      conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
    ```
-  and Comment out line with `## SupaBase DB ##`.
+    and Comment out line with `## SupaBase DB ##`. Refer to the example below.
+  ![image](https://github.com/user-attachments/assets/f32e1126-7a80-4cb9-9873-4e9b31a11dea)
   
   If missing in main file, add the above and comment out the DATABASE_URL and conn with DATABASE_URL.
+
+ In ./final_scripts/financial_model_powerbi.py, go to prep_model() function and have the following commented and uncommented.
+```
+    # supabase = connect_to_supabase()
+    # if supabase is None:
+    #     print("Failed to connect to Supabase.")
+    #     return
+    
+    # esg_rag, stocks, roa_roe = fetch_data(supabase)
+
+    ## if you need local development, comment the above and uncomment below
+    esg_rag, stocks, roa_roe = fetch_data_local_postgres()
+```
+
+  In ./final_scripts/RAGProcessor.py, if you intend to use OpenRouter with free API_Key. Follow the steps below:
+
+  1. Go to class ESGAnalyzer and under ___init___, change the line:
+     ```
+     self.llm_openai = OpenAI(api_key=self.openai_api_key, http_client=httpx.Client(),base_url="https://openrouter.ai/api/v1")
+     ```
+  2. Go to generate_openai_response function and in line 135 change the model to the below or any model that you like:
+     ```
+      model="google/gemini-2.5-pro-exp-03-25:free"
+     ```
   
   Then run step 5 from [Dockerizing the Project](#dockerizing-the-project)
   
