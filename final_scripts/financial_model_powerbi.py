@@ -243,7 +243,7 @@ def prep_model():
         print("Failed to connect to Supabase.")
         return
     
-    esg_rag, stocks, roa_roe, esg_cat = fetch_data(supabase)
+    esg_rag, stocks, roa_roe = fetch_data(supabase)
 
 
     ## if you need local development, comment the above and uncomment below
