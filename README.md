@@ -183,7 +183,7 @@ Ensure that you have the following installed and specs.
 1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 3. ```‼️Atleast 20GB of Storage ‼️```
-4. ```‼️‼️‼️ NOT CONNECTED TO NUS WIFI AS IT BLOCKS CONNECTIONS```
+4. ```‼️‼️‼️ NOT CONNECTED TO NUS WIFI AS IT BLOCKS CONNECTIONS TO OUR ONLINE DB ‼️‼️‼️```
 
 
 ## Dockerizing the Project
@@ -241,8 +241,8 @@ python {script to run add file directory here}
 [🔼 Back to Top](#table-of-contents)
 
 ## Local Development
-If the need for local development arises with a locally hosted database, follow the instructions below. Ensure that the Docker Container has started.
-1. Before Dockerizing the container, go to the db folders and its scripts like db_esg_text.py and main.py and financial.py. Uncomment the lines with
+If the need for local development arises with a locally hosted database, follow the instructions below to clean the databases and update the scripts.
+1. Before Dockerizing the container, go to the db folders and its scripts like ```db_esg_text.py``` and ```main.py``` and ```financial.py```. Uncomment the lines with
    ```
      db_name = os.getenv('db_name')
      db_user = os.getenv('db_user')
@@ -252,11 +252,12 @@ If the need for local development arises with a locally hosted database, follow 
      conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
    ```
     and Comment out line with `## SupaBase DB ##`. Refer to the example below.
+   
   ![image](https://github.com/user-attachments/assets/f32e1126-7a80-4cb9-9873-4e9b31a11dea)
   
   If missing in main file, add the above and comment out the DATABASE_URL and conn with DATABASE_URL.
 
- In ./final_scripts/financial_model_powerbi.py, go to prep_model() function and have the following commented and uncommented.
+ In ```./final_scripts/financial_model_powerbi.py```, go to ```prep_model()``` function and have the following commented and uncommented.
 ```
     # supabase = connect_to_supabase()
     # if supabase is None:
@@ -269,20 +270,30 @@ If the need for local development arises with a locally hosted database, follow 
     esg_rag, stocks, roa_roe = fetch_data_local_postgres()
 ```
 
-  In ./final_scripts/RAGProcessor.py, if you intend to use OpenRouter with free API_Key. Follow the steps below:
+  In ```./final_scripts/RAGProcessor.py```, if you intend to use OpenRouter with its free API_KEY. Follow the steps below:
 
-  1. Go to class ESGAnalyzer and under ___init___, change the line:
+  1. Go to ```class ESGAnalyzer``` and under ```___init___```, change the line:
+     
      ```
      self.llm_openai = OpenAI(api_key=self.openai_api_key, http_client=httpx.Client(),base_url="https://openrouter.ai/api/v1")
      ```
+     
   2. Go to generate_openai_response function and in line 135 change the model to the below or any model that you like:
+     
      ```
       model="google/gemini-2.5-pro-exp-03-25:free"
      ```
-  3. Change API_KEY in .env file
+     
+  3. Go to .env file and change API_KEY. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
+  
      ```
-      API_KEY={OpenRouter_APIKEY}
+       API_KEY=sk-or-v1.........
      ```
+
+  
+  TOBECHECKEDONDOCKERGo to ```./files/rag_output/``` and for each csv file like ```sg_energy_score.csv```, remove everything below the first line and for each json file like ```sg_finance_score.json```, empty it. 
+  
+  > ⚠️ **DO NOT DELETE ANY FILES**
   
   Then run step 5 from [Dockerizing the Project](#dockerizing-the-project)
   
