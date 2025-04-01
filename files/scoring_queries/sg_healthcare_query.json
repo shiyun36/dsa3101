@@ -10,7 +10,7 @@
         "scope3_emissions": "",
         "description": ""
       }, 
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_emissions/100000). If there are no total_emissions, use Scope 2 emissions. Return the final_score as a float from 0 to 1. If abosultely no values have been found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_emissions/100000). If there are no total_emissions, use Scope 2 emissions. Return the final_score as a float from 0 to 1. If abosultely no values have been found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -21,7 +21,7 @@
         "total_energy_consumption"    : "",
         "description"                 : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, if total_electrical_consumption has a value, add it to total_energy_consumption. Now, give a score based on this criteria: 1 - (total_energy_consumption/1000000). Return the final_score as a float from 0 to 1. If total_energy_consumption cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, if total_electrical_consumption has a value, add it to total_energy_consumption. Now, give a score based on this criteria: 1 - (total_energy_consumption/1000000). Return the final_score as a float from 0 to 1. If total_energy_consumption cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -31,7 +31,7 @@
       "extracted_values": {
         "total_water_consumption": "", 
         "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_water_consumption/1000000). Return the final_score as a float from 0 to 1. If total_water_consumption cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_water_consumption/1000000). Return the final_score as a float from 0 to 1. If total_water_consumption cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -41,7 +41,7 @@
       "extracted_values": {
         "total_waste": "",
         "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_waste/5000). Return the final_score as a float from 0 to 1. If total_water_consumption cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1 - (total_waste/5000). Return the final_score as a float from 0 to 1. If total_water_consumption cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -53,7 +53,7 @@
         "female_employee_percentage": "",
         "description"               : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 - abs((average_percentage - 50)/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 - abs((average_percentage - 50)/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -65,7 +65,7 @@
         "female_turnover_rate": "",
         "description"         : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 -(average_percentage/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 -(average_percentage/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -77,7 +77,7 @@
         "female_new_hire_rate": "",
         "description"         : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 -(average_percentage/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: Take the average of the percentage for male employeees and female employees and call it average_percentage. Then calculate the score as 1 -(average_percentage/100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -90,7 +90,7 @@
         "above_50"     : "",
         "description"  : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria, ensuring that the values from value query are in the range from 1 to 100: 1 - ((abs(below_30 - 25) + abs(between_30_50 - 50) + abs(above_50 - 25)) / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria, ensuring that the values from value query are in the range from 1 to 100: 1 - ((abs(below_30 - 25) + abs(between_30_50 - 50) + abs(above_50 - 25)) / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -103,7 +103,7 @@
         "above_50"     : "",
         "description"  : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria, ensuring that the values from value query are in the range from 1 to 100: 1 - ((abs(below_30 - 50) + abs(between_30_50 - 25) + abs(above_50 - 25)) / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria, ensuring that the values from value query are in the range from 1 to 100: 1 - ((abs(below_30 - 50) + abs(between_30_50 - 25) + abs(above_50 - 25)) / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -113,7 +113,7 @@
       "extracted_values": {
         "total_turnover_rate": "", 
         "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1- (total_turnover_rate / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: 1- (total_turnover_rate / 100). Return the final_score as a float from 0 to 1. If the values of the percentages cannot be found, return the final score as 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -121,7 +121,7 @@
     "Average Training Hours per Employee": {
       "value_query": "Extract the average training hours per employee as a float value rounded to 1 decimal place in the year 2023 in Singapore. If both male and female training hours are found, take the average of both values. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"average_training_hours": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if average_training_hours has a value, give a score of 1.0. If there is no value found, give a score of 0.0. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if average_training_hours has a value, give a score of 1.0. If there is no value found, give a score of 0.0. Return the result strictly in the format: Final answer: X, where X is the score as a float either 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -129,7 +129,7 @@
     "Fatalities": {
       "value_query": "Extract the number of fatalities in the year 2023 as an integer. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"fatalities": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if fatalities is greater than 0, give a score of 0.0. If there are 0 fatalities, give a score of 1.0. If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if fatalities is greater than 0, give a score of 0.0. If there are 0 fatalities, give a score of 1.0. If there is no value extracted for fatalities, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -137,7 +137,7 @@
     "High-consequence injuries": {
       "value_query": "Extract the number of high consequence injuries in the year 2023 in Singapore as an integer. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. If they say there are no injuries, the value should be 0. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"highcon_injury": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if highcon_injury is greater than 0, give a score of 0.0. Else for other values of highcon_injury, give a score of 1.0. If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: if highcon_injury is greater than 0, give a score of 0.0. Else for other values of highcon_injury, give a score of 1.0. If there is no value extracted for fatalities, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -145,7 +145,7 @@
     "Recordable injuries": {
       "value_query": "Extract the number of recordable injuries in the year 2023 in Singapore as an integer. This may be called number of recordable work-related injuries. If they record that there are no injuries, the value should be 0. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"recordable_injury": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: (1 - (100 - recordable_injury) / 100). If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: (1 - (100 - recordable_injury) / 100). If there is no value extracted for fatalities, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -153,7 +153,7 @@
     "Number of Recordable Work-related Ill Health Cases": {
       "value_query": "Extract the number of recordable work-related ill health cases in the year 2023 as an integer. If they record that there are no ill health cases, the value should be 0. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"ill_cases": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: (1 - (100 - ill_cases) / 100). If there is no value extracted for fatalities, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: (1 - (100 - ill_cases) / 100). If there is no value extracted for fatalities, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -165,7 +165,7 @@
         "is_independent": "",
         "description"   : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_independent is true, give a score of 1.0. If it is false, give a score of 0.0. If there is no value extracted, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_independent is true, give a score of 1.0. If it is false, give a score of 0.0. If there is no value extracted, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -173,7 +173,7 @@
     "Women on the Board": {
       "value_query": "Extract the number of women directors on the Board or the percentage of female representation on the Board in the year 2023 in singapore. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"women_dir": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If women_dir is greater than 0.0, give a score of 1.0. If women_dir is 0 or there is no value extracted, give a score of 0.0. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If women_dir is greater than 0.0, give a score of 1.0. If women_dir is 0 or there is no value extracted, give a score of 0.0. Return the result strictly in the format: Final answer: X, where X is the score as a float either 0.0 or 1.0.",
       "final_score": ""
     }
   },
@@ -181,7 +181,7 @@
     "Women in Management": {
       "value_query": "Extract the percentage of female supervisors and managers in the year 2023 in singapore as a float. This may be termed as percentage of leadership positions filled by women. Alternatively, they might say 'female representation in senior management'. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"management_women": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If management_women is greater than 25, give a score of 1.0. If management_women is less than 25 , give a score of 0.0. If no value is extracted from management_women, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If management_women is greater than 25, give a score of 1.0. If management_women is less than 25 , give a score of 0.0. If no value is extracted from management_women, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -195,7 +195,7 @@
         "any_mention": "",
         "description": ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If any of gri_205_1, gri_205_2, gri_205_3, any_mention is true, give a score of 1.0. If it is false, give a score of 0.0. If there is no value extracted, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If any of gri_205_1, gri_205_2, gri_205_3, any_mention is true, give a score of 1.0. If it is false, give a score of 0.0. If there is no value extracted, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -203,7 +203,7 @@
     "Anti-Corruption Training for Employees": {
       "value_query": "Extract any mentions of training about anti-corruption or GRI 404 in Singapore. If it is mentioned, set corr_training to be Boolean value of true. Please output the extracted values in the specified structure seen in the key-value pair for extracted_values below and do not leave any blanks. Write a brief description that summarizes the extracted values.",
       "extracted_values": {"corr_training": "", "description": ""},
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If corr_training is true, give a score of 1.0. If there is no value extracted, give a score of 0.5. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If corr_training is true, give a score of 1.0. If there is no value extracted, give a score of 0.5. Return the result strictly in the format: Final answer: X, where X is the score as a float between 0.0 and 1.0.",
       "final_score": ""
     }
   },
@@ -216,7 +216,7 @@
         "is_certified"        : "",
         "description"         : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_certified is true or (esg_award or sustainability_award has a value), give a score of 1.0. If there is no value extracted, give a score of 0. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_certified is true or (esg_award or sustainability_award has a value), give a score of 1.0. If there is no value extracted, give a score of 0. Return the result strictly in the format: Final answer: X, where X is the score as a float either 0.0 or 1.0.",
       "final_score": ""
     }
   },
@@ -229,7 +229,7 @@
         ""                    : "",
         "description"         : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_aligned is true or (framework or disclosure_practices has a value), give a score of 1.0. If is_aligned is false or there is no value extracted, give a score of 0. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_aligned is true or (framework or disclosure_practices has a value), give a score of 1.0. If is_aligned is false or there is no value extracted, give a score of 0. Return the result strictly in the format: Final answer: X, where X is the score as a float either 0.0 or 1.0.",
       "final_score": ""
     }
   },
@@ -242,7 +242,7 @@
         ""            : "",
         "description" : ""
       },
-      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_assured is true or company_name has a value, give a score of 1.0. If is_assured is false or there is no value extracted, give a score of 0. Return the final_score as a float",
+      "scoring_query": "Based on the values extracted from value_query, give a score based on this criteria: If is_assured is true or company_name has a value, give a score of 1.0. If is_assured is false or there is no value extracted, give a score of 0. Return the result strictly in the format: Final answer: X, where X is the score as a float either 0.0 or 1.0.",
       "final_score": ""
     }
   }
