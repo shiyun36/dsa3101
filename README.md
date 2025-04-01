@@ -68,7 +68,10 @@ add our file structures here :D
 [🔼 Back to Top](#table-of-contents)
 
 ## Database Schema
-Our Database is hosted online @ [![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/) but we have included PostGreSQL with pgAdmin4 interface for local development.
+Our Database is hosted online @ [![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase&style=flat-square)](https://supabase.io/). For access, please contact us with your email to be added into the organization.
+
+We have also included PostGreSQL database that is unpopulated with pgAdmin4 interface for local development. You can find the details at [Local Development](#local-development).
+
 ### `esg_text_table`
 Stores ESG report text for each company, year, country, and industry.
 
@@ -169,7 +172,7 @@ Output of our predictive model.
 Ensure that you have the following installed and specs.
 1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
-3. ‼️Atleast 20GB of Storage ‼️
+3. ```‼️Atleast 20GB of Storage ‼️```
 
 
 ## Dockerizing the Project
@@ -201,11 +204,12 @@ Ensure that you have the following installed and specs.
   ```
   docker compose up -d
   ```
-
+> ⚠️ **Important:** This can take awhile to load depending on your computer specs.
+> 
 [🔼 Back to Top](#table-of-contents)
 
 ## Running Python Scripts
-To use the python scripts in Docker, run the following
+To use the python scripts in Docker, run the following in the same terminal after the above.
 
 1. Run this command once
 ```
