@@ -75,11 +75,10 @@ def main():
 
 
             #### Step 5: Insert general company information 
-            CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = 2022,
-                                                       company = 'pfizer', 
+            CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = , #int
+                                                       company = '', 
                                                        output_csv = "openai_responses.csv", 
                                                        saved_url_file = '/outputs') 
-            CompanyInfoProcessor.testing()
             CompanyInfoProcessor.ask_openai_from_file()
                     
 
