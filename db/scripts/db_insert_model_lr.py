@@ -38,7 +38,7 @@ def insert_model_lr(results_df,df_rfe): #data_frame or text
             '''
     
     for _,row in results_df.iterrows():
-        cur.execute(query_results, (row['ESG_Score'], row['ROA_Actual'], row['ROA_Predicted'], row['ROE_Actual'], row['ROE_Predicted'], row['Stock_Growth_Actual'], row['Stock_Growth_Predicted']))
+        cur.execute(query_results, (float(row['ESG_Score']), float(row['ROA_Actual']), float(row['ROA_Predicted']), float(row['ROE_Actual']), float(row['ROE_Predicted']), float(row['Stock_Growth_Actual']), float(row['Stock_Growth_Predicted'])))
     ## for df_rfe
     query = '''
             INSERT INTO esg_financial_model_top_features_table (
