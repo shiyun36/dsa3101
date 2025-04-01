@@ -27,6 +27,7 @@ from io import BytesIO
 import ocrmypdf
 import multiprocessing
 from RAGProcessor import retrieve_esg_text, get_reranked_docs
+from db.scripts.db_general_company_info import insert_company_info
 
 multiprocessing.set_start_method("spawn", force=True)
 
@@ -225,6 +226,9 @@ class GeneralCompanyInfoProcessor():
     
         rows = list(results.values())
         df = pd.DataFrame(rows)
+        ## inserted db function here, pls check the headers of the df if it matches that if db_general_company_info script ##
+        insert_company_info(df)
+        ###
         df.to_csv(self.output_csv, index=False)
         print(f"Results saved to {self.output_csv}")
     

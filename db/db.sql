@@ -61,4 +61,38 @@
         "roe_predicted" FLOAT,
         "stock_growth_actual" FLOAT,
         "stock_growth_predicted" FLOAT
+    );
+    
+    CREATE TABLE IF NOT EXISTS general_company_info_table (
+        "Name" TEXT,
+        "Country" TEXT,
+        "Continent" TEXT,
+        "Industry" TEXT,
+        "Year" TEXT,
+        "GHG Scope 1 emission" TEXT,
+        "GHG Scope 2 emission" TEXT,
+        "GHG Scope 3 emission" TEXT,
+        "Water Consumption" TEXT,
+        "Energy Consumption" TEXT,
+        "Waste Generation" TEXT,
+        "Total Employees" TEXT,
+        "Total Female Employees" TEXT,
+        "Employees under 30" TEXT,
+        "Employees between 30-50" TEXT,
+        "Employees above 50s" TEXT,
+        "Fatalities" TEXT,
+        "Injuries" TEXT,
+        "Avg Training Hours per employee" TEXT,
+        "Training Done, Independent Directors" TEXT,
+        "Female Directors" TEXT,
+        "Female Managers" TEXT,
+        "Employees Trained" TEXT,
+        "Certifications" TEXT,
+        "Total Revenue" TEXT,
+        "Total ESG Investment" TEXT,
+        "Net Profit" TEXT,
+        "Debt-Equity Ratio" TEXT,
+        "ROE" TEXT,
+        "ROA" TEXT,
+        CONSTRAINT unique_company_info UNIQUE ("Name","Year")
     )
