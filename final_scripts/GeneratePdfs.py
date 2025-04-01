@@ -23,13 +23,20 @@ class GeneratePdfs:
         
         """
 
-
         self.years = years 
         self.industry = industry
         self.geographical_region = geographical_region
         # Create dynamic filenames based on the industry and geographical_region
         self.output_file = remove_first_dot(f"{os.path.splitext(output_file)[0]}_{self.industry}_{self.geographical_region}.txt")
         self.log_file = f"{os.path.splitext(log_file)[0]}_{self.industry}_{self.geographical_region}.log"
+
+        output_dir = os.path.dirname(self.output_file)
+        log_dir = os.path.dirname(self.log_file)
+        
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
+        if log_dir and not os.path.exists(log_dir):
+            os.makedirs(log_dir, exist_ok=True)
     
     # Configure logging. The log file will be created automatically if it doesn't exist.
         logging.basicConfig(filename=self.log_file, level=logging.INFO, 

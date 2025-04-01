@@ -4297,3 +4297,195 @@
 2025-04-01 14:20:10,290 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-04-01 14:20:11,890 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-04-01 14:20:13,732 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 14:34:13,231 - INFO - Found PDF: https://www.dbs.com/iwov-resources/images/sustainability/reporting/pdf/web/DBS_SR2023.pdf
+2025-04-01 14:34:17,784 - INFO - Found PDF: https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2024.pdf
+2025-04-01 14:34:19,278 - INFO - Found PDF: https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2023.pdf
+2025-04-01 14:34:20,707 - INFO - Found PDF: https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2022.pdf
+2025-04-01 14:34:22,128 - INFO - Found PDF: https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/OCBC%20Sustainability%20Report%202021.pdf
+2025-04-01 14:34:23,588 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/P2SIMUT4GWFVZWJL/837067_UOB%20SR2024.pdf
+2025-04-01 14:34:25,004 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/P2SIMUT4GWFVZWJL/837067_UOB%20SR2024.pdf
+2025-04-01 14:34:26,497 - INFO - Found PDF: https://www.uobgroup.com/investor-relations/assets/pdfs/investor/annual/uob-sustainability-report-2022.pdf
+2025-04-01 14:34:27,151 - INFO - Found PDF: https://www.uobgroup.com/investor-relations/assets/pdfs/investor/annual/uob-sustainability-report-2021.pdf
+2025-04-01 14:34:37,134 - INFO - reading file from input stream
+2025-04-01 14:34:40,025 - WARNING - This PDF is marked as a Tagged PDF. This often indicates that the PDF was generated from an office document and does not need OCR. PDF pages processed by OCRmyPDF may not be tagged correctly.
+2025-04-01 14:34:40,025 - INFO - Start processing 16 pages concurrently
+2025-04-01 14:34:40,072 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,073 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,075 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,076 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,077 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,078 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,079 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,080 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,082 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,083 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,084 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,084 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,085 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,086 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,087 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:40,089 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:46,767 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:47,388 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:47,572 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:47,721 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:48,146 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:48,533 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:48,567 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:48,900 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:49,066 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:49,698 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:50,095 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:50,660 - WARNING - [tesseract] lots of diacritics - possibly poor OCR
+2025-04-01 14:34:50,661 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:51,766 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:54,005 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:54,213 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:55,250 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:55,255 - WARNING - [tesseract] lots of diacritics - possibly poor OCR
+2025-04-01 14:34:55,255 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:55,528 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:55,547 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:56,271 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:56,396 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:57,084 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:57,284 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:57,320 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:58,179 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:59,605 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:59,629 - WARNING - [tesseract] lots of diacritics - possibly poor OCR
+2025-04-01 14:34:59,629 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:34:59,677 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:01,186 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:01,320 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:02,389 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:04,295 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:04,684 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:04,883 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:04,979 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:05,621 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:05,852 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:05,990 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:06,657 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:07,907 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:08,315 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:09,012 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:09,216 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:09,224 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:09,540 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:09,677 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:10,426 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:11,608 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:12,229 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:13,100 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:13,757 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:13,850 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:14,000 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:14,139 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:15,897 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:16,559 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:16,806 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:17,141 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:17,964 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:18,452 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:18,832 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:19,310 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:19,389 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:20,742 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:21,596 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:21,974 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:22,165 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:22,693 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:23,134 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:23,800 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:24,412 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:25,070 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:25,370 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:26,901 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:28,041 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:28,048 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:28,057 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:28,849 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:29,091 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:29,350 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:29,822 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:30,197 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:31,891 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:32,587 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:32,942 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:34,159 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:34,333 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:34,678 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:35,633 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:36,092 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:36,236 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:36,915 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:37,351 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:37,433 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:37,941 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:38,408 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:38,476 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:38,537 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:38,588 - WARNING - [tesseract] lots of diacritics - possibly poor OCR
+2025-04-01 14:35:38,588 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:39,477 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:40,182 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:40,828 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:41,580 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:42,887 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:44,256 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:44,821 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:45,120 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:45,147 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:45,391 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:45,546 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:46,214 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:46,217 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:46,644 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:47,037 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:47,344 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:47,789 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:47,880 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:48,789 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:49,370 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:49,672 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:50,514 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:50,677 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:51,434 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:51,764 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:51,888 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:51,953 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:53,390 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:53,533 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:53,662 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:53,739 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:53,814 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:53,908 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:54,672 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:55,040 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:55,285 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:55,356 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:56,019 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:56,476 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:57,296 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:57,308 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:57,759 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:58,206 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:58,915 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:59,440 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:35:59,753 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:00,033 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:00,094 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:00,186 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:00,698 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:00,770 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:02,604 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:02,608 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:03,266 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:03,394 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 14:36:08,018 - INFO - Postprocessing...
+2025-04-01 14:37:17,745 - WARNING - Some input metadata could not be copied because it is not permitted in PDF/A. You may wish to examine the output PDF's XMP metadata.
+2025-04-01 14:39:23,969 - INFO - Image optimization ratio: 1.32 savings: 24.0%
+2025-04-01 14:39:23,970 - INFO - Total file size ratio: 0.15 savings: -587.3%
+2025-04-01 14:39:24,180 - INFO - Output written to stream
+2025-04-01 14:39:29,454 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.

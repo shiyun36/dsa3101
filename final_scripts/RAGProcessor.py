@@ -310,9 +310,17 @@ Context:
             new_rows[csv_file]["rows"].append(row_data)
 
 
+        print("new rows: " + str(new_rows))
+        if((new_rows[csv_file]) == "None"):
+            print("No new Data to add")
+
+        first_csv_file = next(iter(new_rows.keys()))
+        reread_for_compare = pd.read_csv(first_csv_file)
+        company_year_df = reread_for_compare[['Company', 'Year']]
 
     # Once all rows are collected, write or append them to their respective CSVs
         for csv_file, data in new_rows.items():
+
             df_new = pd.DataFrame(data["rows"], columns=data["columns"])
             final_df = pd.DataFrame(data["rows"], columns=data["columns"])
 
@@ -328,7 +336,13 @@ Context:
 
             print(f"Added {len(data['rows'])} new companies to {csv_file}.")
 
-        return csv_file
+        company_year_tuple= set(list(company_year_df.itertuples(index=False, name=None)))
+        common_tupples = company_year_tuple.intersection(companies)
+        final_csv = pd.read_csv(first_csv_file)
+        total_rows = final_csv.shape[0]
+        
+
+        return csv_file , total_rows-len(common_tupples)
 
 
     def rag_main(self):
@@ -347,5 +361,6 @@ Context:
         unique_pairs['year'] = unique_pairs['year'].astype(int)
         company_year_tuples = list(unique_pairs.itertuples(index=False, name=None))
         # Process each company and extract ESG reports.
-        result = self.extract_esgreports(company_year_tuples)
-        return result
+        result, no_of_dups = self.extract_esgreports(company_year_tuples)
+        
+        return result , no_of_dups
