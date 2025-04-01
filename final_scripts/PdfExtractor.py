@@ -7,6 +7,9 @@ from PyPDF2 import PdfReader
 from io import BytesIO
 import ocrmypdf
 import logging
+def remove_first_dot(path):
+    # Remove only the first dot at the start of the string.
+    return re.sub(r'^\.', '', path, count=1)
 
 class PDFExtractor:
     def __init__(self, saved_url_file, geographical_region, industry):
@@ -18,7 +21,8 @@ class PDFExtractor:
         '''
         self.geographical_region = geographical_region
         self.industry = industry
-        self.saved_url_file = f"{os.path.splitext(saved_url_file)[0]}_{self.industry}_{self.geographical_region}.txt"
+        
+        self.saved_url_file = remove_first_dot(f"{os.path.splitext(saved_url_file)[0]}_{self.industry}_{self.geographical_region}.txt")
         # self.saved_url_file = saved_url_file ## Was using this as testing, once we have the url files with those changed names, shd run the above line instead of this. 
         self.company_name = None #Filled up with extract_company_and_year()
         self.year = None #Filled up with extract_company_and_year()
@@ -106,9 +110,10 @@ class PDFExtractor:
         """
         Main method to extract information from the PDF and return the result as a DataFrame.
         """
-        pdf_links = self.read_pdf_links()
+        pdf_links = [self.read_pdf_links()[0]]
+        print(pdf_links)
         self.data = []  # Initialize an empty list to store all data
-
+        print("processing pdfs")
         for url in pdf_links: 
             try:
                 # Extract company name and year from the URL

@@ -1,12 +1,11 @@
 import argparse
 import os
-from dotenv import load_dotenv
-from PdfExtractor import PDFExtractor
-from ../extractValues import RAG
-from db_operations import connect_to_database, insert_esg_rag_data, insert_esg_text_data
-from financial import financial
-from GeneratePdfs import GeneratePdfs
-from ESGScoringProcessor import ESGScoringProcessor
+from final_scripts.PdfExtractor import PDFExtractor
+from final_scripts.RAGProcessor import ESGAnalyzer
+from final_scripts.db_operations import connect_to_database, insert_esg_rag_data, insert_esg_text_data
+from final_scripts.ESGScoringProcessor import ESGRAGDataframeConverter
+#from financial import financial
+from final_scripts.GeneratePdfs import GeneratePdfs
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -26,7 +25,7 @@ def main():
 
     # If run without CLI args, fallback to defaults
     if not any(vars(args).values()):
-        args.url = "https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/pdf/ocbc-sustainability-report-2023.pdf"
+        args.url = "https://cdn.sea.com/webmain/static/resource/seagroup/Sustainability/Social%20Impact%20reports/Sea%20Sustainability%20Report%202022_1.pdf"
         args.country = "singapore"
         args.industry = "finance"
 
@@ -39,7 +38,7 @@ def main():
         
         ##### Step 0: Generate pdf links that will be extracted  #####
         pdf_links_generator = GeneratePdfs(output_file=URL_OUTPUT_FILE, 
-                                           log_file = "../loggings/pdf_scraper.log",
+                                           log_file = "./loggings/pdf_scraper.log",
                                            years =YEARS,
                                            industry = INDUSTRY, 
                                            geographical_region = GEOGRAPHICAL_REGION,
@@ -50,25 +49,29 @@ def main():
         pdf_extractor = PDFExtractor(saved_url_file = URL_OUTPUT_FILE, 
                                      geographical_region = GEOGRAPHICAL_REGION, 
                                      industry = INDUSTRY)
-        esg_text_df = pdf_extractor.process_pdf()
-        
-        if esg_text_df.empty:
+        text_df = pdf_extractor.process_pdf()  
+        print(text_df)
+
+        if text_df.empty:
             print("No ESG text extracted. Skipping processing.")
         else:
             
             ##### Step 2: Process RAG #####
-            rag_df = RAG.rag_main(esg_text_df)
+            print("ireach before analyzer")
+            esg_analysis = ESGAnalyzer(esg_text_df=text_df)
+            rag_path = esg_analysis.rag_main()
+            print(str(rag_path))
 
             # Converting RAG dataframe to match esg_rag_table schema
-            rag_score_processor = RagScoreProcessor(rag_df)
-            esg_rag_df = rag_score_processor.convert_to_esg_rag_dataframe()
+            esg_rag_df = ESGRAGDataframeConverter(csv_path=rag_path)
+            final_push_df = esg_rag_df.convert()            
 
             ##### Step 3: Insert data into database #####
-            insert_esg_rag_data(esg_rag_df)
-            insert_esg_text_data(esg_text_df)
+            insert_esg_rag_data(final_push_df)
+            insert_esg_text_data(final_push_df)
 
             ##### Step 4: Call financial function to insert financial data into database #####
-            financial() 
+            #financial() 
 
         # Close the connection
         conn.close()
