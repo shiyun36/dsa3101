@@ -39,12 +39,16 @@ As ESG (Environmental, Social, and Governance) factors become central to corpora
 This project leverages Natural Language Processing (NLP) and AI to automate ESG data extraction, normalization, and scoring. Our goal is to transform unstructured ESG reports into actionable insights, enabling businesses to benchmark performance, assess risks, and predict financial impact.
 
 ## Features:
-1. Automated ESG Data Extraction – Structured data processing from unstructured reports
+### 1. Automated ESG Data Extraction – Structured data processing from unstructured reports
 
-2. Metric Normalization – Standardizing ESG indicators for cross-industry comparison
+### 2. Metric Normalization using RAG – Standardizing ESG indicators for cross-industry comparison
+We use Retrieval Augmented Generation (RAG) where the LLM is connected to our ESG database and retrieves the data for each ESG metric and normalizes it based on industry averages.
+We do this using a JSON-based query system. For each ESG metric, we send 2 queries: value_query, which extracts the data for the metric and scoring_query, which normalizes the data to between 0 and 1.
 
-3. ESG Scoring & Benchmarking – Aligning with industry standards to enhance transparency
+### 3. ESG Scoring & Summary Dashboards - Benchmarking and visualisation of ESG data of companies
+Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance.
 
+### 4. Prediction Model for Financial Impact of ESG performance - Determine key ESG factors affecting financial performance
 
 ## Tech Stack
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
