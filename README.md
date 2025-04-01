@@ -45,6 +45,8 @@ This project leverages Natural Language Processing (NLP) and AI to automate ESG 
 We use Retrieval Augmented Generation (RAG) where the LLM is connected to our ESG database and retrieves the data for each ESG metric and normalizes it based on industry averages.
 We do this using a JSON-based query system. For each ESG metric, we send 2 queries: value_query, which extracts the data for the metric and scoring_query, which normalizes the data to between 0 and 1.
 
+To create the queries, we identified the terms used in ESG reports that indicate the various metrics values and tried to specify the queries. Initially, a generalised JSON query was created, but we found that the queries were too broad and ineffective. We then created JSON queries for specific sub-industries, which improved RAG retrieval. However, since it was not scalable, we fine-tuned the queries until it could work for most industries.
+
 ### 3. ESG Scoring & Summary Dashboards - Benchmarking and visualisation of ESG data of companies
 Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance.
 
