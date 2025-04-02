@@ -98,7 +98,6 @@ dsa3101/                            # Root directory
 │   ├── financial.py                # Inserts financial data into db for financial model to use
 │   ├── GenerateCompanyInfoProcessor.py # Finds General company information metrics from RAG first and through webscraping if not found in RAG
 │   ├── GeneratePfds.py             # Automated webscraping of esg report pdf urls
-│   │── main.py                     # Main script to run the project
 │   ├── PdfExtractor.py             # Extracts text from pdf urls with ocr scraper
 │   ├── RAGProcessor.py             # Calls RAG Processor
 │   ├── setup_cron.sh               # Scheduler to run the main.py file every Monday at 3am 
@@ -109,6 +108,7 @@ dsa3101/                            # Root directory
 │── compose.yaml                    # Docker Compose file for managing containers
 │── data_pipeline.jpg               # Image of the very first original data pipeline design
 │── Dockerfile                      # Docker configuration file
+│── main.py                         # Main script to run the project
 │── requirements.txt                # Docker requirements file 
 ```
 
