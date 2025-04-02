@@ -42,7 +42,7 @@ cse_id = "40a230dc355fa46bf"  # Custom Search Engine ID
 
 
 class GeneralCompanyInfoProcessor():
-    def __init__(self, year, company, output_csv, saved_url_file):
+    def __init__(self, company, year, country,industry, output_csv, saved_url_file):
         ''' 
         Inputs: 
         1. year: Extract general company information from this particular year
@@ -51,12 +51,14 @@ class GeneralCompanyInfoProcessor():
         '''
         self.year = year 
         self.company = company 
+        self.country = country 
+        self.industry = industry 
         self.output_csv = output_csv
         self.saved_url_file = saved_url_file
         self.query_template = (
-            "Based on the web and your database, determine {metrics} of company {company} for its financial year of {year} from its sustainability reports. Provide a single, clear answer in the format: 'Final Answer: [value]' or an estimate if needed."
+            "Based on context given, determine {metrics} of company {company} for its financial year of {year} from its sustainability reports. Provide a single, clear answer in the format: 'Final Answer: [Value]' or 'Final Answer: [Value per unit like mtc02e]'., If you cannot determine an answer reply with only 'Final Answer:NA'"
         )
-        self.metrics = ['Name', 'Country', 'Continent', 'Industry', 'Year', 'GHG Scope 1 emission', 'GHG', 'Scope 2 emission', 'GHG Scope 3 emission', 'Water Consumption', 'Energy Consumption', 'Waste Generation', 'Total Employees', 'Total Female Employees', 'Employees under 30', 'Employees between 30-50', 'Employees above 50s', 'Fatalities', 'Injuries', 'Avg Training', 'Hours per employee' , 'Training Done, Independent Directors', 'Female Directors', 'Female Managers', 'Employees Trained', 'Certifications', 'Total Revenue', 'Total ESG Investment', 'Net Profit',' Debt-Equity Ratio', 'ROE', 'ROA']
+        self.metrics = ['GHG Scope 1 emission', 'GHG Scope 2 emission', 'GHG Scope 3 emission', 'Water Consumption', 'Energy Consumption', 'Waste Generation', 'Total Employees', 'Total Female Employees', 'Employees under 30', 'Employees between 30-50', 'Employees above 50s', 'Fatalities', 'Injuries', 'Avg Training Hours per employee' , 'Training Done, Independent Directors', 'Female Directors', 'Female Managers', 'Employees Trained', 'Certifications', 'Total Revenue', 'Total ESG Investment', 'Net Profit',' Debt-Equity Ratio', 'ROE', 'ROA']
         df = pd.DataFrame({
     'Metric': self.metrics * len(self.company),
     'Year': self.year *  len(self.company) * len(self.metrics),
@@ -142,8 +144,6 @@ class GeneralCompanyInfoProcessor():
         """
         Incorporates web search results (with truncated content) into the prompt and sends it to OpenAI.
         """
-        # Get web search context with truncated content.
-        web_context = self.search_web(query, snippet_length=900)
     
         llm_openai = OpenAI(
             api_key=API_KEY,
@@ -152,9 +152,7 @@ class GeneralCompanyInfoProcessor():
     
         enhanced_prompt = (
             query +
-            "\n\nWeb Search Results (most recent, truncated):\n" +
-            web_context +
-            "\n\nBased solely on the above search results, provide a single, clear answer in the format: 'Final Answer: [value]'."
+            "\n\nBased on the above metric, provide a single, clear answer in the format: Final Answer: '[Value]' or Final Answer: '[Value per unit like mtc02e]'."
         )
     
         retries = 3
@@ -178,62 +176,79 @@ class GeneralCompanyInfoProcessor():
         return {"text": "API Error: Unable to generate response after retries."}
 
 
-    def extract_final_answer(self,text):
+    def extract_final_answer(self, text):
         """
-        Extracts and returns the longest line starting with "Final Answer:".
-        If no such line is found, returns the original text stripped.
+        Extracts and returns the substring after the last occurrence of "Final Answer:".
+         the result spans multiple lines, only the first line is returned.
+        If no such substring is found, returns the original text stripped.
         """
-        answers = [line.strip() for line in text.splitlines() if line.strip().startswith("Final Answer:")]
-        if not answers:
-            return text.strip()
-        return max(answers, key=len)
+        prefix = "Final Answer:"
+        if prefix in text:
+            # Use rpartition to split on the last occurrence.
+            answer = text.rpartition(prefix)[2].strip()
+            # If the answer contains multiple lines, take only the first line.
+            answer = answer.splitlines()[0].strip()
+            return answer
+        return text.strip()
+
 
     def ask_openai_with_template(self):
-        """
-        Generates queries from a template using parameters, sends each query to OpenAI using only the internal database context,
-        collects responses, and pivots the results so that the output CSV has one row per company/year.
-        Each metric from the metrics file becomes a column header with its corresponding answer as the value.
+        """ writes the results to a CSV file.
         """
         company_tuple = (self.company, self.year)
-        generic_query = f"{self.metrics}"
         year_str = str(self.year).strip()
-        esg_analyzer = ESGAnalyzer(esg_text_df= {})  
-        results = {}
-        # Retrieve internal documents; if not found, the function will attempt to ingest PDFs online.
-
-        internal_results = esg_analyzer.retrieve_esg_text(company_tuple= company_tuple, query= generic_query)
-        reranked_docs = esg_analyzer.get_reranked_docs(query= generic_query, results= internal_results)
-        # Format the query for this specific metric.
-        query = self.query_template.format(company=self.company, year=year_str, Metric=self.metrics)
-        print(f"Querying OpenAI for: {query}")
-        response_text = esg_analyzer.generate_openai_response(query = query, reranked_docs= reranked_docs, company_tuple= company_tuple)["text"]
-        response_text = self.extract_final_answer(response_text)
-        if "Final Answer: NA" in response_text:
-            fallback_query = (
-                f"Based on web search, determine {self.metrics} of company {self.company} for its financial year of {year_str} "
-                "from its sustainability reports. Provide a single, clear answer in the format: 'Final Answer: [value]'."
-            )
-            print(f"Internal answer was NA. Falling back to web search with query: {fallback_query}")
-            fallback_response = self.query_openai_with_search(fallback_query)
-            fallback_answer = fallback_response.get("text", "No answer generated")
-            response_text = self.extract_final_answer(fallback_answer)
-        key = (self.company, year_str)
-        
-        if key not in results:
-            results[key] = {"company": self.company, "year": year_str}
-        results[key][self.metrics] = response_text
-        time.sleep(1)  # To avoid rapid-fire API calls
+        results = {}  # To store responses for each metric
     
-        rows = list(results.values())
-        df = pd.DataFrame(rows)
-        df.to_csv(self.output_csv, index=False)
-        print(f"Results saved to {self.output_csv}")
+        # Instantiate the ESGAnalyzer with the appropriate ESG text DataFrame.
+        # (Here we assume an empty dictionary is acceptable for esg_text_df.)
+        esg_analyzer = ESGAnalyzer(esg_text_df={})
+    
+        for metric in self.metrics:
+            # Format the query for the current metric.
+            query = self.query_template.format(company=self.company, year=year_str, metrics=metric)
+            print(f"Querying OpenAI for metric '{metric}': {query}")
+
+            # Retrieve internal documents for the metric.
+            internal_results = esg_analyzer.retrieve_esg_text(company_tuple=company_tuple, query=query)
+            reranked_docs = esg_analyzer.get_reranked_docs(query=query, results=internal_results)
+
+            # Generate a response using the internal documents.
+            response = esg_analyzer.generate_openai_response(query=query, reranked_docs=reranked_docs, company_tuple=company_tuple)
+            response_text = response.get("text", "").strip()
+            response_text = self.extract_final_answer(response_text)
+        
+            # Check if the response is "NA" and, if so, fall back to a web search query.
+            if "Final Answer: NA" or "Final Answer:NA"  in response_text:
+                print("NA found!")
+                fallback_query = (
+                    f"Search the web and help me determine the {metric} of company {self.company} for its financial year of {year_str}. Provide a single, numeric value as an answer in the format: Final Answer: '[Value]' or Final Answer: '[Value per unit like mtc02e]'. If you cannot determine an answer reply with only 'Final Answer:NA'"
+                )
+                print(f"Internal answer for metric '{metric}' was NA.")
+                fallback_response = self.query_openai_with_search(fallback_query)
+                fallback_answer = fallback_response.get("text", "No answer generated")
+                print(f"Fallback answer for metric '{metric}': {fallback_answer}")
+                response_text = self.extract_final_answer(fallback_answer)
+        
+            # Store the final answer for this metric.
+            results[metric] = response_text
+        
+            time.sleep(1)  # To avoid rapid-fire API calls
+        print(self.country,self.industry)
+    # Build a single-row dictionary for this company/year.
+        base_info = {"Company": self.company, "Year": year_str, "Country": self.country, "Industry": self.industry}
+        output_row = base_info.copy()
+        output_row.update(results)
+        print("Output row:", output_row)
+        df = pd.DataFrame([output_row])
+        if os.path.exists(self.output_csv):
+            df.to_csv(self.output_csv, mode='a', header=False, index=False)
+        else:
+            df.to_csv(self.output_csv, index=False)
     
     
     def ask_openai_from_file(self):
-        """
-        Reads parameters from a CSV file, generates queries via a template,
-        collects responses, and saves the responses to a CSV file where each metric is a separate column.
+        """"
+        collects responses, and saves the responses to a CSV file
         """
         #self.parameters_list = self.final_df.to_dict('records')
         self.ask_openai_with_template()
@@ -241,8 +256,10 @@ class GeneralCompanyInfoProcessor():
    
 if __name__ == "__main__":
     CompanyInfoProcessor = GeneralCompanyInfoProcessor(year = 2024,
-                                                       company = 'PUMAENERGY', 
-                                                       output_csv = "openai_responses.csv", 
-                                                       saved_url_file = '/outputs') 
+                                                       company = 'PUMAENERGY',
+                                                       country = 'USA',  # Replace with the appropriate country
+                                                       industry = 'Energy',  # Replace with the appropriate industry
+                                                       output_csv = "openai_responses.csv",
+                                                       saved_url_file = '/outputs')
     CompanyInfoProcessor.testing()
     CompanyInfoProcessor.ask_openai_from_file()
