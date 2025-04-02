@@ -94,5 +94,6 @@
         "Debt-Equity Ratio" TEXT,
         "ROE" TEXT,
         "ROA" TEXT,
-        CONSTRAINT unique_company_info UNIQUE ("Name","Year")
+        CONSTRAINT unique_company_info UNIQUE ("Name","Year"),
+        CONSTRAINT general_info_unique_pk PRIMARY KEY ("Company","Year")
     )
