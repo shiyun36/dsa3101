@@ -1,6 +1,7 @@
 import argparse
 import os
 import pickle
+import psycopg2
 from final_scripts.PdfExtractor import PDFExtractor
 from final_scripts.RAGProcessor import ESGAnalyzer
 from final_scripts.WikiInforProcessor import CompanyInfoUpdater
@@ -38,7 +39,14 @@ def main():
 
     # Database connection string
       # Use environment variables for sensitive info
-
+    #Get DB Params for Local DB
+    #load_dotenv('.env')
+    # db_name = os.getenv('db_name')
+    # db_user = os.getenv('db_user')
+    # db_port = os.getenv('db_port')
+    # db_host = os.getenv('db_host')
+    # db_password = os.getenv('db_password')
+    # conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
     # Connect to the database
     conn = connect_to_database(DATABASE_URL)
     if conn:
