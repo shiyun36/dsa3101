@@ -191,7 +191,7 @@ Maps company names to their stock ticker symbols. Else the api will search yahoo
 | `symbol`     | TEXT   | Stock ticker symbol                      |
 | `company_name` | TEXT | Name of the company                      |
 
-### `esg_financial_model_table`
+### `esg_financial_model_top_features_table`
 Gives the top 5 features used to predict financial impact from ESG scores.
 
 | Column       | Type   | Description                              |
@@ -200,7 +200,7 @@ Gives the top 5 features used to predict financial impact from ESG scores.
 | `feature` | VARCHAR | Features that affect the variable like Current Employees by Gender                     |
 | `rank` | INT | Rank of the feature                     |
 
-### `esg_financial_model_top_features_table`
+### `esg_financial_model_table`
 Output of our predictive model.
 
 | Column       | Type   | Description                              |
