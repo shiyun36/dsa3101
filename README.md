@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/81022ad8-00c0-4214-b832-25f256782396)<div align="center">
+<div align="center">
 
 # 🏆 DSA3101 Group 7 Project Instructions 🏆
 
