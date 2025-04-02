@@ -51,12 +51,12 @@ To create the queries, we identified the terms used in ESG reports that indicate
 ### 3. ESG Scoring & Summary Dashboards - Benchmarking and visualisation of ESG data of companies
 Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance. Initially, we explored industry-specific weights for Environmental, Social and Governance factors but found that the equal-weighted approach was ideal as it was simple to understand and enabled cross-industry comparison of ESG scores. 
 
-The ESG score and the metrics used are presented in our PowerBI dashboards (link found below) which comprise of 1) an executive summary of the ESG data catered for business decision making and 2) sector-specific breakdowns for detailed analysis of metrics.
+The ESG score and the metrics used are presented in our PowerBI dashboards (link found below) which comprise of 1) an executive summary of the ESG data catered for business decision making and 2) sector-specific breakdowns for detailed analysis of company metrics.
 
 ### 4. Prediction Model for Financial Impact of ESG performance - Determine key ESG factors affecting financial performance
 Our prediction model benchmarks companies using overall ESG scores, analyzing their relationship with financial metrics such as ROA, ROE, and stock growth. Separately, to identify the most influential ESG factors, we applied Recursive Feature Elimination (RFE), selecting the top five ESG metrics that best predict financial performance.
 
-Due to limited standardized ESG data, we initially fitted a simple linear regression model to estimate the financial impact of ESG scores across companies. However, as more data becomes available, the model can and should be refined to assess company-specific ESG-financial relationships. Future iterations may incorporate time-lagged financials, individual ESG metrics, and advanced models like ARIMA or VARMAX for deeper, more accurate insights.
+Due to limited standardized ESG data, we initially fitted a simple linear regression model to estimate the financial impact of ESG scores across companies. However, with more data over a longer time period, the model will be refined to assess company-specific ESG-financial relationships. Future iterations may incorporate time-lagged financials, individual ESG metrics, and advanced models like ARIMA or VARMAX for deeper, more accurate insights.
 
 ## Tech Stack
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
