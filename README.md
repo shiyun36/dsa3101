@@ -40,7 +40,7 @@ This project leverages Natural Language Processing (NLP) and AI to automate ESG 
 
 ## Features:
 ### 1. Automated ESG Data Extraction – Structured data processing from unstructured reports
-We implemented an automated pdf retriever, to generate company names of a specified geographical location and industry and scrape for the urls of the company's esg report of a specified year. We are also able to manually input pdf urls that we want for text extraction if preferred. We used an OCR Scraper to transform images into text, and extract all text from the PDF reports. 
+We used OCR Scraper to extract images from PDF reports.
 
 ### 2. Metric Normalization using RAG – Standardizing ESG indicators for cross-industry comparison
 We use Retrieval Augmented Generation (RAG) where the LLM is connected to our ESG database and retrieves the data for each ESG metric and normalizes it based on industry averages.
@@ -317,14 +317,16 @@ To use the python scripts in Docker, run the following in the same terminal afte
 docker-compose exec app bash
 ```
 
-2. Run the following command once you see root:/app#
+2. Run the following command once you see ```root:/app#```
 ```sql
 sudo apt-get update
 sudo apt-get install nano
 ```
 3. Run and edit the parameters as needed below. Refer to the image. Ensure that there is only one country and one industry at a time. Multiple links can be inserted at ```INSERT_URL```. You can enter ```CTRL X``` and ```Y``` to save after editing.
 
- ```nano main.py```
+ ```sql
+ nano main.py
+```
 
 ![image](https://github.com/user-attachments/assets/dd97f563-5cea-4271-b90a-4777ab1fd362)
 
@@ -340,7 +342,8 @@ python main.py
 [🔼 Back to Top](#table-of-contents)
 
 ## PowerBI Dashboard
-#### This is how our dashboard looks, it downloaded from the repo above or accessed here: <a>powerbilinkpls</a>
+#### This is how our dashboard looks, it can be accessed here when connected to NUS WiFi or with nVPN: <a>[PowerBI Dashboard](https://app.powerbi.com/reportEmbed?reportId=0dc67d87-01d8-4b13-950b-4c49cab5cd1b&autoAuth=true&ctid=5ba5ef5e-3109-4e77-85bd-cfeb0d347e82&navContentPaneEnabled=false)</a>
+#### Alternatively, you can download it above.
 
 ### Executive Summary
 ![image](https://github.com/user-attachments/assets/ee4deba7-caee-4b0c-8b86-ed500148a690)
