@@ -87,10 +87,10 @@ dsa3101/                            # Root directory
 │   ├── environment.yaml            # Conda environment configuration
 │── ESG-BERT/                       # Repo to classification model used previously
 │── files/                          # Folder for storing general files
-│   ├── labeled_pdfs                # Folder for storing labeled_pdfs for old classification model 
+│   ├── labeled_pdfs/               # Folder for storing labeled_pdfs for old classification model 
 │   ├── rag_output/                 # Folder for storing esg scores from RAG output
-│   ├── scoring_queries             # Folder for storing esg_queries for RAG
-│   ├── wiki                        # Folder for storing csv generated from extracting general company info
+│   ├── scoring_queries/            # Folder for storing esg_queries for RAG
+│   ├── wiki/                       # Folder for storing csv generated from extracting general company info
 │── final_scripts/                  # Folder containing core Python scripts
 │   ├── db_operations.py            # Handles database operations
 │   ├── ESGScoringProcessor.py      # Processes ESG scoring to match supabase schema
