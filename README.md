@@ -222,7 +222,7 @@ CONSTRAINT unique_company_info UNIQUE ("Name","Year")
 Ensure that you have the following installed and specs.
 1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
-3. ```‼️Atleast 20GB of Storage ‼️```
+3. ```‼️Atleast 20GB of Storage since the compiler is big ‼️```
 4. ```‼️‼️‼️ NOT CONNECTED TO NUS WIFI AS IT BLOCKS CONNECTIONS TO OUR ONLINE DB ‼️‼️‼️```
 
 
@@ -245,6 +245,7 @@ Ensure that you have the following installed and specs.
    DATABASE_URL={CONTACT US}
    SUPABASE_URL={CONTACT US}
    SUPABASE_KEY={CONTACT US}
+   SUPABASE_PASSWORD={CONTACT US}
    ```
    
    The directory should be:
@@ -297,7 +298,7 @@ Example 2.
 ```sql
 python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0, https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2021-2022.pdf" --country Singapore --industry energy
 ```
-
+> ⚠️ **Important:** This will take a while because population of the chromaDB with other reports happens on the first run.
 
 [🔼 Back to Top](#table-of-contents)
 
@@ -309,7 +310,7 @@ python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-su
 
 ## Local Development
 If the need for local development arises with a locally hosted database, follow the instructions below to clean the databases and update the scripts.
-> !!! This is only if you want a local database
+> !!! This is only if you want a local database else you can refer to the above.
 1. Before Dockerizing the container, go to the db folders and its scripts like ```db_esg_text.py``` and ```main.py``` and ```financial.py```. Uncomment the lines with
    ```sql
      db_name = os.getenv('db_name')
@@ -338,7 +339,9 @@ If the need for local development arises with a locally hosted database, follow 
     esg_rag, stocks, roa_roe = fetch_data_local_postgres()
 ```
 
-  In ```./final_scripts/RAGProcessor.py```, if you intend to use OpenRouter with its free API_KEY. Follow the steps below:
+  ### If you intend to use OpenRouter with a free API_KEY. Follow the steps below. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
+  
+####  In ```./final_scripts/RAGProcessor.py```
 
   1. Go to ```class ESGAnalyzer``` and under ```___init___```, change the line:
      
@@ -352,17 +355,17 @@ If the need for local development arises with a locally hosted database, follow 
       model="google/gemini-2.5-pro-exp-03-25:free"
      ```
 
-  3. Do the same for ```generalcompanyinfoprocessor.py``` as above and edit line 151 to include ```base_url="https://openrouter.ai/api/v1",``` in client like below.
+####  Do the same for ```generalcompanyinfoprocessor.py``` as above and edit line 151 to include ```base_url="https://openrouter.ai/api/v1",``` in client like below.
 
-     ```sql
+  ```sql
      lm_openai = OpenAI(
             api_key=API_KEY,
             http_client=httpx.Client(),
             base_url="https://openrouter.ai/api/v1"
             )
-     ```
+  ```
      
-  4. Go to .env file and change API_KEY with **NO SPACES**. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
+ #### Go to ```.env``` file and change API_KEY with **NO SPACES**.
   
      ```
        API_KEY=sk-or-v1.........
