@@ -390,7 +390,7 @@ If the need for local development arises with a locally hosted database, follow 
     esg_rag, stocks, roa_roe = fetch_data_local_postgres()
 ```
 
-  ### If you intend to use OpenRouter with a free API_KEY. Follow the steps below. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
+#### If you intend to use OpenRouter with a free API_KEY if you do not have access to our .env file, please follow the steps below. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
   
 ####  In ```./final_scripts/RAGProcessor.py```
 
