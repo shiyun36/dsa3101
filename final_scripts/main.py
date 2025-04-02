@@ -17,7 +17,7 @@ URL_OUTPUT_FILE="../outputs/pdf_links.txt"
 
 ########### ADJUST YOUR INPUTS HERE #############
 INDUSTRY = 'finance'
-INSERT_URL= ['https://www.maybank.com/iwov-resources/documents/pdf/annual-report/2023/Maybank-Sustainability-Report-2023.pdf']
+INSERT_URL= ['https://www.maybank.com/iwov-resources/documents/pdf/annual-report/2023/Maybank-Sustainability-Report-2023.pdf', 'https://www.maybank.com/iwov-resources/documents/pdf/annual-report/2022/Maybank-Sustainability-Report-2022.pdf', 'https://www.maybank.com/iwov-resources/documents/pdf/annual-report/2021/Maybank-Sustainability-Report-2021.pdf','https://www.maybank.com/iwov-resources/corporate_new/document/my/en/pdf/annual-report/2021/Maybank_Sustainability_Report_2020.pdf']
 #Input_file = False
 YEARS = [2024, 2023, 2022, 2021]
 GEOGRAPHICAL_REGION = 'Malaysia'

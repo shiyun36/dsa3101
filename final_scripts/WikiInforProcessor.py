@@ -121,12 +121,12 @@ class CompanyInfoUpdater:
             print("CSV file does not exist.")
             return pd.DataFrame()
 
-        print("Local CSV tuples:", local_tuples)
+        str_local_tuples = {(company, str(year)) for company, year in local_tuples}
 
-        missing_in_supabase = local_tuples - supabase_set
+        missing_in_supabase = str_local_tuples - supabase_set
         print("Tuples missing in Supabase:", missing_in_supabase)
-
-        missing_rows_df = local_df[local_df.apply(lambda row: (row['Company'], row['Year']) in missing_in_supabase, axis=1)]
+        missing_in_supabase_destringified = {(company, int(year)) for company, year in missing_in_supabase}
+        missing_rows_df = local_df[local_df.apply(lambda row: (row['Company'], row['Year']) in missing_in_supabase_destringified, axis=1)]
         
         return missing_rows_df
         
