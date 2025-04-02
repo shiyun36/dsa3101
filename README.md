@@ -39,12 +39,22 @@ As ESG (Environmental, Social, and Governance) factors become central to corpora
 This project leverages Natural Language Processing (NLP) and AI to automate ESG data extraction, normalization, and scoring. Our goal is to transform unstructured ESG reports into actionable insights, enabling businesses to benchmark performance, assess risks, and predict financial impact.
 
 ## Features:
-1. Automated ESG Data Extraction – Structured data processing from unstructured reports
+### 1. Automated ESG Data Extraction – Structured data processing from unstructured reports
+We used OCR Scraper to extract images from PDF reports.
 
-2. Metric Normalization – Standardizing ESG indicators for cross-industry comparison
+### 2. Metric Normalization using RAG – Standardizing ESG indicators for cross-industry comparison
+We use Retrieval Augmented Generation (RAG) where the LLM is connected to our ESG database and retrieves the data for each ESG metric and normalizes it based on industry averages.
+We do this using a JSON-based query system. For each ESG metric, we send 2 queries: value_query, which extracts the data for the metric and scoring_query, which normalizes the data to between 0 and 1.
 
-3. ESG Scoring & Benchmarking – Aligning with industry standards to enhance transparency
+To create the queries, we identified the terms used in ESG reports that indicate the various metrics values and tried to specify the queries. Initially, a generalised JSON query was created, but we found that the queries were too broad and ineffective. We then created JSON queries for specific sub-industries, which improved RAG retrieval. However, since it was not scalable, we fine-tuned the queries until it could work for most industries.
 
+### 3. ESG Scoring & Summary Dashboards - Benchmarking and visualisation of ESG data of companies
+Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance.
+
+### 4. Prediction Model for Financial Impact of ESG performance - Determine key ESG factors affecting financial performance
+Our prediction model benchmarks companies using overall ESG scores, analyzing their relationship with financial metrics such as ROA, ROE, and stock growth. Separately, to identify the most influential ESG factors, we applied Recursive Feature Elimination (RFE), selecting the top five ESG metrics that best predict financial performance.
+
+Due to limited standardized ESG data, we initially fitted a simple linear regression model to estimate the financial impact of ESG scores across companies. However, as more data becomes available, the model can and should be refined to assess company-specific ESG-financial relationships. Future iterations may incorporate time-lagged financials, individual ESG metrics, and advanced models like ARIMA or VARMAX for deeper, more accurate insights.
 
 ## Tech Stack
 [![Power Bi](https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
@@ -143,11 +153,11 @@ Maps company names to their stock ticker symbols. Else the api will search yahoo
 | `company_name` | TEXT | Name of the company                      |
 
 ### `esg_financial_model_table`
-Gives the top 5 features used in our predictive model to predict financial impact from ESG scores.
+Gives the top 5 features used to predict financial impact from ESG scores.
 
 | Column       | Type   | Description                              |
 |--------------|--------|------------------------------------------|
-| `variable`     | VARCHAR   | The variable the feature belongs like roa,roe,overall                      |
+| `variable`     | VARCHAR   | The variable the feature belongs like roa, roe, stock growth, overall                      |
 | `feature` | VARCHAR | Features that affect the variable like Current Employees by Gender                     |
 | `rank` | INT | Rank of the feature                     |
 
@@ -164,6 +174,43 @@ Output of our predictive model.
 | `stock_growth_actual`     | FLOAT   | Actual stock growth                     |
 | `stock_growth_predicted` | FLOAT | Model predicted roa stock growth                   |
 
+### `general_company_info_table`
+
+| Column                                      | Type  | Description                               |
+|---------------------------------------------|-------|-------------------------------------------|
+| `Name`                                      | TEXT  | Company name                              |
+| `Country`                                   | TEXT  | Country of operation                      |
+| `Continent`                                 | TEXT  | Continent of operation                    |
+| `Industry`                                  | TEXT  | Industry sector                           |
+| `Year`                                      | TEXT  | Reporting year                            |
+| `GHG Scope 1 emission`                      | TEXT  | Direct greenhouse gas emissions          |
+| `GHG Scope 2 emission`                      | TEXT  | Indirect emissions from electricity use  |
+| `GHG Scope 3 emission`                      | TEXT  | Other indirect emissions                 |
+| `Water Consumption`                         | TEXT  | Total water consumption                   |
+| `Energy Consumption`                        | TEXT  | Total energy consumption                  |
+| `Waste Generation`                          | TEXT  | Total waste generated                     |
+| `Total Employees`                           | TEXT  | Number of employees                       |
+| `Total Female Employees`                    | TEXT  | Number of female employees                |
+| `Employees under 30`                        | TEXT  | Employees younger than 30                 |
+| `Employees between 30-50`                   | TEXT  | Employees aged 30 to 50                   |
+| `Employees above 50s`                       | TEXT  | Employees older than 50                   |
+| `Fatalities`                                | TEXT  | Work-related fatalities                   |
+| `Injuries`                                  | TEXT  | Work-related injuries                     |
+| `Avg Training Hours per employee`           | TEXT  | Average training hours per employee       |
+| `Training Done, Independent Directors`      | TEXT  | Training hours for independent directors  |
+| `Female Directors`                          | TEXT  | Number of female directors                |
+| `Female Managers`                           | TEXT  | Number of female managers                 |
+| `Employees Trained`                         | TEXT  | Number of employees trained               |
+| `Certifications`                            | TEXT  | Company certifications                    |
+| `Total Revenue`                             | TEXT  | Total revenue generated                   |
+| `Total ESG Investment`                      | TEXT  | Total investment in ESG initiatives       |
+| `Net Profit`                                | TEXT  | Net profit                                |
+| `Debt-Equity Ratio`                         | TEXT  | Debt-to-equity ratio                      |
+| `ROE`                                       | TEXT  | Return on equity                          |
+| `ROA`                                       | TEXT  | Return on assets                          |
+```sql
+CONSTRAINT unique_company_info UNIQUE ("Name","Year")
+```
 
 [🔼 Back to Top](#table-of-contents)
 
@@ -173,7 +220,7 @@ Ensure that you have the following installed and specs.
 1. [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/products/docker-desktop/)
 2. [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 3. ```‼️Atleast 20GB of Storage ‼️```
-4. ```‼️‼️‼️ NOT CONNECTED TO NUS WIFI AS IT BLOCKS CONNECTIONS```
+4. ```‼️‼️‼️ NOT CONNECTED TO NUS WIFI AS IT BLOCKS CONNECTIONS TO OUR ONLINE DB ‼️‼️‼️```
 
 
 ## Dockerizing the Project
@@ -206,7 +253,21 @@ Ensure that you have the following installed and specs.
   docker compose up -d
   ```
 > ⚠️ **Important:** This can take awhile to load depending on your computer specs.
-> 
+
+6. To access the database on pgAdmin4 interface instead of supabase online, do the following after clicking on Add New Server:
+
+```
+ General Tab:
+  Name: supabase (or anything you want)
+Connection Tab:
+  Host name/address: aws-0-ap-southeast-1.pooler.supabase.com
+  port: 6543
+  maintainence database: postgres
+  username: postgres.pevfljfvkiaokawnfwtb
+  Password: CONTACT US FOR THE PASSWORD or REFER TO ENV FILE SENT TO YOU
+```
+
+
 [🔼 Back to Top](#table-of-contents)
 
 ## Running Python Scripts
@@ -217,10 +278,23 @@ To use the python scripts in Docker, run the following in the same terminal afte
 docker-compose exec app bash
 ```
 
-2. Run with the directory of script
+2. Run with the directory of script with the format below. **Ensure that there is only one country and industry at a line but you may use multiple links seperated by a comma**. You can refer to the examples.
 ```
-python {script to run add file directory here}
+python main.py --url "insert urls here" --country Country --industry industry
 ```
+
+Example 1.
+
+```
+python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0" --country Singapore --industry energy
+```
+
+Example 2.
+
+```
+python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0, https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2021-2022.pdf" --country Singapore --industry energy
+```
+
 
 [🔼 Back to Top](#table-of-contents)
 
@@ -231,8 +305,9 @@ python {script to run add file directory here}
 [🔼 Back to Top](#table-of-contents)
 
 ## Local Development
-If the need for local development arises with a locally hosted database, follow the instructions below. Ensure that the Docker Container has started.
-1. Before Dockerizing the container, go to the db folders and its scripts and the main script. Uncomment the lines with
+If the need for local development arises with a locally hosted database, follow the instructions below to clean the databases and update the scripts.
+> !!! This is only if you want a local database
+1. Before Dockerizing the container, go to the db folders and its scripts like ```db_esg_text.py``` and ```main.py``` and ```financial.py```. Uncomment the lines with
    ```
      db_name = os.getenv('db_name')
      db_user = os.getenv('db_user')
@@ -241,9 +316,46 @@ If the need for local development arises with a locally hosted database, follow 
      db_password = os.getenv('db_password')
      conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
    ```
-  and Comment out line with `## SupaBase DB ##`.
+    and Comment out line with `## SupaBase DB ##`. Refer to the example below.
+   
+  ![image](https://github.com/user-attachments/assets/f32e1126-7a80-4cb9-9873-4e9b31a11dea)
   
   If missing in main file, add the above and comment out the DATABASE_URL and conn with DATABASE_URL.
+
+ In ```./final_scripts/financial_model_powerbi.py```, go to ```prep_model()``` function and have the following commented and uncommented.
+```
+    # supabase = connect_to_supabase()
+    # if supabase is None:
+    #     print("Failed to connect to Supabase.")
+    #     return
+    
+    # esg_rag, stocks, roa_roe = fetch_data(supabase)
+
+    ## if you need local development, comment the above and uncomment below
+    esg_rag, stocks, roa_roe = fetch_data_local_postgres()
+```
+
+  In ```./final_scripts/RAGProcessor.py```, if you intend to use OpenRouter with its free API_KEY. Follow the steps below:
+
+  1. Go to ```class ESGAnalyzer``` and under ```___init___```, change the line:
+     
+     ```
+     self.llm_openai = OpenAI(api_key=self.openai_api_key, http_client=httpx.Client(),base_url="https://openrouter.ai/api/v1")
+     ```
+     
+  2. Go to generate_openai_response function and in line 135 change the model to the below or any model that you like:
+     
+     ```
+      model="google/gemini-2.5-pro-exp-03-25:free"
+     ```
+     
+  3. Go to .env file and change API_KEY. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
+  
+     ```
+       API_KEY=sk-or-v1.........
+     ```
+
+  > ⚠️ **DO NOT DELETE ANY FILES**
   
   Then run step 5 from [Dockerizing the Project](#dockerizing-the-project)
   
