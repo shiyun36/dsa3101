@@ -1,0 +1,139 @@
+2025-04-01 15:03:40,733 - INFO - Found PDF: https://www.singhealthacademy.edu.sg/Documents/SHM2024/SHMC%20Speakers%20Slides/SHMC%202024/HM20%20-%20Can%20Healthcare%20Fix%20a%20Sick%20Planet%20with%20a%20Climate%20and%20Nature%20Emergency%20-%20Esther.pdf
+2025-04-01 15:03:41,308 - INFO - Found PDF: https://singlife.com/content/dam/public/sg/documents/about-us/sustainability-strategy/singlife-sustainability-report-2023.pdf
+2025-04-01 15:03:41,969 - INFO - Found PDF: https://singlife.com/content/dam/public/sg/documents/about-us/sustainability-strategy/singlife-sustainability-report-2023.pdf
+2025-04-01 15:03:42,776 - INFO - Found PDF: https://www.singhealth.com.sg/about-singhealth/newsroom/Documents/%5BWeb%20Version%5D%20SingHealth%20Annual%20Overview%2020-21.pdf
+2025-04-01 15:03:43,325 - INFO - Found PDF: https://corp.nhg.com.sg/Lists/Lifewise/Attachments/127/LifeWiseSingle%20Lowres.pdf
+2025-04-01 15:03:43,831 - INFO - Found PDF: https://corp.nhg.com.sg/Lists/Lifewise/Attachments/127/LifeWiseSingle%20Lowres.pdf
+2025-04-01 15:03:44,569 - INFO - Found PDF: https://corp.nhg.com.sg/Lists/Lifewise/Attachments/127/LifeWiseSingle%20Lowres.pdf
+2025-04-01 15:03:45,286 - INFO - Found PDF: https://corp.nhg.com.sg/documents/cyb%202021%20digital/assets/pdfs/nhg-corporate-yearbook-fy2020-21.pdf
+2025-04-01 15:03:46,182 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/DMFYQ8R46HM8X7F7/837824_Parkway%20Life%20REIT%20-%20Annual%20Report%202024.pdf
+2025-04-01 15:03:47,186 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/A6OLK2A8MOSEM756/793482_Parkway%20Life%20REIT%20-%20Annual%20Report%20FY2023.pdf
+2025-04-01 15:03:49,337 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/A6OLK2A8MOSEM756/793482_Parkway%20Life%20REIT%20-%20Annual%20Report%20FY2023.pdf
+2025-04-01 15:04:23,432 - INFO - reading file from input stream
+2025-04-01 15:04:24,409 - WARNING - This PDF has a fillable form. Chances are it is a pure digital document that does not need OCR.
+2025-04-01 15:04:24,409 - INFO - Start processing 16 pages concurrently
+2025-04-01 15:04:24,416 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,417 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,417 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,418 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,419 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,420 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,421 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,421 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,422 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,424 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,425 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,425 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,426 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,428 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,429 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:24,430 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:30,908 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:31,316 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:32,255 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:32,273 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:32,753 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:33,153 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:33,245 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:33,365 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:33,505 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:33,511 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:33,569 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:34,935 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:35,597 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:35,672 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:36,981 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:38,253 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:39,157 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:39,452 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:39,497 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:40,044 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:40,371 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:40,475 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:40,956 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:41,323 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:41,497 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:41,519 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:42,291 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:42,704 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:43,250 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:44,452 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:45,512 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:46,685 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:46,732 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:46,847 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:47,029 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:47,222 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:47,298 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:47,721 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:47,794 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:48,253 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:48,495 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:48,696 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:48,769 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:49,591 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:50,216 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:50,431 - INFO - page already has text! - rasterizing text and running OCR anyway
+2025-04-01 15:04:55,192 - INFO - Postprocessing...
+2025-04-01 15:05:32,696 - WARNING - Some input metadata could not be copied because it is not permitted in PDF/A. You may wish to examine the output PDF's XMP metadata.
+2025-04-01 15:06:19,457 - INFO - Image optimization ratio: 1.13 savings: 11.9%
+2025-04-01 15:06:19,457 - INFO - Total file size ratio: 0.43 savings: -133.0%
+2025-04-01 15:06:19,524 - INFO - Output written to stream
+2025-04-01 15:06:21,327 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-04-01 15:06:49,031 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:06:50,822 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:06:54,347 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:06:57,070 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:06:59,468 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:01,380 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:05,269 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:08,006 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:11,107 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:12,897 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:15,944 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:17,643 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:20,077 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:21,433 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:24,307 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:26,358 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:29,899 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:36,990 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:40,491 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:42,260 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:44,932 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:46,582 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:48,665 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:50,277 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:51,999 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:54,467 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:57,426 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:07:59,064 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:01,256 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:03,368 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:06,565 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:08,453 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:11,087 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:13,197 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:16,383 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:18,979 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:22,043 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:24,298 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:26,889 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:28,710 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:33,220 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:36,381 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:41,269 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:42,992 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:45,908 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:08:52,973 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-01 15:19:14,685 - INFO - Found PDF: https://www.singhealthacademy.edu.sg/Documents/SHM2024/SHMC%20Speakers%20Slides/SHMC%202024/HM20%20-%20Can%20Healthcare%20Fix%20a%20Sick%20Planet%20with%20a%20Climate%20and%20Nature%20Emergency%20-%20Esther.pdf
+2025-04-01 15:19:15,164 - INFO - Found PDF: https://singlife.com/content/dam/public/sg/documents/about-us/sustainability-strategy/singlife-sustainability-report-2023.pdf
+2025-04-01 15:19:15,633 - INFO - Found PDF: https://singlife.com/content/dam/public/sg/documents/about-us/sustainability-strategy/singlife-sustainability-report-2023.pdf
+2025-04-01 15:19:16,079 - INFO - Found PDF: https://www.singhealth.com.sg/about-singhealth/newsroom/Documents/%5BWeb%20Version%5D%20SingHealth%20Annual%20Overview%2020-21.pdf
+2025-04-01 15:19:16,705 - INFO - Found PDF: https://corp.nhg.com.sg/Lists/Lifewise/Attachments/127/LifeWiseSingle%20Lowres.pdf
+2025-04-01 15:19:17,448 - INFO - Found PDF: https://corp.nhg.com.sg/Lists/Lifewise/Attachments/127/LifeWiseSingle%20Lowres.pdf
+2025-04-01 15:19:18,100 - INFO - Found PDF: https://corp.nhg.com.sg/Lists/Lifewise/Attachments/127/LifeWiseSingle%20Lowres.pdf
+2025-04-01 15:19:18,564 - INFO - Found PDF: https://corp.nhg.com.sg/documents/cyb%202021%20digital/assets/pdfs/nhg-corporate-yearbook-fy2020-21.pdf
+2025-04-01 15:19:19,243 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/DMFYQ8R46HM8X7F7/837824_Parkway%20Life%20REIT%20-%20Annual%20Report%202024.pdf
+2025-04-01 15:19:19,657 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/A6OLK2A8MOSEM756/793482_Parkway%20Life%20REIT%20-%20Annual%20Report%20FY2023.pdf
+2025-04-01 15:19:20,690 - INFO - Found PDF: https://links.sgx.com/1.0.0/corporate-announcements/A6OLK2A8MOSEM756/793482_Parkway%20Life%20REIT%20-%20Annual%20Report%20FY2023.pdf

@@ -22,6 +22,8 @@ dependencies:
   - cudatoolkit=11.8
   - pip
   - pip:
+    - statsmodels
+    - supabase
     - psycopg2
     - googlesearch-python
     - httpx

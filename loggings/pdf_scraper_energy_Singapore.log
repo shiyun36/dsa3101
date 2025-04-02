@@ -2,3 +2,17 @@
 2025-03-26 15:20:28,595 - INFO - AFC remote call 1 is done.
 2025-03-26 15:22:32,583 - INFO - AFC is enabled with max remote calls: 10.
 2025-03-26 15:22:33,558 - INFO - AFC remote call 1 is done.
+2025-04-01 15:20:38,086 - INFO - Found PDF: https://www.sembcorp.com/media/k5aevdek/sustainability_report.pdf
+2025-04-01 15:20:38,642 - INFO - Found PDF: https://www.sembcorp.com/media/k5aevdek/sustainability_report.pdf
+2025-04-01 15:20:39,113 - INFO - Found PDF: https://www.sembcorp.com/media/nhlbsvgy/sustainability_report.pdf
+2025-04-01 15:20:39,635 - INFO - Found PDF: https://www.sembcorp.com/media/cz5gkj2j/sustainability_report_2021.pdf
+2025-04-01 15:20:40,254 - INFO - Found PDF: https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Report-FY2023-24.pdf
+2025-04-01 15:20:40,746 - INFO - Found PDF: https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Report-FY2023-24.pdf
+2025-04-01 15:20:41,275 - INFO - Found PDF: https://www.spgroup.com.sg/dam/spgroup/pdf/sustainability/reviews/SP-Group-Sustainability-Review-FY2022-23.pdf
+2025-04-01 15:20:41,790 - INFO - Found PDF: https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2021-2022.pdf
+2025-04-01 15:20:42,245 - INFO - Found PDF: https://www.kepinfratrust.com/file/sustainability/kit-esg-policy-2024.pdf
+2025-04-01 15:20:42,909 - INFO - Found PDF: https://www.kepinfratrust.com/file/sustainability/kit-2023-sr.pdf
+2025-04-01 15:20:43,508 - INFO - Found PDF: https://www.kepinfratrust.com/file/sustainability/kit-2023-sr.pdf
+2025-04-01 15:20:44,002 - INFO - Found PDF: https://www.keppel.com/file/sustainability/sustainability-reports/kcl-sr-21.pdf
+2025-04-01 15:20:44,235 - ERROR - Error downloading or processing PDF from 'https://www.sembcorp.com/media/cz5gkj2j/sustainability_report_2021.pdf': 403 Client Error: Forbidden for url: https://www.sembcorp.com/media/cz5gkj2j/sustainability_report_2021.pdf
+2025-04-01 15:20:44,235 - ERROR - Error processing PDF: Error downloading or processing PDF from 'https://www.sembcorp.com/media/cz5gkj2j/sustainability_report_2021.pdf'.
