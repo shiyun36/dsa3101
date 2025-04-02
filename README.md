@@ -78,12 +78,12 @@ Due to limited standardized ESG data, we initially fitted a simple linear regres
 ```
 dsa3101/                            # Root directory
 │── chromadb_1003/                  # VectorDB containing esg report text embeddings
-│── csv/                            # Folder for storing CSV files
+│── csv/                            # Folder for storing CSV outputs generated
 │── datasets_in_json/               # Stores extracted text from pdf scraper as JSON 
 │── db/                             # Database-related scripts and configurations
 │   ├── scripts/                    # Creation and insertion of the different supabase tables
 │   ├── db.py                       # Connection to database
-│   ├── db.sql                      # Create various tables in supabase
+│   ├── db.sql                      # Creation of sql tables 
 │── env/                            # Environment setup files
 │   ├── bootstrap.sh                # Shell script to set up the environment
 │   ├── environment.yaml            # Conda environment configuration
@@ -97,9 +97,9 @@ dsa3101/                            # Root directory
 │   ├── db_operations.py            # Handles database operations
 │   ├── ESGScoringProcessor.py      # Processes ESG scoring to match supabase schema
 │   ├── financial_model_powerbi.py  # Financial model integration for Power BI
-│   ├── financial.py                # Inserts financial data into db for financial model to use
-│   ├── GenerateCompanyInfoProcessor.py # Finds General company information metrics from RAG first and through webscraping if not found in RAG
-│   ├── GeneratePfds.py             # Automated webscraping of esg report pdf urls
+│   ├── financial.py                # Inserts financial data into db for financial model 
+│   ├── GenerateCompanyInfoProcessor.py # Finds General company info from RAG first then through webscraping if not found in RAG
+│   ├── GeneratePdfs.py             # Automated webscraping of esg report pdf urls
 │   ├── PdfExtractor.py             # Extracts text from pdf urls with ocr scraper
 │   ├── RAGProcessor.py             # Calls RAG Processor
 │   ├── setup_cron.sh               # Scheduler to run the main.py file every Monday at 3am 
