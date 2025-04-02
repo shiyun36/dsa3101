@@ -282,25 +282,23 @@ To use the python scripts in Docker, run the following in the same terminal afte
 docker-compose exec app bash
 ```
 
-2. Run with the directory of script with the format below. **Ensure that there is only one country and industry at a line but you may use multiple links seperated by a comma**. You can refer to the examples.
+2. Run the following command once you see root:/app#
 ```sql
-python main.py --url "insert urls here" --country Country --industry industry
+sudo apt-get update
+sudo apt-get install nano
 ```
+3. Run and edit the parameters as needed below. Refer to the image. Ensure that there is only one country and one industry at a time. Multiple links can be inserted at ```INSERT_URL```. You can enter ```CTRL X``` and ```Y``` to save after editing.
 
+ ```nano main.py```
+
+![image](https://github.com/user-attachments/assets/dd97f563-5cea-4271-b90a-4777ab1fd362)
+
+
+5. Run the command below
+```sql
+python main.py
+```
 > ❌ **Important:** In the event of an error while running the script. Rerun step 2. This may be due to insufficient disk space or memory.
-
-Example 1.
-
-```sql
-python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0" --country Singapore --industry energy
-```
-
-Example 2.
-
-```sql
-python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0, https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2021-2022.pdf" --country Singapore --industry energy
-```
-> ⚠️ **Important:** This will take a while because population of the chromaDB with other reports happens on the first run.
 
 
 
@@ -376,10 +374,10 @@ If the need for local development arises with a locally hosted database, follow 
   ```
      
  #### Go to ```.env``` file and change API_KEY with **NO SPACES**.
-  
-     ```
-       API_KEY=sk-or-v1.........
-     ```
+
+  ```
+    API_KEY=sk-or-v1.........
+  ```
 
   > ⚠️ **DO NOT DELETE ANY FILES**
   
