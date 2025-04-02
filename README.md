@@ -67,7 +67,7 @@ Due to limited standardized ESG data, we initially fitted a simple linear regres
 [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)](https://git-scm.com/)
 
 ## Pipeline
-![image](https://github.com/user-attachments/assets/7b926fad-8614-457a-8727-0a21e386e883)
+![image](https://github.com/user-attachments/assets/a89ba535-9f38-4687-83b7-08211b865541)
 
 
 [🔼 Back to Top](#table-of-contents)
@@ -211,6 +211,7 @@ Output of our predictive model.
 | `ROE`                                       | TEXT  | Return on equity                          |
 | `ROA`                                       | TEXT  | Return on assets                          |
 ```sql
+CONSTRAINT general_info_unique_pk PRIMARY KEY ("Company","Year")
 CONSTRAINT unique_company_info UNIQUE ("Name","Year")
 ```
 
@@ -281,19 +282,19 @@ docker-compose exec app bash
 ```
 
 2. Run with the directory of script with the format below. **Ensure that there is only one country and industry at a line but you may use multiple links seperated by a comma**. You can refer to the examples.
-```
+```sql
 python main.py --url "insert urls here" --country Country --industry industry
 ```
 
 Example 1.
 
-```
+```sql
 python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0" --country Singapore --industry energy
 ```
 
 Example 2.
 
-```
+```sql
 python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2020-2021.pdf0, https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-sustainability-commitment/SP-Group-Sustainability-Review-FY2021-2022.pdf" --country Singapore --industry energy
 ```
 
@@ -310,7 +311,7 @@ python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-su
 If the need for local development arises with a locally hosted database, follow the instructions below to clean the databases and update the scripts.
 > !!! This is only if you want a local database
 1. Before Dockerizing the container, go to the db folders and its scripts like ```db_esg_text.py``` and ```main.py``` and ```financial.py```. Uncomment the lines with
-   ```
+   ```sql
      db_name = os.getenv('db_name')
      db_user = os.getenv('db_user')
      db_port = os.getenv('db_port')
@@ -318,14 +319,14 @@ If the need for local development arises with a locally hosted database, follow 
      db_password = os.getenv('db_password')
      conn = psycopg2.connect(f"dbname={db_name} user={db_user} password={db_password} host={db_host} port={db_port}")
    ```
-    and Comment out line with `## SupaBase DB ##`. Refer to the example below.
+    and Comment out line with `## SupaBase DB ##`. Refer to the example below, if the comments are missing, add the code above and uncomment accordingly.
    
   ![image](https://github.com/user-attachments/assets/f32e1126-7a80-4cb9-9873-4e9b31a11dea)
   
   If missing in main file, add the above and comment out the DATABASE_URL and conn with DATABASE_URL.
 
  In ```./final_scripts/financial_model_powerbi.py```, go to ```prep_model()``` function and have the following commented and uncommented.
-```
+```sql
     # supabase = connect_to_supabase()
     # if supabase is None:
     #     print("Failed to connect to Supabase.")
@@ -341,17 +342,27 @@ If the need for local development arises with a locally hosted database, follow 
 
   1. Go to ```class ESGAnalyzer``` and under ```___init___```, change the line:
      
-     ```
+     ```sql
      self.llm_openai = OpenAI(api_key=self.openai_api_key, http_client=httpx.Client(),base_url="https://openrouter.ai/api/v1")
      ```
      
   2. Go to generate_openai_response function and in line 135 change the model to the below or any model that you like:
      
-     ```
+     ```sql
       model="google/gemini-2.5-pro-exp-03-25:free"
      ```
+
+  3. Do the same for ```generalcompanyinfoprocessor.py``` as above and edit line 151 to include ```base_url="https://openrouter.ai/api/v1",``` in client like below.
+
+     ```sql
+     lm_openai = OpenAI(
+            api_key=API_KEY,
+            http_client=httpx.Client(),
+            base_url="https://openrouter.ai/api/v1"
+            )
+     ```
      
-  3. Go to .env file and change API_KEY. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
+  4. Go to .env file and change API_KEY with **NO SPACES**. You can get a free API_KEY here: <a>https://openrouter.ai/</a>
   
      ```
        API_KEY=sk-or-v1.........
