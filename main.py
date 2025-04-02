@@ -77,8 +77,8 @@ def main():
                                         industry = INDUSTRY)
             text_df = pdf_extractor.process_pdf()
 
-            with open('text_df_fullerton.pkl', 'wb') as f:
-                pickle.dump(text_df, f)
+            # with open('text_df_carousell.pkl', 'wb') as f:
+            #     pickle.dump(text_df, f)
                     
             # if os.path.exists('text_df_carousell.pkl'):
             #         with open('text_df_carousell.pkl', 'rb') as f:
