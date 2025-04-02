@@ -74,7 +74,42 @@ Due to limited standardized ESG data, we initially fitted a simple linear regres
 
 ## Repository Structure
 ```
-add our file structures here :D
+dsa3101/                            # Root directory
+│── chromadb_1003/                  # VectorDB containing esg report text embeddings
+│── csv/                            # Folder for storing CSV files
+│── datasets_in_json/               # Stores extracted text from pdf scraper as JSON 
+│── db/                             # Database-related scripts and configurations
+│   ├── scripts/                    # Creation and insertion of the different supabase tables
+│   ├── db.py                       # Connection to database
+│   ├── db.sql                      # Create various tables in supabase
+│── env/                            # Environment setup files
+│   ├── bootstrap.sh                # Shell script to set up the environment
+│   ├── environment.yaml            # Conda environment configuration
+│── ESG-BERT/                       # Repo to classification model used previously
+│── files/                          # Folder for storing general files
+│   ├── labeled_pdfs                # Folder for storing labeled_pdfs for old classification model 
+│   ├── rag_output/                 # Folder for storing esg scores from RAG output
+│   ├── scoring_queries             # Folder for storing esg_queries for RAG
+│   ├── wiki                        # Folder for storing csv generated from extracting general company info
+│── final_scripts/                  # Folder containing core Python scripts
+│   ├── db_operations.py            # Handles database operations
+│   ├── ESGScoringProcessor.py      # Processes ESG scoring to match supabase schema
+│   ├── financial_model_powerbi.py  # Financial model integration for Power BI
+│   ├── financial.py                # Inserts financial data into db for financial model to use
+│   ├── GenerateCompanyInfoProcessor.py # Finds General company information metrics from RAG first and through webscraping if not found in RAG
+│   ├── GeneratePfds.py             # Automated webscraping of esg report pdf urls
+│   │── main.py                     # Main script to run the project
+│   ├── PdfExtractor.py             # Extracts text from pdf urls with ocr scraper
+│   ├── RAGProcessor.py             # Calls RAG Processor
+│   ├── setup_cron.sh               # Scheduler to run the main.py file every Monday at 3am 
+│   ├── Supabase_Query.py           # Query Supabase to retrieve company and years that exist in the database
+│   ├── WikiInfoProcessor.py        # Extracts company and years that exist from Supabase_Query to find company metrics from GenerateCompanyInfoProcessor                                     
+│── loggings/                       # Folder for log files of the pdf url webscraping from GeneratePfds
+│── outputs/                        # Stores the pdf urls generated from GeneratePfds
+│── compose.yaml                    # Docker Compose file for managing containers
+│── data_pipeline.jpg               # Image of the very first original data pipeline design
+│── Dockerfile                      # Docker configuration file
+│── requirements.txt                # Docker requirements file 
 ```
 
 [🔼 Back to Top](#table-of-contents)
