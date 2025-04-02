@@ -233,11 +233,11 @@ Context:
             elif industry == "energy":
                 query_file = "./files/scoring_queries/sg_energy_query.json"
                 csv_file = "./files/rag_output/sg_energy_score.csv"
-            elif industry == "e-commerce":
+            elif industry == "technology":
                 query_file = "./files/scoring_queries/sg_tech_query.json"
                 csv_file = "./files/rag_output/sg_tech_score.csv"
             else:
-                query_file = "./files/scoring_queries/generalMetrics.json"
+                query_file = "./files/scoring_queries/generalMetrics_query.json"
                 csv_file = "./files/rag_output/unsupported_company_scores.csv"
                 print(f"Unsupported industry '{industry}' for country '{country}'. Using General Metrics.")
         else:
