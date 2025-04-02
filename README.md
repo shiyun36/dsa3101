@@ -1,4 +1,4 @@
-<div align="center">
+![image](https://github.com/user-attachments/assets/81022ad8-00c0-4214-b832-25f256782396)<div align="center">
 
 # 🏆 DSA3101 Group 7 Project Instructions 🏆
 
@@ -287,6 +287,8 @@ docker-compose exec app bash
 python main.py --url "insert urls here" --country Country --industry industry
 ```
 
+> ❌ **Important:** In the event of an error while running the script. Rerun step 2. This may be due to insufficient disk space or memory.
+
 Example 1.
 
 ```sql
@@ -300,11 +302,19 @@ python main.py --url "https://www.spgroup.com.sg/dam/spgroup/pdf/about-us/our-su
 ```
 > ⚠️ **Important:** This will take a while because population of the chromaDB with other reports happens on the first run.
 
+
+
 [🔼 Back to Top](#table-of-contents)
 
 ## PowerBI Dashboard
+#### This is how our dashboard looks, it downloaded from the repo above or accessed here: <a>powerbilinkpls</a>
+
 ### Executive Summary
+![image](https://github.com/user-attachments/assets/ee4deba7-caee-4b0c-8b86-ed500148a690)
+
 ### Company Summary
+![image](https://github.com/user-attachments/assets/fe377132-b0b5-41cf-9224-4308495b09b5)
+
 
 [🔼 Back to Top](#table-of-contents)
 
