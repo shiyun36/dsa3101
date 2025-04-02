@@ -278,8 +278,11 @@ Ensure that you have the following installed and specs.
    db_host=postgres
    db_password=password
    DATABASE_URL={CONTACT US}
-   SUPABASE_URL={CONTACT US}
    SUPABASE_KEY={CONTACT US}
+   SUPABASE_URL={CONTACT US}
+   API_KEY=sk...
+   GOOGLE_API_KEY=EMPTY
+   GPT_API_KEY=sk...
    SUPABASE_PASSWORD={CONTACT US}
    ```
    
