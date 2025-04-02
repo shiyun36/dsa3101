@@ -49,7 +49,9 @@ We do this using a JSON-based query system. For each ESG metric, we send 2 queri
 To create the queries, we identified the terms used in ESG reports that indicate the various metrics values and tried to specify the queries. Initially, a generalised JSON query was created, but we found that the queries were too broad and ineffective. We then created JSON queries for specific sub-industries, which improved RAG retrieval. However, since it was not scalable, we fine-tuned the queries until it could work for most industries.
 
 ### 3. ESG Scoring & Summary Dashboards - Benchmarking and visualisation of ESG data of companies
-Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance.
+Our scoring system rates the ESG performance of each company out of 10, where a higher score indicates better performance. Initially, we explored industry-specific weights for Environmental, Social and Governance factors but found that the equal-weighted approach was ideal as it was simple to understand and enabled cross-industry comparison of ESG scores. 
+
+The ESG score and the metrics used are presented in our PowerBI dashboards (link found below) which comprise of 1) an executive summary of the ESG data catered for business decision making and 2) sector-specific breakdowns for detailed analysis of metrics.
 
 ### 4. Prediction Model for Financial Impact of ESG performance - Determine key ESG factors affecting financial performance
 Our prediction model benchmarks companies using overall ESG scores, analyzing their relationship with financial metrics such as ROA, ROE, and stock growth. Separately, to identify the most influential ESG factors, we applied Recursive Feature Elimination (RFE), selecting the top five ESG metrics that best predict financial performance.
